@@ -1,0 +1,40 @@
+[dask]
+workers = 10
+files=["Orderp.py"]
+wmdrun = [
+    "gmx mdrun -pin on -pinoffset  0 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset  2 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset  4 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset  6 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset  8 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset 10 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset 12 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset 14 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset 16 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx mdrun -pin on -pinoffset 18 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+]
+
+[simulation]
+pyretis_inp = "retis.rst"
+internal = false
+states_ab = [
+    0.27,
+    0.45,
+]
+steps = 1000000
+seed = 0
+save_loc = "./"
+load_dir = "trajs"
+bm_steps = 100
+bm_intfs = [
+    -900.0,
+     900.0,
+]
+
+[output]
+backup = "backup"
+store_paths = true
+screen = 1
+pattern = true
+data_dir = "./"
+delete_old = true
