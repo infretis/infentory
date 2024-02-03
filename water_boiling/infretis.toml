@@ -1,40 +1,79 @@
 [dask]
-workers = 10
-files=["Orderp.py"]
+workers = 1
+files = ["Orderp.py"]
 wmdrun = [
-    "gmx mdrun -pin on -pinoffset  0 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset  2 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset  4 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset  6 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset  8 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset 10 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset 12 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset 14 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset 16 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
-    "gmx mdrun -pin on -pinoffset 18 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset  0 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset  2 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset  4 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset  6 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset  8 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset 10 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset 12 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset 14 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset 16 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_2023.3_gpu mdrun -pin on -pinoffset 18 -pinstride 1 -ntomp 2 -ntmpi 1 -notunepme -nb gpu -bonded cpu -pme gpu",
 ]
 
 [simulation]
-pyretis_inp = "retis.rst"
-internal = false
-states_ab = [
-    0.27,
-    0.45,
-]
-steps = 1000000
+interfaces = [ -0.912, -0.9067, -0.9017, -0.8979, -0.8947, -0.892, -0.8895, -0.8873, -0.8852, -0.8832, -0.8813, -0.8795, -0.8778, -0.8762, -0.8746, -0.873, -0.8716, -0.8702, -0.8688, -0.8675, -0.8662, -0.8649, -0.8637, -0.8625, -0.8614, -0.8603, -0.8592, -0.8581, -0.857, -0.8559, -0.8549, -0.8539, -0.8528, -0.8518, -0.8508, -0.8498, -0.8488, -0.8478, -0.8468, -0.8457, -0.8447, -0.8437, -0.8427, -0.8416, -0.8406, -0.8395, -0.8385, -0.8374, -0.8363, -0.8352, -0.8341, -0.833, -0.8319, -0.8308, -0.8297, -0.8286, -0.8275, -0.8264, -0.8253, -0.8243, -0.8233, -0.8222, -0.8212, -0.8202, -0.8192, -0.8182, -0.8171, -0.8161, -0.8151, -0.8141, -0.813, -0.8119, -0.8108, -0.8096, -0.8083, -0.8069, -0.8055, -0.804, -0.8025, -0.8012, -0.8000]
+steps = 100000
 seed = 0
-save_loc = "./"
-load_dir = "trajs"
-bm_steps = 100
-bm_intfs = [
-    -900.0,
-     900.0,
-]
+load_dir = 'load'
+shooting_moves = ['sh', 'sh', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf', 'wf', 'wf', 'wf', 'wf',
+                   'wf']
+
+[simulation.tis_set]
+maxlength = 250000
+allowmaxlength = false
+zero_momentum = true
+temperature = 396.0
+high_accept = true
+n_jumps = 2
+#interface_cap = cap
+
+[engine]
+class = 'gromacs'
+engine = 'gmx'
+timestep = 0.0005 # 0.5 fs
+mdrun = 'gmx_2023.3_gpu mdrun'
+gmx_format = 'g96'
+input_path = 'gromacs_input'
+gmx = 'gmx_2023.3_gpu'
+#subcycles = 1000
+subcycles = 1000
+
+[orderparameter]
+class = 'H20Hole'
+module = 'Orderp.py'
 
 [output]
-backup = "backup"
-store_paths = true
-screen = 1
-pattern = true
+backup = 'backup'
 data_dir = "./"
+order-file = 1
 delete_old = true
+energy-file = 1
+trajectory-file = -1
+screen = 1
+pattern = 1

@@ -37,7 +37,7 @@ print-nose-hoover-chain-variables = no
 tc-grps                  = system
 ; Time constant (ps) and reference temperature (K)
 tau_t                    = 2.5
-ref_t                    = 573.15
+ref_t                    = 396
 ; pressure coupling     
 Pcoupl                   = C-rescale
 Pcoupltype               = isotropic
