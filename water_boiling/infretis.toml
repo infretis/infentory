@@ -60,7 +60,6 @@ timestep = 0.0005 # 0.5 fs
 gmx_format = 'g96'
 input_path = 'gromacs_input'
 gmx = 'gmx_2023.3_gpu'
-#subcycles = 1000
 subcycles = 1000
 
 [orderparameter]

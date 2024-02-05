@@ -1,5 +1,5 @@
 [dask]
-workers = 40
+workers = 1
 files=["orderp.py"]
 wmdrun = [
     'srun -n 1 -N 1 -c 12 -G 0 --exclusive --mem 10G /users/zdaniel/software/cp2k/cp2k-2023.1-Linux-gnu-x86_64.ssmp',
@@ -51,26 +51,49 @@ wmdrun = [
 ]
 
 [simulation]
-pyretis_inp = "retis.rst"
-internal = false
-states_ab = [
-    0.27,
-    0.45,
-]
+interfaces = [ 1.0700, 1.0764, 1.0818, 1.0866, 1.092, 1.0969, 1.1023, 1.1072, 1.112,  1.1174, 1.1223, 1.1277, 1.1326, 1.138,  1.1428, 1.1482, 1.1531, 1.1585, 1.1639, 1.1688, 1.1742, 1.1796, 1.185,  1.1904, 1.1963, 1.2017, 1.2076, 1.2131, 1.219,  1.2249, 1.2309, 1.2374, 1.2433, 1.2498, 1.2563, 1.2633, 1.2698, 1.2773, 1.2844, 1.2919, 1.2995, 1.307,  1.3157, 1.3238, 1.333, 1.3422, 1.3519, 1.3621, 1.3729, 1.3848, 1.3973, 1.4108, 1.4259, 1.4426, 1.4621, 1.4853, 1.5156, 1.5653, 3.4473, 3.5029, 3.5547, 3.6044, 3.6536, 3.7022, 3.7519, 3.8038, 3.8594, 3.9205, 3.9901, 4.0776, 4.2062, 4.5806, 4.9106, 5.1267, 5.36, 5.6123, 5.863,  6.2108, 6.3167, 6.3864, 20.]
 steps = 1000000
 seed = 0
-save_loc = "./"
-load_dir = "trajs"
-bm_steps = 100
-bm_intfs = [
-    -900.0,
-     900.0,
-]
+load_dir = "load"
+shooting_moves = ['sh', 'sh', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf', 'wf', 'wf', 'wf', 'wf',
+                  'wf']
+
+[simulation.tis_set]
+maxlength = 250000
+allowmaxlength = false
+zero_momentum = false
+temperature = 300
+high_accept =true
+n_jumps = 2
+
+[engine]
+class = 'cp2k'
+engine = 'cp2k'
+timestep = 0.5
+cp2k_format = 'xyz'
+input_path = 'cp2k_data'
+cp2k = 'cp2k-2023.1-Linux-gnu-x86_64.ssmp'
+subcycles = 5
+extra_files = ['BASIS_MOLOPT', 'GTH_POTENTIALS']
 
 [output]
-backup = "backup"
-store_paths = true
-screen = 1
-pattern = true
-data_dir = "./"
-delete_old = true
+data_dir = "./" 
+screen = 1 
+pattern = false 
+delete_old = true 
