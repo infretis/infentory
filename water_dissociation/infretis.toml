@@ -92,6 +92,12 @@ cp2k = 'cp2k-2023.1-Linux-gnu-x86_64.ssmp'
 subcycles = 5
 extra_files = ['BASIS_MOLOPT', 'GTH_POTENTIALS']
 
+[orderparameter]
+class = 'OrderX'
+module = 'orderp.py'
+index = [0, 1]
+periodic = true
+
 [output]
 data_dir = "./" 
 screen = 1 
