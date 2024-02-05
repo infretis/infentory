@@ -57,7 +57,6 @@ n_jumps = 2
 class = 'gromacs'
 engine = 'gmx'
 timestep = 0.0005 # 0.5 fs
-mdrun = 'gmx_2023.3_gpu mdrun'
 gmx_format = 'g96'
 input_path = 'gromacs_input'
 gmx = 'gmx_2023.3_gpu'
@@ -69,11 +68,7 @@ class = 'H20Hole'
 module = 'Orderp.py'
 
 [output]
-backup = 'backup'
-data_dir = "./"
-order-file = 1
-delete_old = true
-energy-file = 1
-trajectory-file = -1
-screen = 1
-pattern = 1
+data_dir = "./" 
+screen = 1 
+pattern = false 
+delete_old = true 
