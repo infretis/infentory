@@ -1,7 +1,7 @@
 import numpy as np
 import logging
 from MDAnalysis.analysis import distances
-from pyretis.orderparameter.orderparameter import OrderParameter
+from infretis.classes.orderparameter import OrderParameter
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 logger.addHandler(logging.NullHandler())
@@ -82,7 +82,7 @@ class OrderX(OrderParameter):
             The rate-of-change of the distance order parameter.
         """
         # set up system variables
-        pos = system.particles.pos
+        pos = system.pos
 
         # key: OIDX, value: dict of HIDXs and dists
         dinfo = {i: {'hidxs': [], 'dists': []} for i in OIDX}
