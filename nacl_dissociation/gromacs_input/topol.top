@@ -1,0 +1,37 @@
+;
+;	File 'topol.top' was generated
+;	By user: lukas (1000)
+;	On host: lukas-UX430UNR
+;	At date: Wed Feb  7 10:59:06 2024
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2022.3 (-:
+;	
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Data prefix:  /usr/local/gromacs
+;	Working dir:  /home/lukas/software/infentory/nacl_dissociation/gromacs_input
+;	Command line:
+;	  gmx pdb2gmx -f conf.gro
+;	Force field was read from the standard GROMACS share directory.
+;
+
+; Include forcefield parameters
+#include "oplsaa.ff/forcefield.itp"
+
+; Include water topology
+#include "oplsaa.ff/tip4p.itp"
+
+; Include topology for ions
+#include "oplsaa.ff/ions.itp"
+
+[ system ]
+; Name
+NaCl in water
+
+[ molecules ]
+; Compound        #mols
+NA		1
+CL		1
+SOL               905
