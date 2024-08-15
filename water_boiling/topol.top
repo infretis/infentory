@@ -1,0 +1,11 @@
+#include "oplsaa.ff/forcefield.itp"
+#include "oplsaa.ff/spce.itp"
+
+
+[ system ]
+SPC/E Water
+; Name
+Boiling in water
+
+[ molecules ]
+SOL              4055
