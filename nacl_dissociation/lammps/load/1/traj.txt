@@ -1,0 +1,12 @@
+# Cycle: 99, status: ACC
+#     Step              Filename       index    vel
+         0  001_16_trajB.lammpstrj           7     -1
+         1  001_16_trajB.lammpstrj           6     -1
+         2  001_16_trajB.lammpstrj           5     -1
+         3  001_16_trajB.lammpstrj           4     -1
+         4  001_16_trajB.lammpstrj           3     -1
+         5  001_16_trajB.lammpstrj           2     -1
+         6  001_16_trajB.lammpstrj           1     -1
+         7  001_16_trajB.lammpstrj           0     -1
+         8  001_17_trajF.lammpstrj           1      1
+         9  001_17_trajF.lammpstrj           2      1
