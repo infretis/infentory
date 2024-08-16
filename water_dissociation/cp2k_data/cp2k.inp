@@ -80,7 +80,7 @@
       ABC    9.8528    9.8528    9.8528
     &END CELL
     &TOPOLOGY
-      COORD_FILE_NAME geometry.xyz
+      COORD_FILE_NAME initial.xyz
       COORD_FILE_FORMAT xyz
     &END TOPOLOGY
   &END SUBSYS
