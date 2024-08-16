@@ -1,19 +1,29 @@
 # infretis config
 
 [dask]
-workers = 1
+workers = 1 # until 9 or 10 here, you can have even more but then you need to increase interfaces = [...] list
 wmdrun = [
-	"gmx mdrun -ntomp 4 -ntmpi 1 -pinoffset 0 -pin on",
-	"gmx mdrun -ntomp 4 -ntmpi 1 -pinoffset 32 -pin on",
-	"gmx mdrun -ntomp 4 -ntmpi 1 -pinoffset 64 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 0 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 1 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 2 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 3 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 4 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 5 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 6 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 7 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 8 -pin on",
+	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 9 -pin on",
 ]
 
 [simulation]
-interfaces = [0.32, 0.34, 0.36, 0.38, 0.41, 0.70]
+# can add even more workers, but have to add more interfaces between e.g. 0.36 and 0.38 (not over 0.7)
+# in an increasing order and then again copy the load/1/ path-folder to e.g. load/11/ if you add 1 more interface
+# and load/11/, load/12/ if you add 2 more interfaces
+interfaces = [0.32, 0.34, 0.36, 0.3601, 0.3602, 0.3603, 0.3604, 0.3605, 0.38, 0.41, 0.70]
 steps = 1000
 seed = 0
 load_dir = 'load'
-shooting_moves = ['sh','sh','wf','wf','wf','wf']
+shooting_moves = ['sh','sh','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf']
 
 
 [simulation.tis_set]
@@ -32,6 +42,7 @@ gmx_format = 'g96'
 input_path = 'gromacs_input'
 gmx = 'gmx' # gromacs executable
 subcycles = 5
+temperature = 300
 
 [orderparameter]
 class = 'Distance'
