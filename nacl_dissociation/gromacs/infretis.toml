@@ -1,7 +1,7 @@
 # infretis config
 
 [dask]
-workers = 1 # until 9 or 10 here, you can have even more but then you need to increase interfaces = [...] list
+workers = 4 # until 9 or 10 here, you can have even more but then you need to increase interfaces = [...] list
 wmdrun = [
 	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 0 -pin on",
 	"gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 1 -pin on",
@@ -16,14 +16,14 @@ wmdrun = [
 ]
 
 [simulation]
-# can add even more workers, but have to add more interfaces between e.g. 0.36 and 0.38 (not over 0.7)
+# can add even more workers, but have to add more interfaces between e.g. 0.30 and 0.31 (not over 0.4)
 # in an increasing order and then again copy the load/1/ path-folder to e.g. load/11/ if you add 1 more interface
 # and load/11/, load/12/ if you add 2 more interfaces
-interfaces = [0.32, 0.34, 0.36, 0.3601, 0.3602, 0.3603, 0.3604, 0.3605, 0.38, 0.41, 0.70]
+interfaces = [0.28, 0.29, 0.30, 0.3001, 0.3002, 0.3003, 0.3004, 0.3005, 0.31, 0.32, 0.40]
 steps = 1000
 seed = 0
 load_dir = 'load'
-shooting_moves = ['sh','sh','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf','wf']
+shooting_moves = ['sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh','sh']
 
 
 [simulation.tis_set]
