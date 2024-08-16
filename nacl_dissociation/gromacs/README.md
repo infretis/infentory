@@ -1,6 +1,6 @@
 Remember to
 ```bash
- 	export OMP_NUM_THREADS=ntomp
+export OMP_NUM_THREADS=ntomp
 ```
 where `ntomp` matches the number specified in the wmdrun section, if not it crashes
 
