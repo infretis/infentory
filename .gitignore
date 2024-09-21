@@ -1,3 +1,0 @@
-# Ignore all load/ and load_copy/ directories in the project
-**/load/
-**load_copy/
