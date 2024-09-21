@@ -1,0 +1,3 @@
+# Ignore all load/ directories in the project
+**/load/
+
