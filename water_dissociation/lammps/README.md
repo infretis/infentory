@@ -4,13 +4,13 @@ Water autoionization
 
 ### TODO
 * [x] reduce load path size
-* [ ] upload to infentory
+* [x] upload to infentory
 * [ ] make scripts for plotting?
 * [x] make scripts for visualization
 * [x] fix lammpstrj processor
 * [x] fix xyz processor?
 * [ ] also adapt puckering exercise for cosy; exactly the same as here but with gromacs. Only production md run and path sampling, then visualize
-* [ ] move puckering and water dissociation README.md to infentory
+* [x] move puckering and water dissociation README.md to infentory
 * [ ] fix installation after moving to infentory
 ### Aloha 👋
 In this session, we will study the autoionization of water using **path sampling**. The main outcomes of such a simulation allow us to
@@ -88,6 +88,7 @@ Values up to around 1.5 mean we have only water present (the largest O-H bond le
 Does the value of the order parameter during the simulation make sense with your conclusions from visualizing the trajectory?
 
 ### Step 2: Path sampling with &infin;RETIS + LAMMPS
+You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo of &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory.
 
 ### Step 3: Analysis of the results
 Interested reader: This is a reproduction of the work in cite pnas?
