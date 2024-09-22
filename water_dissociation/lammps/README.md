@@ -47,8 +47,8 @@ Install infretis, and the exercise files.
 mamba activate cosy_24
 python -m pip install git+https://github.com/infretis/infretis.git@cosy_24
 python -m pip install git+https://github.com/infretis/inftools.git@main
-git clone https://github.com/infretis/infentory.git cosy_workshop
-cd cosy_workshop/water_dissociation/lammps/
+git clone https://github.com/infretis/infentory.git
+cd infentory/water_dissociation/lammps/
 echo ========== We will perform the exercise from this folder ===============
 ```
 
