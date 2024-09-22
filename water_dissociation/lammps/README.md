@@ -70,7 +70,7 @@ chmod +x ~/Avogadro2-x86_64.AppImage
 # Run Avogadro
 ~/Avogadro2-x86_64.AppImage
 ```
-Use the `animation tool` and check the `Dynamic bonding?` checkbox. You can rotate and zoom with the `navigation tool`. Do you see anything interesting? 🔎 
+Use the `animation tool` and click the `dynamic bonding` checkbox. You can rotate and zoom with the `navigation tool`. Do you see anything interesting? 🔎 
 
 We will now investigate the value of the order parameter.
 
