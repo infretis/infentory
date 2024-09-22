@@ -11,6 +11,7 @@ dimension 3
 boundary p p p
 
 read_data ../lammps_input/lammps.data
+read_dump ../lammps_input/initial.lammpstrj 0 x y z vx vy vz box yes
 
 pair_style	reaxff NULL safezone 3.0 mincap 150
 pair_coeff	* * ../lammps_input/qeq_ff.water O H
@@ -24,7 +25,7 @@ thermo ${output_frequency}
 thermo_style custom step ke pe etotal temp
 thermo_modify flush yes
 
-dump 1 all custom ${output_frequency} md_run.lammpstrj id type x y z vx vy vz
+dump 1 all custom ${output_frequency} md_run.dump id type x y z vx vy vz
 dump_modify 1 pbc yes
 
 timestep ${timestep}
