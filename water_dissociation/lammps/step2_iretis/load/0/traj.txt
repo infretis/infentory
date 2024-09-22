@@ -1,0 +1,5 @@
+# Cycle: 9989, status: ACC
+#     Step              Filename       index    vel
+         0  000_3889_trajB.lammpstrj           1     -1
+         1  000_3889_trajB.lammpstrj           0     -1
+         2      second.lammpstrj           0     -1

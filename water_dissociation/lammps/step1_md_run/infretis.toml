@@ -1,0 +1,5 @@
+# infretis config
+[orderparameter]
+class = 'OrderX'
+module = "../step2_iretis/orderp.py"
+

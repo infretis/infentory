@@ -1,0 +1,46 @@
+# infretis config
+
+[runner]
+workers = 4
+wmdrun = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0]
+
+[simulation]
+interfaces = [1.07, 1.093, 1.111, 1.126, 1.138, 1.15, 1.162, 1.173, 1.184, 1.195, 1.204, 1.214, 1.224, 1.233, 1.241, 1.252, 1.264, 1.275, 1.285, 1.294, 1.303, 1.313, 1.323, 1.334, 1.346, 1.36, 1.371, 1.387, 1.401, 1.416, 1.433, 1.453, 2.991, 3.319, 3.38, 3.407, 3.433, 3.513, 3.646, 20.0]
+
+steps = 100000
+seed = 0
+load_dir = 'load'
+shooting_moves = [
+	'sh','sh', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf',
+	'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf',
+	'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf',
+	'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf','wf']
+
+[simulation.tis_set]
+maxlength = 250000
+allowmaxlength = false
+zero_momentum = true
+n_jumps = 2
+interface_cap = 5.0
+
+[engine]
+class = 'lammps'
+engine = 'lammps'
+input_path = '../lammps_input'
+lmp = 'lmp_serial'
+timestep = 0.5
+subcycles = 1
+temperature = 300
+atom_style = "charge"
+
+[orderparameter]
+class = 'OrderX'
+module = "orderp.py"
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = true
+delete_old_all = true
+keep_traj_fnames = []

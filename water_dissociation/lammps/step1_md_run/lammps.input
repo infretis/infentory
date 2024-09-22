@@ -1,0 +1,32 @@
+# variables to be set by you
+variable	timestep index <value> # timestep to use, in fs
+variable	nsteps index <value> # number of steps to run
+variable	temperature index <value> # temperature of the simulation in K
+variable	output_frequency index <value> # how often we write output
+
+units real
+atom_style charge
+
+dimension 3
+boundary p p p
+
+read_data ../lammps_input/lammps.data
+
+pair_style	reaxff NULL safezone 3.0 mincap 150
+pair_coeff	* * ../lammps_input/qeq_ff.water O H
+neighbor	0.5 bin
+neigh_modify	every 1 delay 0 check yes
+
+fix 1 all qeq/reaxff 1 0.0 10.0 1.0e-6 reaxff maxiter 400
+fix 2 all nvt temp ${temperature} ${temperature} $(100.0*dt)
+
+thermo ${output_frequency}
+thermo_style custom step ke pe etotal temp
+thermo_modify flush yes
+
+dump 1 all custom ${output_frequency} md_run.lammpstrj id type x y z vx vy vz
+dump_modify 1 pbc yes
+
+timestep ${timestep}
+
+run ${nsteps}
