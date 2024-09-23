@@ -76,7 +76,11 @@ We will now investigate the value of the order parameter.
 
 ```bash
 inft recalculate_order -toml infretis.toml -traj md_run.dump -format 'lammpsdump'
-gnuplot -e "plot 'order_rec.txt' with linespoint;" -p
+```
+Plot the order parameter with gnuplot
+```bash
+gnuplot
+plot 'order_rec.txt' with linespoint
 ```
 
 Values up to around 1.5 mean we have only water present (the largest O-H bond length of all water molecules). Values greater than 1.5 tell us we have one OH- and one H3O+ present (the shortest distance between the OH- oxygen and H3O+ hydrogen).
@@ -95,22 +99,30 @@ Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.to
 
 ⏮️ At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this.
 
+Then move on to the next step.
+
 ### Step 3: Analysis of the results
+
 
 Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
 
 We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀!
 
-The next task is therefore to identify a path with a large order parameter value and visualize it.
+The next task is therefore to identify a path with a large order parameter.
 
-Open the `sim.log` and search for accepted MC moves by searching `'ACC'`.
+Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These lines give you the length of the path `len` and the min/max order parameter value `op: [min, max]`. Find a path with a large OP value (above 4.0). Identify the `new_path_nr` by looking at the line above for `old_path_nr -> new_path_nr`.
 
-Open a 
+The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see any large jumps in the values 🐇? Can you think what these mean?
 
+The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column. The value of this column is the index of the oxygen in OH-. Take note of this number. 
 
+So, to center the trajectory of e.g. path 39 on atom nr. 72, run
 ```bash
-inft trjcat -out traj.pdb -traj load/39/traj.txt -topology ../../cp2k/cp2k_data/initial.xyz -format lammpsdump -centersel "index 72"
+inft trjcat -out traj39.pdb -traj load/39/traj.txt -topology ../../cp2k/cp2k_data/initial.xyz -format lammpsdump -centersel "index 72"
 ```
+but replace the numbers with the ones you found. 
+
+Now, visualize the `traj.pdb` in Avogadro. Do you see anything interesting?
 
 ```bash
 inft trjcat -out traj.pdb -traj trash/reactive/traj.txt -topology test_reaxff_water/initial.xyz -format lammpsdump -centersel "index 78"
