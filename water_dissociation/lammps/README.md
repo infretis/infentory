@@ -141,3 +141,7 @@ The interpretation is that we see a dissociation event every $1/v$ nanoseconds.
 We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳
 
 Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given that you can run X nanoseconds per day, and have to wait $1/v$ nanoseconds for an event. How many days would you have to wait to observe it in a simulation?
+
+### Further information
+
+If you are interested in reading more, this is a reproduction of the work studied in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with infretis [here](https://doi.org/10.1073/pnas.2318731121). However, we used _reaxff_ while those papers used density function theory.
