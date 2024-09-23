@@ -114,7 +114,7 @@ The jumps mean that a proton jumps from one water molecule to another. Therefore
 
 Now, in the `load/path` folder, center the trajectory on the atom index you found:
 ```bash
-inft trjcat -out traj.pdb -traj traj.txt -centersel "index 72" -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
+inft trjcat -centersel "index 72"  -out traj.pdb -traj traj.txt -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
 ```
 but replace 72 with the number you found. 
 
