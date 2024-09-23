@@ -22,6 +22,7 @@ If you don't already have conda or mamba:
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh -b
+miniforge3/bin/mamba init
 ```
 
 Close and then re-open the terminal. You should now see **(base)** in the lower left of your screen.
