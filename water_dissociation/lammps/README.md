@@ -5,7 +5,7 @@ Water autoionization
 ### TODO
 * [x] reduce load path size
 * [x] upload to infentory
-* [ ] make scripts for plotting?
+* [ ] adapt inft plot_order
 * [x] make scripts for visualization
 * [x] fix lammpstrj processor
 * [x] fix xyz processor?
@@ -57,7 +57,7 @@ Familiarize yourself with the files in the directory `lammps_input/`. Can you ex
 
 Now, change to the `step1_md_run` directory and modify `lammp.input` to run an MD simulation at 300K for around 1 picosecond with a 0.5 fs timestep. We want to analyze some of the output, so write output with reasonable frequency, e.g. every 5 steps.
 
-LAMMPS can be run with the command `lmp -i lammps.input`.
+LAMMPS can be run with the command `lmp -i lammps.input`
 
 📈 Does the system reach the desired temperature?
 
@@ -89,9 +89,17 @@ Does the value of the order parameter during the simulation make sense with your
 
 
 ### Step 2: Path sampling with &infin;RETIS + LAMMPS
-You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach.
+You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach. We need to do these steps repeatedly, which can take some time. Therefore we start the infretis simulation now. 
+
+Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`.
 
 ⏮️ At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this.
+
+Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
+
+We may now start visualizing the results as infretis produces them.
+
+
 
 ### Step 3: Analysis of the results
 Interested reader: This is a reproduction of the work in cite pnas?
