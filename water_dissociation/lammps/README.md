@@ -20,8 +20,8 @@ In this session, we will study the autoionization of water using **path sampling
 
 An essential ingredient of path sampling is using molecular dynamics (MD) to make the atoms and molecules wiggle around and react. As an introduction to the &infin;RETIS method you will therefore perform the following steps:
 
-* 1️⃣ Perform an MD simulation using [LAMMPS](https://www.lammps.org/#nogo)
-* 2️⃣ Perform a path sampling simulation on this system with [&infin;RETIS](https://github.com/infretis/infretis) + LAMMPS
+* 1️⃣ An MD simulation using [LAMMPS](https://www.lammps.org/#nogo)
+* 2️⃣ A path sampling simulation on this system with [&infin;RETIS](https://github.com/infretis/infretis) + LAMMPS
 * 3️⃣ See and learn how water dissociates at the molecular scale 🔎
 
 ## Step 0: Installation
