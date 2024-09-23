@@ -108,14 +108,36 @@ We may now start visualizing the results as infretis produces them. Of interest 
 
 Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These lines give you the length of the path `len` and the min/max order parameter value `op: [min, max]`. Find a path with a large OP value (above 4.0). Identify the `new_path_nr` by looking at the line above for `old_path_nr -> new_path_nr`.
 
-The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see any large jumps in the values 🐇? Can you think what these mean?
+The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see large jumps in the values🐇? What do you think they mean?
 
 The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column. The value of this column is the index of the oxygen in OH-. Take note of this number. 
 
 Now, in the `load/path` folder, center the trajectory on the atom index you found:
+
 ```bash
 inft trjcat -centersel "index 72"  -out traj.pdb -traj traj.txt -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
 ```
 but replace 72 with the number you found. 
 
 Now, visualize `traj.pdb` in Avogadro. Do you see anything interesting?
+
+### Optional: Dissociation rate and waiting times
+
+We can also calculate how often this event happens after constructing the crossing probability curves and calculating the flux. This can be achieved by
+
+```bash
+inft wham -data infretis_data.txt -nskip 0
+```
+If you get an error you may not have enough data yet, or infretis wrote to another file `infretis_data_X.txt` where X is some number.
+
+Gnuplot the crossing probability in `wham/Pcross.txt`. Use `set logscale y; set xrange [1:8]` before plotting to get a nicer view. This is the probability of reaching an order parameter value of x given that we start in state A (purely water). Write down the lowest y-value, which we call $P_{tot}$.
+
+Also, plot the `wham/runav_flux.txt` and write down the last value, which we call $f$. To get the rate $v$ in units of nanoseconds $^{-1}$, use the formula
+
+$$v = 2'000'000 \cdot f \cdot P_{tot}$$
+
+The interpretation is that we see a dissociation event every $1/v$ nanoseconds.
+
+We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳.
+
+Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given that you can run X nanoseconds per day, and have to wait $1/v$ nanoseconds for an event. How many days would you have to wait to observe it in a simulation?
