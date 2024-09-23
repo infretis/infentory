@@ -105,7 +105,7 @@ Open a new terminal, run `mamba activate cosy_24`, and navigate to the same dire
 
 We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀 The next task is therefore to identify a path with a large order parameter.
 
-Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These lines give you the length of the path `len` and the min/max order parameter value `op: [min, max]`. Find a path with a large OP value (above 4.0). Identify the `new_path_nr` by looking at the line above for `old_path_nr -> new_path_nr`.
+Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These lines give you the length of the path `len` and the min/max order parameter value `op: [min, max]`. Find a path with a large value (above 4.0). Identify the `new_path_nr` by looking at the line above for `old_path_nr -> new_path_nr`.
 
 The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see large jumps in the values🐇? What do you think they mean?
 
