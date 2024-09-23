@@ -5,7 +5,6 @@ Water autoionization
 ### TODO
 * [x] reduce load path size
 * [x] upload to infentory
-* [ ] adapt inft plot_order
 * [x] make scripts for visualization
 * [x] fix lammpstrj processor
 * [x] fix xyz processor?
