@@ -101,7 +101,7 @@ At this point, reviewing the main outcomes of a path sampling simulation may be 
 
 Then move on to the next step.
 
-## Step 3: Analysis of the results
+## Step 3: Visualization and analysis
 Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
 
 We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀 The next task is therefore to identify a path with a large order parameter.
