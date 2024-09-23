@@ -2,15 +2,6 @@
 Water autoionization
 </h1>
 
-### TODO
-* [x] reduce load path size
-* [x] upload to infentory
-* [x] make scripts for visualization
-* [x] fix lammpstrj processor
-* [x] fix xyz processor?
-* [ ] also adapt puckering exercise for cosy; exactly the same as here but with gromacs. Only production md run and path sampling, then visualize
-* [x] move puckering and water dissociation README.md to infentory
-* [ ] fix installation after moving to infentory
 ## Aloha 👋
 In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allow us to
 
@@ -45,7 +36,10 @@ Install infretis, and the exercise files.
 ```bash
 mamba activate cosy_24
 python -m pip install git+https://github.com/infretis/infretis.git@cosy_24
-python -m pip install git+https://github.com/infretis/inftools.git@main
+git clone https://github.com/infretis/inftools.git
+cd inftools
+python -m pip install -e .
+cd -
 git clone https://github.com/infretis/infentory.git
 cd infentory/water_dissociation/lammps/
 echo ========== We will perform the exercise from this folder ===============
