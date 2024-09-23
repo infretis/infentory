@@ -121,7 +121,7 @@ but replace 72 with the number you found.
 
 Now, visualize `traj.pdb` in Avogadro. Do you see anything interesting?
 
-### Optional: Dissociation rate and waiting times
+### Optional: Dissociation rate and waiting time
 
 We can also calculate how often this event happens after constructing the crossing probability curves and calculating the flux. This can be achieved by
 
