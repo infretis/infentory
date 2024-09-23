@@ -95,14 +95,22 @@ Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.to
 
 ⏮️ At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this.
 
+### Step 3: Analysis of the results
+
 Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
 
-We may now start visualizing the results as infretis produces them.
+We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀!
+
+The next task is therefore to identify a path with a large order parameter value and visualize it.
+
+Open the `sim.log` and search for accepted MC moves by searching `'ACC'`.
+
+Open a 
 
 
-
-### Step 3: Analysis of the results
-Interested reader: This is a reproduction of the work in cite pnas?
+```bash
+inft trjcat -out traj.pdb -traj load/39/traj.txt -topology ../../cp2k/cp2k_data/initial.xyz -format lammpsdump -centersel "index 72"
+```
 
 ```bash
 inft trjcat -out traj.pdb -traj trash/reactive/traj.txt -topology test_reaxff_water/initial.xyz -format lammpsdump -centersel "index 78"
