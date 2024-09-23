@@ -12,7 +12,7 @@ Water autoionization
 * [ ] also adapt puckering exercise for cosy; exactly the same as here but with gromacs. Only production md run and path sampling, then visualize
 * [x] move puckering and water dissociation README.md to infentory
 * [ ] fix installation after moving to infentory
-### Aloha 👋
+## Aloha 👋
 In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allow us to
 
 * calculate 🖥️ exactly how often water dissociates into H3O+ and OH-
@@ -24,7 +24,7 @@ An essential ingredient of path sampling is using molecular dynamics (MD) to mak
 * 2️⃣ Perform a path sampling simulation on this system with [&infin;RETIS](https://github.com/infretis/infretis) + LAMMPS
 * 3️⃣ See and learn how water dissociates at the molecular scale 🔎
 
-### Step 0: Installation
+## Step 0: Installation
 Open a terminal 💻
 
 If you don't already have conda or mamba:
@@ -52,7 +52,7 @@ cd infentory/water_dissociation/lammps/
 echo ========== We will perform the exercise from this folder ===============
 ```
 
-### Step 1: MD with LAMMPS
+## Step 1: MD with LAMMPS
 Familiarize yourself with the files in the directory `lammps_input/`. Can you explain what these files contain?
 
 Now, change to the `step1_md_run` directory and modify `lammp.input` to run an MD simulation at 300K for around 1 picosecond with a 0.5 fs timestep. We want to analyze some of the output, so write output with reasonable frequency, e.g. every 5 steps.
@@ -92,7 +92,7 @@ Values up to around 1.5 mean we have only water present (the largest O-H bond le
 Does the value of the order parameter during the simulation make sense with your conclusions from visualizing the trajectory? 
 
 
-### Step 2: Path sampling with &infin;RETIS + LAMMPS
+## Step 2: Path sampling with &infin;RETIS + LAMMPS
 You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach. We need to do these steps repeatedly, which can take some time. Therefore we start the infretis simulation now. 
 
 Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`.
@@ -101,9 +101,7 @@ Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.to
 
 Then move on to the next step.
 
-### Step 3: Analysis of the results
-
-
+## Step 3: Analysis of the results
 Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
 
 We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀! The next task is therefore to identify a path with a large order parameter.
