@@ -148,6 +148,6 @@ If you are interested in using &infin;RETIS in your work, feel free to contact t
 * titus.van.erp@ntnu.no
 * anders.lervik@ntnu.no
 
-If you are interested in learning more, have a look at the [puckering example](https://github.com/infretis/infretis/blob/main/examples/gromacs/puckering/README.md)
+If you are interested in learning more, have a look at the [puckering example](https://github.com/infretis/infretis/blob/main/examples/gromacs/puckering/README.md).
 
 This was a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used _reaxff_ while those papers used density function theory.
