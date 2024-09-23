@@ -97,14 +97,14 @@ You now know how to run an MD simulation and calculate the order parameter. This
 
 Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`.
 
-⏮️ At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this.
+At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this ⏮️
 
 Then move on to the next step.
 
 ## Step 3: Analysis of the results
 Open a new terminal, run `mamba activate cosy_24`, and navigate to the same directory.
 
-We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀! The next task is therefore to identify a path with a large order parameter.
+We may now start visualizing the results as infretis produces them. Of interest are paths (trajectories) with large order parameter values. These may be reactive and contain information on how the water deprotonation occurs 👀 The next task is therefore to identify a path with a large order parameter.
 
 Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These lines give you the length of the path `len` and the min/max order parameter value `op: [min, max]`. Find a path with a large OP value (above 4.0). Identify the `new_path_nr` by looking at the line above for `old_path_nr -> new_path_nr`.
 
@@ -138,6 +138,6 @@ $$v = 2'000'000 \cdot f \cdot P_{tot}$$
 
 The interpretation is that we see a dissociation event every $1/v$ nanoseconds.
 
-We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳.
+We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳
 
 Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given that you can run X nanoseconds per day, and have to wait $1/v$ nanoseconds for an event. How many days would you have to wait to observe it in a simulation?
