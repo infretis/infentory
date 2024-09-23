@@ -144,9 +144,11 @@ Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given
 
 ## 🏁 Further information
 
-If you are interested in using &infin;RETIS in your work, feel free to contact the infretis team to help you get started 🤝
+If you are interested in using &infin;RETIS in your work, feel free to contact the infretis team to help you get started 🤝(https://github.com/infretis/infretis/blob/main/examples/gromacs/puckering/README.md)
 
 * titus.van.erp@ntnu.no
 * anders.lervik@ntnu.no
+
+Alternatively, have a look at the [puckering example].
 
 If you are interested to learn more, this is a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used _reaxff_ while those papers used density function theory.
