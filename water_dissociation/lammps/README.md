@@ -116,14 +116,10 @@ The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `ord
 
 The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column. The value of this column is the index of the oxygen in OH-. Take note of this number. 
 
-So, to center the trajectory of e.g. path 39 on atom nr. 72, run
+Now, in the `load/path` folder, center the trajectory on the atom nr. you found:
 ```bash
-inft trjcat -out traj39.pdb -traj load/39/traj.txt -topology ../../cp2k/cp2k_data/initial.xyz -format lammpsdump -centersel "index 72"
+inft trjcat -out traj.pdb -traj traj.txt -centersel "index 72" -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
 ```
 but replace the numbers with the ones you found. 
 
 Now, visualize the `traj.pdb` in Avogadro. Do you see anything interesting?
-
-```bash
-inft trjcat -out traj.pdb -traj trash/reactive/traj.txt -topology test_reaxff_water/initial.xyz -format lammpsdump -centersel "index 78"
-inft trjcat -out traj.pdb -traj traj.txt -topology ../../../gromacs_input/topol.tpr -centersel "element C" -selection "index 0 to 15"
