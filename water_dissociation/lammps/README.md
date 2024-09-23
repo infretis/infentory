@@ -1,5 +1,5 @@
 <h1 align="center">
-Water autoionization
+Studying Water Autoionization with Path Sampling
 </h1>
 
 ## Aloha 👋
