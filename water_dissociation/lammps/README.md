@@ -13,12 +13,12 @@ Water autoionization
 * [x] move puckering and water dissociation README.md to infentory
 * [ ] fix installation after moving to infentory
 ### Aloha 👋
-In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allows us to
+In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allow us to
 
 * calculate 🖥️ exactly how often water dissociates into H3O+ and OH-
 * and visualize 👀 how this chemical reaction actually happens
 
-An essential ingredient of path sampling is the use of molecular dynamics (MD) to make the atoms and molecules wiggle around and react. As an introduction to the &infin;RETIS method you will therefore perform the following steps:
+An essential ingredient of path sampling is using molecular dynamics (MD) to make the atoms and molecules wiggle around and react. As an introduction to the &infin;RETIS method you will therefore perform the following steps:
 
 * 1️⃣ Perform an MD simulation using [LAMMPS](https://www.lammps.org/#nogo)
 * 2️⃣ Perform a path sampling simulation on this system with [&infin;RETIS](https://github.com/infretis/infretis) + LAMMPS
@@ -76,6 +76,7 @@ We will now investigate the value of the order parameter.
 
 ```bash
 inft recalculate_order -toml infretis.toml -traj md_run.dump -format 'lammpsdump'
+gnuplot -e "plot 'order_rec.txt' with linespoint;" -p
 ```
 
 Values up to around 1.5 mean we have only water present (the largest O-H bond length of all water molecules). Values greater than 1.5 tell us we have one OH- and one H3O+ present (the shortest distance between the OH- oxygen and H3O+ hydrogen).
@@ -84,12 +85,13 @@ Values up to around 1.5 mean we have only water present (the largest O-H bond le
 <img src="https://github.com/infretis/infentory/blob/main/water_dissociation/orderp.png" width="50%" height="50%">
 </p>
 
-Does the value of the order parameter during the simulation make sense with your conclusions from visualizing the trajectory?
+Does the value of the order parameter during the simulation make sense with your conclusions from visualizing the trajectory? 
+
 
 ### Step 2: Path sampling with &infin;RETIS + LAMMPS
-You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. As such, we use a combination of both MC and MD in path sampling.
+You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach.
 
-⏮️ At this point, it may be useful to review the main outcomes of a path sampling simulation to remind yourself why we are doing this.
+⏮️ At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this.
 
 ### Step 3: Analysis of the results
 Interested reader: This is a reproduction of the work in cite pnas?
