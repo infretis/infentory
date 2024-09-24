@@ -104,7 +104,7 @@ Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These li
 
 The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see large jumps in the values🐇? What do you think they mean?
 
-The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column. The value of this column is the index of the oxygen in OH-. Take note of this number. 
+The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column (first couple of values are -1). The value of this column is the index of the oxygen in OH-. Take note of this number. 
 
 Now, in the `load/path` folder, center the trajectory on the atom index you found:
 
@@ -136,7 +136,7 @@ We can also calculate how many days we would have to wait to observe a single ev
 
 Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given that you can run X nanoseconds per day, and have to wait $1/v$ nanoseconds for an event. How many days would you have to wait to observe it in a simulation?
 
-## 🏁 Further information
+## 🏁 Further information 🏎️💨
 
 If you are interested in learning more or using &infin;RETIS in your work, feel free to contact the infretis team to help you get started 🤝
 
