@@ -47,6 +47,8 @@ echo ========== We will perform the exercise from this folder ===============
 ```
 
 ## Step 1: MD with LAMMPS
+You may remember from lectures that molecular dynamics allows us to track the motion of atoms and molecules in a computer simulation. LAMMPS allows us to perform such simulations, mainly focusing on classical force fields. However, classical force fields don't allow us to break or form bonds, but this is needed to study water autoionization. We are therefore using the reactive force field [ReaxFF](https://en.wikipedia.org/wiki/ReaxFF), and you will now perform a simulation uisng this force field.
+
 Familiarize yourself with the content of the files in the directory `lammps_input/`. Can you explain what these files contain?
 
 Now, change to the `step1_md_run` directory and modify `lammp.input` to run an MD simulation at 300K for around 1 picosecond with a 0.5 fs timestep. We want to analyze some of the output, so write output with reasonable frequency, e.g. every 5 steps.
