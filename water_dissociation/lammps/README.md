@@ -106,7 +106,7 @@ Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These li
 
 The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see large jumps in the values🐇? What do you think they mean?
 
-The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column (first couple of values are -1). The value of this column is the index of the oxygen in OH-. Take note of this number. 
+The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column (the first couple of values are -1). The value of this column gives the index of the oxygen in OH-. Take note of this number. 
 
 Now, in the `load/path` folder, center the trajectory on the atom index you found:
 
@@ -116,6 +116,8 @@ inft trjcat -centersel "index 72" -out traj.pdb -traj traj.txt -topology ../../.
 but replace 72 with the number you found. 
 
 Now, visualize `traj.pdb` in Avogadro. Do you see anything interesting?
+
+Feel free to visualize any other interesting paths, for example really long paths.
 
 ### Optional: Dissociation rate and waiting time
 
@@ -145,4 +147,4 @@ If you are interested in learning more or using &infin;RETIS in your work, feel 
 * titus.van.erp@ntnu.no
 * anders.lervik@ntnu.no
 
-This was a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used _reaxff_ while those papers used density functional theory.
+This was a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used ReaxFF while those papers used density functional theory.
