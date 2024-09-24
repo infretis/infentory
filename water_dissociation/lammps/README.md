@@ -1,6 +1,11 @@
-<h1 align="center">
-Studying Water Autoionization with Path Sampling
-</h1>
+<div id="user-content-toc">
+  <ul align="center" style="list-style: none;">
+    <summary>
+      <h1>Studying Water Autoionization with Path Sampling $2 \text{H}_2\text{O} 	\rightleftharpoons \text{OH}^- + \text{H}_3\text{O}^+$</h1>
+    </summary>
+  </ul>
+</div>
+
 
 ## Aloha 👋
 In this session, we will study the autoionization of water using path sampling. The main outcomes of this simulation allow us to
