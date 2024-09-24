@@ -47,7 +47,7 @@ echo ========== We will perform the exercise from this folder ===============
 ```
 
 ## Step 1: MD with LAMMPS
-Familiarize yourself with the files in the directory `lammps_input/`. Can you explain what these files contain?
+Familiarize yourself with the content of the files in the directory `lammps_input/`. Can you explain what these files contain?
 
 Now, change to the `step1_md_run` directory and modify `lammp.input` to run an MD simulation at 300K for around 1 picosecond with a 0.5 fs timestep. We want to analyze some of the output, so write output with reasonable frequency, e.g. every 5 steps.
 
