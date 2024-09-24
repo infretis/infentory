@@ -124,13 +124,13 @@ inft wham -data infretis_data.txt -nskip 0
 ```
 If you get an error you may not have enough data yet, or infretis wrote to another file `infretis_data_X.txt` where X is some number.
 
-Gnuplot the crossing probability in `wham/Pcross.txt`. Use `set logscale y; set xrange [1:8]` before plotting to get a nicer view. This is the probability of reaching an order parameter value of $\lambda$ given that we start with pure water. Write down the lowest y-value, which we call $P_{tot}$.
+Gnuplot the crossing probability in `wham/Pcross.txt`. Use `set logscale y; set xrange [1:8]` before plotting to get a nicer view. This is the probability of reaching an order parameter value of $\lambda$ given that we start with pure water. Write down the y-value at $\lambda=5.0$, which we call $P_{tot}$.
 
 Also, plot the `wham/runav_flux.txt` and write down the last value, which we call $f$. To get the rate $v$ in units of nanoseconds $^{-1}$, use the formula
 
 $$v = 2'000'000 \cdot f \cdot P_{tot}$$
 
-The interpretation is that we see a dissociation event every $1/v$ nanoseconds.
+The interpretation is that we see a dissociation event every $1/v$ nanoseconds (the 2 million factor comes from using a 0.5 fs timestep).
 
 We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳
 
