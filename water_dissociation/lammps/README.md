@@ -3,7 +3,7 @@ Studying Water Autoionization with Path Sampling
 </h1>
 
 ## Aloha 👋
-In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allow us to
+In this session, we will study the autoionization of water using path sampling. The main outcomes of this simulation allow us to
 
 * calculate 🖥️ exactly how often water dissociates into H3O+ and OH-
 * and visualize 👀 how this chemical reaction actually happens
