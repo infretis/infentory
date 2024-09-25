@@ -1,9 +1,14 @@
-<h1 align="center">
-Studying Water Autoionization with Path Sampling
-</h1>
+<div id="user-content-toc">
+  <ul align="center" style="list-style: none;">
+    <summary>
+      <h1>Studying Water Autoionization with Path Sampling $2 \text{H}_2\text{O} 	\rightleftharpoons \text{OH}^- + \text{H}_3\text{O}^+$</h1>
+    </summary>
+  </ul>
+</div>
+
 
 ## Aloha 👋
-In this session, we will study the autoionization of water using **path sampling**. The main outcomes of this simulation allow us to
+In this session, we will study the autoionization of water using path sampling. The main outcomes of this simulation allow us to
 
 * calculate 🖥️ exactly how often water dissociates into H3O+ and OH-
 * and visualize 👀 how this chemical reaction actually happens
@@ -47,7 +52,9 @@ echo ========== We will perform the exercise from this folder ===============
 ```
 
 ## Step 1: MD with LAMMPS
-Familiarize yourself with the files in the directory `lammps_input/`. Can you explain what these files contain?
+You may remember from earlier that MD allows us to track the motion of atoms and molecules in a computer simulation. LAMMPS is a popular software that performs such simulations. LAMMPS focuses mainly on classical force fields. However, most classical force fields don't allow us to break or form bonds, but this is needed if we want to study water autoionization. We are therefore using the reactive force field [ReaxFF](https://en.wikipedia.org/wiki/ReaxFF), and you will now perform a simulation with this force field.
+
+Familiarize yourself with the content of the files in the directory `lammps_input/`. Can you explain what these files contain?
 
 Now, change to the `step1_md_run` directory and modify `lammp.input` to run an MD simulation at 300K for around 1 picosecond with a 0.5 fs timestep. We want to analyze some of the output, so write output with reasonable frequency, e.g. every 5 steps.
 
@@ -59,8 +66,10 @@ Animate the trajectory by opening the .dump file in Avogadro.
 
 ```bash
 # Download Avogadro
-wget https://github.com/OpenChemistry/avogadrolibs/releases/download/1.99.0/Avogadro2-x86_64.AppImage ~/
-chmod +x ~/Avogadro2-x86_64.AppImage
+cd ~
+wget https://github.com/OpenChemistry/avogadrolibs/releases/download/1.99.0/Avogadro2-x86_64.AppImage
+chmod +x Avogadro2-x86_64.AppImage
+cd -
 # Run Avogadro
 ~/Avogadro2-x86_64.AppImage
 ```
@@ -89,7 +98,7 @@ Does the value of the order parameter during the simulation make sense with your
 ## Step 2: Path sampling with &infin;RETIS + LAMMPS
 You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach. We need to do these steps repeatedly, which can take some time. Therefore we start the infretis simulation now. 
 
-Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`.
+Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`
 
 At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this ⏮️
 
@@ -104,16 +113,18 @@ Open the `sim.log` and look for accepted MC moves by searching `'ACC'`. These li
 
 The path is stored in `load/new_path_nr`. Gnuplot the order parameter value `order.txt`. Do you see large jumps in the values🐇? What do you think they mean?
 
-The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column. The value of this column is the index of the oxygen in OH-. Take note of this number. 
+The jumps mean that a proton jumps from one water molecule to another. Therefore, to visualize the path nicely in Avogadro, we want to center the view on the oxygen the proton jumps away from to become OH-. Open `order.txt` and look at the 3rd column (the first couple of values are -1). The value of this column gives the index of the oxygen in OH-. Take note of this number. 
 
 Now, in the `load/path` folder, center the trajectory on the atom index you found:
 
 ```bash
-inft trjcat -centersel "index 72"  -out traj.pdb -traj traj.txt -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
+inft trjcat -centersel "index 72" -out traj.pdb -traj traj.txt -topology ../../../../cp2k/cp2k_data/initial.xyz -format lammpsdump 
 ```
 but replace 72 with the number you found. 
 
 Now, visualize `traj.pdb` in Avogadro. Do you see anything interesting?
+
+Feel free to visualize any other interesting paths, for example really long paths.
 
 ### Optional: Dissociation rate and waiting time
 
@@ -124,25 +135,23 @@ inft wham -data infretis_data.txt -nskip 0
 ```
 If you get an error you may not have enough data yet, or infretis wrote to another file `infretis_data_X.txt` where X is some number.
 
-Gnuplot the crossing probability in `wham/Pcross.txt`. Use `set logscale y; set xrange [1:8]` before plotting to get a nicer view. This is the probability of reaching an order parameter value of $\lambda$ given that we start with pure water. Write down the lowest y-value, which we call $P_{tot}$.
+Gnuplot the crossing probability in `wham/Pcross.txt`. Use `set logscale y; set xrange [1:8]` before plotting to get a nicer view. This is the probability of reaching an order parameter value of $\lambda$ given that we start with pure water. Write down the y-value at $\lambda=5.0$, which we call $P_{tot}$.
 
 Also, plot the `wham/runav_flux.txt` and write down the last value, which we call $f$. To get the rate $v$ in units of nanoseconds $^{-1}$, use the formula
 
 $$v = 2'000'000 \cdot f \cdot P_{tot}$$
 
-The interpretation is that we see a dissociation event every $1/v$ nanoseconds.
+The interpretation is that we see a dissociation event every $1/v$ nanoseconds (the 2 million factor comes from using a 0.5 fs timestep).
 
 We can also calculate how many days we would have to wait to observe a single event in a regular MD simulation ⏳
 
 Open the `log.lammps` file in `step1_md_run` and search for `'ns/day`. So, given that you can run X nanoseconds per day, and have to wait $1/v$ nanoseconds for an event. How many days would you have to wait to observe it in a simulation?
 
-## 🏁 Further information
+## 🏁 Further information 🏎️💨
 
-If you are interested in using &infin;RETIS in your work, feel free to contact the infretis team to help you get started 🤝
+If you are interested in learning more or using &infin;RETIS in your work, feel free to contact the infretis team to help you get started 🤝
 
 * titus.van.erp@ntnu.no
 * anders.lervik@ntnu.no
 
-If you are interested in learning more, have a look at the [puckering example](https://github.com/infretis/infretis/blob/main/examples/gromacs/puckering/README.md).
-
-This was a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used _reaxff_ while those papers used density function theory.
+This was a reproduction of the work studied with RETIS in [this](http://www.pnas.org/cgi/doi/10.1073/pnas.1714070115) paper. It was also studied with &infin;RETIS [here](https://doi.org/10.1073/pnas.2318731121). However, we used ReaxFF while those papers used density functional theory.
