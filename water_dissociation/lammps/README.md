@@ -98,7 +98,7 @@ Does the value of the order parameter during the simulation make sense with your
 ## Step 2: Path sampling with &infin;RETIS + LAMMPS
 You now know how to run an MD simulation and calculate the order parameter. This is what &infin;RETIS does under the hood; a single Monte Carlo (MC) step with &infin;RETIS will run a LAMMPS simulation given some initial configuration and calculate the order parameter. If this trajectory meets the ensemble criterion we may accept and add it to our sampled states. If not we resample the old trajectory. So in path sampling, we combine both MC and MD in a hybrid approach. We need to do these steps repeatedly, which can take some time. Therefore we start the infretis simulation now. 
 
-Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`.
+Navigate to the `step2_infretis` folder and fire off `infretisrun -i infretis.toml`
 
 At this point, reviewing the main outcomes of a path sampling simulation may be useful to remind yourself why we are doing this ⏮️
 
