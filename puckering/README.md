@@ -42,7 +42,7 @@ These angles should not be viewed as regular angles between atoms, but rather as
 
 
 
-# Installing the required packages
+# Step 0: Installing the required packages
 We first need to install the required programs to run this exercise. This includes a program that generates the parameters of a modern force field ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) for your molecule and the ∞RETIS software developed at the theoretical chemistry group at NTNU.
 
 Download and install mamba with the following commands (if you don't already have conda installed). Click the copy button on the box below and paste it into a terminal, and then do what is asked in the output on your screen (on Ubuntu, pressing down the mouse-wheel-button often works better for pasting than ctrl+V).
@@ -57,92 +57,42 @@ You should see `(base)` in the left of your terminal window after reopening if e
 
 Then download and install the required python packages to run this exercise. Again copy-paste the code and do what is asked of you in the output.
 ```bash
-mamba create --name molmod python==3.11 openff-toolkit-base ambertools rdkit pydantic MDAnalysis tqdm
+mamba create --name molmod python==3.11
 ```
 ```bash
 mamba activate molmod
 mkdir software
 cd software
-git clone https://github.com/openforcefield/openff-interchange.git
-cd openff-interchange
-python -m pip install -e .
-cd -
-git clone https://github.com/openforcefield/openff-models.git
-cd openff-models
-python -m pip install -e .
-cd -
 git clone https://github.com/infretis/inftools.git
 cd inftools
 python -m pip install -e .
-cd ~
+cd -
 git clone https://github.com/infretis/infretis.git
 cd infretis
 python -m pip install -e .
-cd examples/gromacs/puckering/
+cd ~
+git clone https://github.com/infretis/infentory.git
+cd infentory/puckering
 echo "All done! We will perform the exercise from this folder."
-
 ```
 
-You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod` to activate the required Python packages. Try it by opening a new terminal and running `python -c 'import MDAnalysis'` without activating the `molmod` environment. This should throw an error.
+You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod` to activate the required Python packages.
 
-We will perform the exercise from the directory `~/infretis/examples/gromacs/puckering/`. Get an overview of the folder structure and all the files we will be using by navigating to that directory and running
-```bash
-ls *
-
-```
-
-# Step 0: System definition and topology generation
-
-*This step is optional, and you can skip directly to the last code snippet in this section by renaming the `template.sdf` file into `mol.sdf`.*
-
-If you don't already have Avogadro or you want to update, you can download the newest version for Linux using the command below, but remove your old Avogadro2-x86_64.AppImage file first if it exists.
-
-```bash
-
-wget https://github.com/OpenChemistry/avogadrolibs/releases/download/1.98.1/Avogadro2-x86_64.AppImage -P ~
-chmod +x ~/Avogadro2-x86_64.AppImage
-~/Avogadro2-x86_64.AppImage
-```
-
-Draw your favorite 6-ringed molecule in Avogadro in the $^4\text{C}_1$ conformation. Be sure to complete the valence of each atom. You can also add substituents to the ring, and if you feel daring, you can use a sugar.
-
-The order parameter we will be using depends on the ring atoms, and we therefore need to identify the ring-atom indices. The atom indices can be accessed by checking the "Labels" box and then clicking "Atom Labels: Indices", as shown below:
-
-<img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/labels.jpg" width="99%" height="99%">
-
-Write down the atom indices in the following order:
-
-* _idx0 idx1 idx2 idx3 idx4 idx5_
-
-where _idx1_ and _idx4_ are the indices of the atoms 1 and 4, and we move clockwise from _idx0_ to _idx5_. In my case, the ordering is
-
-* 2 5 11 8 1 0
-
-**NOTE:** In some versions Avogadro starts counting at 0, in others at 1. If you don't see a 0-label in any of the atom labels, you need to subtract 1 from the above numbers.
-
-Optimize the structure and export it as `mol.sdf` in the `~/infretis/examples/gromacs/puckering/` folder (the .sdf format contains  coordinate, element, and bond order information).
-
-Check that you indeed are in the chair conformation with the given indices using the `check_indices` script contained in our [inftools](/infretis/inftools/) package (this was installed earlier), which calculates the $\theta$ and $\phi$ values. Run
-```bash
-inft check_indices -sdf mol.sdf -idx 2 5 11 8 1 0
-```
-but replace the indices with the ones you found. You should obtain a  $\theta$ value between $0-15^{\circ}$.
-
-Finally, run the following commands:
-
-```bash
-inft generate_openff_topology -sdf mol.sdf
-cd gromacs_input
-gmx solvate -cs spc216.gro -cp mol.gro -p topol.top -o conf.g96
-cd ..
-
-```
-## Questions
-* **4:** What are the ordered ring atom indices for your system? Why do we care about these indices?
-* **5:** What do you think the commands in the last command block above do?
+We will perform the exercise from the directory `~/infentory/puckering/`. Get an overview of the folder structures from the terminal.
 
 # Step 1: Equilibration
+Run the following command:
+```bash
+cd gromacs_input
+gmx solvate -cs spc216.gro -cp mol.gro -p topol.top -o conf.g96
+```
+#### 🤔 Question 1:
+* What does the above command do?
+
+
 Navigate to the `step1_equilibration` folder and get an overview of the directory structure. Perform an energy minimization (EM) and an NVT and NPT equilibration in the provided directories. Here are some commands to speed up the process.
+
+
 ```bash
 gmx grompp -f em.mdp -p ../../gromacs_input/topol.top -c ../../gromacs_input/conf.g96 -o em.tpr
 gmx mdrun -deffnm em -ntomp 2 -ntmpi 1 -pin on -v
@@ -157,39 +107,37 @@ gmx grompp -f npt.mdp -p ../../gromacs_input/topol.top -c ../nvt/nvt.gro -t ../n
 gmx mdrun -deffnm npt -ntomp 2 -ntmpi 1 -pin on -v
 
 ```
-## Questions
-* **6:** Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The letters of the previous hint are reversed to avoid spoilers.)
+#### 🤔 Question 2:
+* Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The letters of the previous hint are reversed to avoid spoilers.)
 
 # Step 2: MD run
-We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and invoke `grompp` with the following command.
-```bash
-gmx grompp -f md.mdp -p ../gromacs_input/topol.top -c ../step1_equilibration/npt/npt.gro -t ../step1_equilibration/npt/npt.cpt -o md.tpr
-```
-Fire off `mdrun`. This should take a couple of minutes.
+We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and run an MD run with the <ins> NPT equilibrated </ins> structure.
 
-As you may have guessed by now, a good order parameter for the transition we want to study is the $\theta$ angle. To calculate the angle during the MD run, open `infretis.toml` and replace the indices with the ones you wrote down earlier. You can then recalculate the order parameter using:
+This run should take a couple of minutes. You can use the time to answer the following question.
 
+#### 🤔 Question 3:
+* What is an order parameter in path sampling, and why do we need it?
+
+Calculate the order parameter for each frame in the trajectory by using:
 ```bash
 inft recalculate_order -traj md.trr -toml infretis.toml -out md-order.txt
 
 ```
-Plot the $\theta$ values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
+Plot the order parameter values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
 
 
+It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥
 
-If you want, you can also visualize the trajectories, which in many cases can be very insightful. The following commands remove the solvent molecules and create a file `md-traj.xyz` that you can animate in Avogadro using the "Animation tool".
+We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu/Research/vmd/)) software for this:
 
 ```bash
-# visualization without solvent
-printf '1\n1\n' | gmx trjconv -f *.trr -pbc whole -center -o md-whole.xtc -s *.tpr
-printf '1\n1\n' | gmx trjconv -f md-whole.xtc -fit rot+trans -s *.tpr -o md-traj.gro
-obabel -igro md-traj.gro -oxyz -O md-traj.xyz
+vmd md-run.trr md-run.gro -e ../graphics/vmd-script.tcl
 ```
 
-## Questions
-* **7:** Do you see any interesting conformational changes when visualizing the trajectory?
-* **8:** What is the maximum order parameter value observed during the MD run?
-* **9:** Given that the product state of your molecule is defined by $\theta=90^{\circ}$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
+#### 🤔 Question 4 - 6:
+* Do you see any interesting conformational changes when visualizing the trajectory?
+* Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
+* How can path sampling help us here?
 
 # Step 3: ∞RETIS
 In this section, we will finally perform the path simulation. However, before we can do that, we need to provide the ∞RETIS program with a set of interfaces and an initial path in each of the path ensembles defined by the interfaces.
