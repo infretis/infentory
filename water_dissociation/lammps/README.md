@@ -41,7 +41,7 @@ mamba create --name cosy_24 python==3.11 lammps
 Install infretis, and the exercise files.
 ```bash
 mamba activate cosy_24
-python -m pip install git+https://github.com/infretis/infretis.git@cosy_24
+python -m pip install git+https://github.com/infretis/infretis.git@main
 git clone https://github.com/infretis/inftools.git
 cd inftools
 python -m pip install -e .
