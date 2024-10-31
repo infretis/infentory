@@ -113,6 +113,11 @@ gmx mdrun -deffnm npt -ntomp 2 -ntmpi 1 -pin on -v
 # Step 2: MD run
 We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and run an MD run with the <ins> NPT equilibrated </ins> structure.
 
+Use this command for the mdrun:
+```bash
+gmx mdrun -deffnm md-run -ntomp 2 -ntmpi 1 -pin on -v -c confout.g96
+```
+
 This run should take a couple of minutes. You can use the time to answer the following question.
 
 #### 🤔 Question 3:
@@ -125,6 +130,8 @@ inft recalculate_order -traj md.trr -toml infretis.toml -out md-order.txt
 ```
 Plot the order parameter values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
 
+#### 🤔 Question 4:
+* Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
 
 It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥
 
@@ -134,60 +141,21 @@ We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu
 vmd md-run.trr md-run.gro -e ../graphics/vmd-script.tcl
 ```
 
-#### 🤔 Question 4 - 6:
+#### 🤔 Question 4 - 5:
 * Do you see any interesting conformational changes when visualizing the trajectory?
-* Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
 * How can path sampling help us here?
 
 # Step 3: ∞RETIS
-In this section, we will finally perform the path simulation. However, before we can do that, we need to provide the ∞RETIS program with a set of interfaces and an initial path in each of the path ensembles defined by the interfaces.
-
-We can cut out some paths for the lowest ensembles from the MD simulation, as these didn't reach high order parameter values. However, for an efficient simulation, we need to position interfaces far up the energy barrier, but these would be tedious to generate from plain MD simulations.
-
-We can iteratively solve this problem by performing a couple of short ∞RETIS simulations. We start with the low-lying paths from the MD simulation and use these to start a short ∞RETIS simulation with low-lying interfaces. We likely observe paths with higher order parameter values during this simulation. We can then use these paths as starting points in a second simulation with slightly higher interfaces. Continuing in this fashion effectively pushes the system up the energy barrier.
+In this section, we will finally perform the path simulation. However, before we can do that, we need to provide the ∞RETIS program with a set of interfaces and an initial path in each of the path ensembles defined by the interfaces. We can use the ∞RETIS initial path generator `infinit` for this. The way it works is illustrated below.
 
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="45%" height="45%">
 
-Navigate to the `step3_infretis` directory and modify the `infretis.toml` as follows:
-* add your ring atom indices to the `[orderparameter]` section
-* add two interfaces at 10.0 and 90.0 in the `interface = []` list. Remember a comma
 
-We can cut out some paths with low order parameter values from the MD simulation by running:
-```bash
-inft initial_path_from_md -trr ../step2_md_run/md.trr -toml infretis.toml -order ../step2_md_run/md-order.txt
+Navigate to the `step3_infretis` directory. The file `infretis.toml` defines all the path sampling setup. 
 
-```
-You should now have created a `load` folder containing the paths and order parameter values for the two ensembles $[0^-]$ and $[0^+]$. Plot the order parameters for these two paths. The script `plot_order` inftool-program does this for you, and we will use it repeatedly in the following steps.
+In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis.toml`.
 
-```bash
-inft plot_order -toml infretis.toml -traj load/
 
-```
-
-Now, if everything is in order, you should be able to run your first ∞RETIS simulation using:
-```bash
-infretisrun -i infretis.toml
-
-```
-
-We will now do the following iteratively (similar to the procedure in GIF above):
-
-* Plot the order parameter of all accepted paths (use the `plot_order` tool on the `load/` folder). Do you see a reactive path?
-* In this plot, identify the maximum order parameter of the highest path. The position of the next interface should be slightly below this value (e.g. $0.5^{\circ}$ below this maximum). If you didn't reach any higher values, double the number of `steps` in `restart.toml` and run `infretisrun -i restart.toml`. Then start again from the top with the plotting.
-* Add this value to your list of interfaces in `infretis.toml` such that the values are sorted (don't change the $\lambda_0=10^{\circ}$ and $\lambda_N=90^{\circ}$ interfaces).
-* Increase the number of `steps` in `infretis.toml` by 10.
-* Rename the `load/` folder (so we don't overwrite it) to e.g. `run0`, or `run1`,`run2`, etc. if it exists
-* Pick out some new initial paths for the next simulation from the previous simulation by using:
-
-```bash
-# NOTE: Replace runx with the name of the most recent run folder (run0 if this is your first run)
-inft initial_path_from_iretis -traj runx -toml infretis.toml # generates a new load/ folder
-
-```
-* Run a new ∞RETIS simulation
-* Go to the first step above and start over until you observe a reactive path (one that crosses $\theta=90^{\circ}$.
-
-After observing a reactive path, we assume we have a reasonable set of interfaces and initial paths. Open the `restart.toml` file and change the number of `workers` to 4 and the number of `steps` to around 1000 to 3000. The following step may take some time (10 to 30 mins, depending on your hardware) and may generate 1 to 3 GB of data. Fire off the simulation by invoking `infretis` with the `restart.toml` file.
 
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
