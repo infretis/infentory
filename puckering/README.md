@@ -63,12 +63,12 @@ mamba create --name molmod python==3.11
 mamba activate molmod
 mkdir software
 cd software
-git clone https://github.com/infretis/inftools.git
-cd inftools
-python -m pip install -e .
-cd -
 git clone https://github.com/infretis/infretis.git
 cd infretis
+python -m pip install -e .
+cd -
+git clone https://github.com/infretis/inftools.git
+cd inftools
 python -m pip install -e .
 cd ~
 git clone https://github.com/infretis/infentory.git
