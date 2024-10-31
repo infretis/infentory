@@ -111,10 +111,11 @@ gmx mdrun -deffnm npt -ntomp 2 -ntmpi 1 -pin on -v
 * Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The letters of the previous hint are reversed to avoid spoilers.)
 
 # Step 2: MD run
-We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and run an MD run with the <ins> NPT equilibrated </ins> structure.
+We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and run an MD run with the NPT equilibrated structure.
 
 Use this command for the mdrun:
 ```bash
+gmx grompp -f md.mdp -p ../gromacs_input/topol.top -c ../step1_equilibration/npt/npt.gro -t ../step1_equilibration/npt/npt.cpt -o md-run.tpr
 gmx mdrun -deffnm md-run -ntomp 2 -ntmpi 1 -pin on -v -c confout.g96
 ```
 
