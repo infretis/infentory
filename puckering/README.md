@@ -10,29 +10,37 @@ The motivation for this assignment is to introduce students to software designed
 If path sampling and software development sound interesting to you, to the extent that you would like to study them in more detail, please don't hesitate to get in touch with Titus and Anders to explore potential master projects. You can contact them at titus.van.erp@ntnu.no and anders.lervik@ntnu.no.
 
 # Goals
-In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to gain hands-on experience by simulating the [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its enigmatic mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
+In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to gain hands-on experience by simulating the [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
 
 # The system
 <p align="center">
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/puckering.gif" width="30%" height="30%">
 </p>
 
-You will be tasked with modeling a 6-ring-based molecule of your choice, fully immersed in an explicit solvent environment. A solvated system adds complexity and a multitude of challenging behaviors, making your modeling task all the more interesting. Armed with your skills in Avogadro and GROMACS from previous exercises, you're well-prepared for this quest.
+This transition occurs very rarely at the molecular time scale, making it extremely challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
 
-This transition occurs very rarely at the molecular time scale, making it extremely challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, we would like to know exactly how often this transition occurs and the mechanism behind it. We can obtain this information by performing a path-sampling simulation, and in this exercise, you will carry out the whole modeling and analysis process from scratch.
+
+<details>
+<summary> ... even more about the system 🤓 </summary>
+
+## Even more about the system
 
 6-rings play a vital role in the world of chemistry and biology, impacting systems as diverse as carbohydrates being broken down by enzymes within your very body. The physical and chemical properties of 6-rings are intimately linked to their shapes, and their conformational landscape is a puzzle to be unraveled, with **C**hair, **H**alf-chair, **B**oat, **S**kew-boat, and **E**nvelope conformations. The conformations of 6-rings can be projected onoto the surface of a sphere, where each conformer is uniquely specified by the angles $\theta$ and $\phi$.
 
 <img src="http://enzyme13.bt.a.u-tokyo.ac.jp/CP/sugarconf.png" width="90%" height="90%">
 
-These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be convienetily mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens, and the most likely ending structures on the equator for your specific system.
+These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be convienetily mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens, and the mechanism behind it.
 
-## Questions
-**1:** Given that the 6-ring in the animation above starts as $^4\text{C}_1$, can you see that the ending structure is $^{3,O}B$? Hint: The super- and subscripts refer to which atoms are above and below the mean plane of the ring, respectively.
+### Can you answer these?
+* Given that the 6-ring in the animation above starts as $^4\text{C}_1$, can you see that the ending structure is $^{3,O}B$? Hint: The super- and subscripts refer to which atoms are above and below the mean plane of the ring, respectively.
 
-**2:** What is the initial value of the angle $\theta$, and what are the final values of the angles $\phi$ and $\theta$?
+* What is the initial value of the angle $\theta$, and what are the final values of the angles $\phi$ and $\theta$?
 
-**3:** Can you suggest an order parameter for this transition?
+* Can you suggest an order parameter for this transition?
+
+</details>
+
+
 
 # Installing the required packages
 We first need to install the required programs to run this exercise. This includes a program that generates the parameters of a modern force field ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) for your molecule and the ∞RETIS software developed at the theoretical chemistry group at NTNU.
