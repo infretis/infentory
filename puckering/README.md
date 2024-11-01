@@ -5,7 +5,7 @@ Unveiling Molecular Secrets with Path Sampling
 </h1>
 
 # Motivation
-The motivation for this assignment is to introduce students to software designed for conducting path sampling. The software employed here is an in-house-developed Python code for running &infin;RETIS that interfaces with Gromacs to perform essential molecular dynamics (MD) steps. Through this assignment, we aim to demonstrate the capability of studying a transition process that is nearly impossible to investigate using conventional brute-force MD methods due to its rare event nature. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
+The motivation for this assignment is to introduce students to software designed for conducting path sampling. The software employed here is an in-house-developed Python code for running &infin;RETIS that interfaces among others with Gromacs to perform the molecular dynamics (MD) steps. Through this exercise, we aim to demonstrate the capabilities of path sampling, where we can study transition processes that can be hard or impossible to investigate using conventional brute-force MD methods due to their rare event nature. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
 
 If path sampling and software development sound interesting to you, to the extent that you would like to study them in more detail, please don't hesitate to get in touch with Titus and Anders to explore potential master projects. You can contact them at titus.van.erp@ntnu.no and anders.lervik@ntnu.no.
 
@@ -25,11 +25,11 @@ This transition occurs very rarely at the molecular time scale, making it extrem
 
 ## Even more about the system
 
-6-rings play a vital role in the world of chemistry and biology, impacting systems as diverse as carbohydrates being broken down by enzymes within your very body. The physical and chemical properties of 6-rings are intimately linked to their shapes, and their conformational landscape is a puzzle to be unraveled, with **C**hair, **H**alf-chair, **B**oat, **S**kew-boat, and **E**nvelope conformations. The conformations of 6-rings can be projected onoto the surface of a sphere, where each conformer is uniquely specified by the angles $\theta$ and $\phi$.
+6-rings play a vital role in the world of chemistry and biology, impacting systems as diverse as carbohydrates being broken down by enzymes within your very body. The physical and chemical properties of 6-rings are intimately linked to their shapes, and their conformational landscape is a puzzle to be unraveled, with **C**hair, **H**alf-chair, **B**oat, **S**kew-boat, and **E**nvelope conformations. The conformations of 6-rings can be projected onto the surface of a sphere, where each conformer is uniquely specified by the angles $\theta$ and $\phi$.
 
 <img src="http://enzyme13.bt.a.u-tokyo.ac.jp/CP/sugarconf.png" width="90%" height="90%">
 
-These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be convienetily mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens, and the mechanism behind it.
+These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens, and the mechanism behind it.
 
 ### Can you answer these?
 * Given that the 6-ring in the animation above starts as $^4\text{C}_1$, can you see that the ending structure is $^{3,O}B$? Hint: The super- and subscripts refer to which atoms are above and below the mean plane of the ring, respectively.
@@ -53,7 +53,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 Now close the terminal.
 
-You should see `(base)` in the left of your terminal window after reopening if everything went successfully.
+If everything went successfully, you should see `(base)` in the left of your terminal window after reopening.
 
 Then download and install the required python packages to run this exercise. Again copy-paste the code and do what is asked of you in the output.
 ```bash
