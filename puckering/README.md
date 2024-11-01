@@ -162,25 +162,25 @@ In the [simulation] section, define the initial state and final state by specify
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
 ## The transition mechanism
-We can say something about the mechanism of the complete $^4\text{C}_1 \rightarrow ^1\text{C}_4$ transition of your molecule if we assume that the second barrier from the equator to the south pole is negligible. The final configuration of your reactive paths would then be the transition state of the whole $^4\text{C}_1 \rightarrow ^1\text{C}_4$ transition. This may be a crude approximation, and we could test it by running another path simulation.
 
-Plot the $\phi$ vs. $\theta$ values of the trajectories using the `-xy 2 1` option in `plot_order`. Looking at the reactive trajectories, what is/are the preferred route(s) from $^4\text{C}_1$ to $^1\text{C}_4$?
-
-If you want, you can confirm this by visualizing some of the reactive trajectories. The following command removes the solvent, centers your molecule, and reorders the trajectories output from ∞RETIS:
+We will now visualize some of the reactive trajectories:
 
 ```bash
-# replace 'nr' with the path number of some trajectory you want to visualize
-nr=46
-inft concatenate -path load/${nr} -tpr ../gromacs_input/topol.tpr -out path${nr}.xyz
+inft plot_order -traj load/ -toml infretis0.toml
 ```
-Now you get a file `path${nr}.xyz`that you can visualize in Avogadro.
+
+
+```bash
+inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
+```
+
 
 ## The transition rate
 
 When you approach a reasonable number of paths in your simulation you can start analyzing the output. The following script calculates the rate, along with some other properties such as the crossing probability and error estimates.
 
 ```bash
-inft wham -toml infretis.toml -data infretis_data.txt
+inft wham -toml infretis.toml -data infretis_data_6.txt
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 You can plot it in `gnuplot`
@@ -200,7 +200,6 @@ which is found in the `infretis.toml` file.
 Other files you may want to plot are the `Pcross.txt` for the crossing probability as a function of $\theta$, the `runav_flux` and `runav_Pcross.txt` for the running average of the flux and the crossing probability, and the `errRATE.txt`, `errFLUX.txt`, and `errPtot.txt` files for estimates of the relative error in the corresponding properties.
 
 ## Questions
-* **10:** What is/are the preferred transition structures of your molecule on the equator?
 * **11:** What is the rate in units of $\text{ns}^{-1}$?
 * **12:** What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
 * **13:** Inspect the last part of the `md.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
