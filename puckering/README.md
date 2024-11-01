@@ -81,6 +81,8 @@ You should now see `(molmod)` in the left of your terminal. Whenever you open a 
 We will perform the exercise from the directory `~/infentory/puckering/`. Get an overview of the folder structures from the terminal.
 
 # Step 1: Equilibration
+We will be using the ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) force field to treat the sugar molecule and the TIP3P model for water.
+
 Run the following command:
 ```bash
 cd gromacs_input
@@ -144,7 +146,7 @@ vmd md-run.trr md-run.gro -e ../graphics/vmd-script.tcl
 
 #### 🤔 Question 4 - 5:
 * Do you see any interesting conformational changes when visualizing the trajectory?
-* How can path sampling help us here?
+* How can path sampling help with this this?
 
 # Step 3: ∞RETIS
 In this section, we will finally perform the path simulation. However, before we can do that, we need to provide the ∞RETIS program with a set of interfaces and an initial path in each of the path ensembles defined by the interfaces. We can use the ∞RETIS initial path generator `infinit` for this. The way it works is illustrated below.
@@ -152,10 +154,9 @@ In this section, we will finally perform the path simulation. However, before we
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="45%" height="45%">
 
 
-Navigate to the `step3_infretis` directory. The file `infretis.toml` defines all the path sampling setup. 
+Navigate to the `step3_infretis` directory. The file `infretis0.toml` defines all the path sampling setup. 
 
-In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis.toml`.
-
+In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
 
 # Step 4: Analysis
