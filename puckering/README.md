@@ -217,5 +217,5 @@ which is found in the `infretis0.toml` file.
 * Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
 
 
-# How to pass this exercise
+# 🏁 How to pass this exercise
 Answer all of the questions and show/discuss them with the teaching assistants.
