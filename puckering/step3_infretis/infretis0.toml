@@ -8,7 +8,8 @@ wmdrun = [
 ]
 
 [simulation]
-interfaces = [10, 90]
+# Add interfaces here
+interfaces = []
 steps = 20
 seed = 0
 load_dir = "load"
@@ -28,7 +29,7 @@ timestep = 0.002
 gmx_format = "g96"
 input_path = "../gromacs_input"
 gmx = "gmx"
-subcycles = 2
+subcycles = 1
 temperature = 300
 
 [orderparameter]
@@ -47,6 +48,6 @@ pL = 0.3
 initial_conf = "../step2_md_run/confout.g96"
 lamres = 0.001
 nskip = 0
-steps_per_iter = [20, 40, 80,]
+steps_per_iter = [20, 40, 60, 80, 100, 100, 100, 1000]
 cstep = -1
-num_ens = 8
+num_ens = 14
