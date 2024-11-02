@@ -17,7 +17,7 @@ In this exercise, you'll journey into the heart of molecular mysteries. Your pri
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/puckering.gif" width="30%" height="30%">
 </p>
 
-This transition occurs very rarely at the molecular time scale, making it extremely challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
+This oxane puckering transition rarely occurs at the molecular time scale, making it challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
 
 <details>
 <summary> ... even more about the system 🤓 </summary>
