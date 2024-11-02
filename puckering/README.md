@@ -149,7 +149,7 @@ The process of going from an equilibrated MD system to a path sampling simulatio
 
 Navigate to the `step3_infretis` directory.
 
-The file `infretis0.toml` defines all the path sampling setup. 
+Open `infretis0.toml`, which defines all the path sampling setup. 
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
