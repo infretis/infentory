@@ -5,12 +5,12 @@ Unveiling Molecular Secrets with Path Sampling
 </h1>
 
 # Motivation
-The motivation for this assignment is to introduce students to software designed for conducting path sampling. The software employed here is an in-house-developed Python code for running &infin;RETIS that interfaces among others with Gromacs to perform the molecular dynamics (MD) steps. Through this exercise, we aim to demonstrate the capabilities of path sampling, where we can study transition processes that can be hard or impossible to investigate using conventional brute-force MD methods due to their rare event nature. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
+Through this exercise, we aim to demonstrate the capabilities of path sampling, where we can study transition processes that can be hard or impossible to investigate using conventional brute-force MD methods due to their rare event nature. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
 
 If path sampling and software development sound interesting to you, to the extent that you would like to study them in more detail, please don't hesitate to get in touch with Titus and Anders to explore potential master projects. You can contact them at titus.van.erp@ntnu.no and anders.lervik@ntnu.no.
 
 # Goals
-In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to gain hands-on experience by simulating the [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
+In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to study the conformational transition of the [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
 
 # The system
 <p align="center">
@@ -41,11 +41,11 @@ These angles should not be viewed as regular angles between atoms, but rather as
 </details>
 
 
-
 # Step 0: Installing the required packages
-We first need to install the required programs to run this exercise. This includes a program that generates the parameters of a modern force field ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) for your molecule and the ∞RETIS software developed at the theoretical chemistry group at NTNU.
+Download and install mamba with the following commands (if you don't already have conda installed).
 
-Download and install mamba with the following commands (if you don't already have conda installed). Click the copy button on the box below and paste it into a terminal, and then do what is asked in the output on your screen (on Ubuntu, pressing down the mouse-wheel-button often works better for pasting than ctrl+V).
+Life hack: Pressing down the mouse-wheel-button works better for pasting than ctrl+V😎 
+
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh
@@ -53,9 +53,8 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 Now close the terminal.
 
-If everything went successfully, you should see `(base)` in the left of your terminal window after reopening.
+If everything went successfully, you should see `(base)` in the left of your terminal.
 
-Then download and install the required python packages to run this exercise. Again copy-paste the code and do what is asked of you in the output.
 ```bash
 mamba create --name molmod python==3.11
 ```
@@ -76,12 +75,12 @@ cd infentory/puckering
 echo "All done! We will perform the exercise from this folder."
 ```
 
-You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod` to activate the required Python packages.
-
-We will perform the exercise from the directory `~/infentory/puckering/`. Get an overview of the folder structures from the terminal.
+You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod`.
 
 # Step 1: Equilibration
-We will be using the ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) force field to treat the sugar molecule and the TIP3P model for water.
+Before we can start our path sampling simulation, we need to setup our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system. 
+
+The force field has already been set up for you. We will be using the ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) force field for oxane (the puckering molecule) and the TIP3P model for water.
 
 Run the following command:
 ```bash
@@ -90,7 +89,6 @@ gmx solvate -cs spc216.gro -cp mol.gro -p topol.top -o conf.g96
 ```
 #### 🤔 Question 1:
 * What does the above command do?
-
 
 Navigate to the `step1_equilibration` folder and get an overview of the directory structure. Perform an energy minimization (EM) and an NVT and NPT equilibration in the provided directories. Here are some commands to speed up the process.
 
@@ -110,15 +108,15 @@ gmx mdrun -deffnm npt -ntomp 2 -ntmpi 1 -pin on -v
 
 ```
 #### 🤔 Question 2:
-* Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The letters of the previous hint are reversed to avoid spoilers.)
+* Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The previous sentence is reversed to avoid spoilers.)
 
 # Step 2: MD run
-We have now equilibrated our system, and are now going to perform a slightly longer MD run. Navigate to the `step2_md_run` folder and run an MD run with the NPT equilibrated structure.
+We are now going to perform a slightly longer MD run with the equilibrated system. Navigate to the `step2_md_run` folder and run an MD run with the NPT equilibrated structure.
 
 Use this command for the mdrun:
 ```bash
-gmx grompp -f md.mdp -p ../gromacs_input/topol.top -c ../step1_equilibration/npt/npt.gro -t ../step1_equilibration/npt/npt.cpt -o md-run.tpr
-gmx mdrun -deffnm md-run -ntomp 2 -ntmpi 1 -pin on -v -c confout.g96
+gmx grompp -f md.mdp -p ../gromacs_input/topol.top -c ../step1_equilibration/npt/npt.gro -t ../step1_equilibration/npt/npt.cpt -o md_run.tpr
+gmx mdrun -deffnm md_run -ntomp 2 -ntmpi 1 -pin on -v -c confout.g96
 ```
 
 This run should take a couple of minutes. You can use the time to answer the following question.
@@ -126,41 +124,46 @@ This run should take a couple of minutes. You can use the time to answer the fol
 #### 🤔 Question 3:
 * What is an order parameter in path sampling, and why do we need it?
 
-Calculate the order parameter for each frame in the trajectory by using:
+After the run completes, Calculate the order parameter for each frame in the trajectory by using:
 ```bash
-inft recalculate_order -traj md.trr -toml infretis.toml -out md-order.txt
+inft recalculate_order -traj md_run.trr -toml infretis.toml -out md-order.txt
 
 ```
 Plot the order parameter values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
 
-#### 🤔 Question 4:
+#### 🤔 Question 4-5:
 * Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
-
-It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥
-
-We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu/Research/vmd/)) software for this:
-
-```bash
-vmd md-run.trr md-run.gro -e ../graphics/vmd-script.tcl
-```
-
-#### 🤔 Question 4 - 5:
-* Do you see any interesting conformational changes when visualizing the trajectory?
 * How can path sampling help with this this?
 
+It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥 We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu/Research/vmd/)):
+
+```bash
+vmd md_run.trr md_run.gro -e ../graphics/vmd-script.tcl
+```
+
 # Step 3: ∞RETIS
-In this section, we will finally perform the path simulation. However, before we can do that, we need to provide the ∞RETIS program with a set of interfaces and an initial path in each of the path ensembles defined by the interfaces. We can use the ∞RETIS initial path generator `infinit` for this. The way it works is illustrated below.
+We will now perform the actually path sampling simulation.
+
+The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the ∞RETIS initial path generator `infinit`, which calls infretis repeatedly under the hood. The way it works is illustrated below.
 
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="45%" height="45%">
-
 
 Navigate to the `step3_infretis` directory. The file `infretis0.toml` defines all the path sampling setup. 
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
+Start the simulation with
+
+```bash
+inft infinit -toml infretis0.toml
+```
+This will initialize the system and also perform the main path sampling simulation.
+
+As we wait for it to finish, open a new terminal and move to the next step.
 
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
+
 ## The transition mechanism
 
 We will now visualize some of the reactive trajectories:
