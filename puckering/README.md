@@ -155,7 +155,12 @@ Start the path sampling simulation with
 ```bash
 inft infinit -toml infretis0.toml
 ```
-As we wait for it to finish, open a new terminal and move to the next step.
+As we wait for it to finish, answer the following question:
+
+#### 🤔 Question 5:
+* How does path sampling combine molecular dynamics and Monte Carlo?
+
+Then, open a new terminal and move to the next step.
 
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
@@ -179,8 +184,8 @@ Then visualize the trajectory with:
 ```bash
 vmd vis.xyz -e ../graphics/vmd-script.tcl
 ```
-#### 🤔 Question 5
-* Can you explain _how_ oxane changes conformations from state A to state B?
+#### 🤔 Question 6
+* Can you explain how oxane changes conformations from state A to state B?
 
 ## The transition rate
 
@@ -206,7 +211,7 @@ $$c=\text{subcycles}\cdot \text{timestep}$$
 which is found in the `infretis0.toml` file.
 
 
-#### 🤔 Question 6 - 8
+#### 🤔 Question 7 - 9
 * What is the rate in units of $\text{ns}^{-1}$?
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
 * Inspect the last part of the `md.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
