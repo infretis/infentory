@@ -80,7 +80,7 @@ You should now see `(molmod)` in the left of your terminal. Whenever you open a 
 # Step 1: Equilibration
 Before we can start our path sampling simulation, we need to setup our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system. 
 
-The force field has already been set up for you. We will be using the ([OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/)) force field for oxane (the puckering molecule) and the TIP3P model for water.
+The force field has already been set up for you. We will be using the [OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/) force field for oxane (the puckering molecule) and the TIP3P model for water.
 
 Run the following command:
 ```bash
@@ -91,7 +91,6 @@ gmx solvate -cs spc216.gro -cp mol.gro -p topol.top -o conf.g96
 * What does the above command do?
 
 Navigate to the `step1_equilibration` folder and get an overview of the directory structure. Perform an energy minimization (EM) and an NVT and NPT equilibration in the provided directories. Here are some commands to speed up the process.
-
 
 ```bash
 gmx grompp -f em.mdp -p ../../gromacs_input/topol.top -c ../../gromacs_input/conf.g96 -o em.tpr
@@ -138,7 +137,7 @@ Plot the order parameter values (column 1) vs time (column 0) from the MD run us
 It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥 We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu/Research/vmd/)):
 
 ```bash
-vmd md_run.trr md_run.gro -e ../graphics/vmd-script.tcl
+vmd md_run.trr ../step2_equilibration/npt.gro -e ../graphics/vmd-script.tcl
 ```
 
 # Step 3: ∞RETIS
@@ -148,17 +147,17 @@ The process of going from an equilibrated MD system to a path sampling simulatio
 
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="45%" height="45%">
 
-Navigate to the `step3_infretis` directory. The file `infretis0.toml` defines all the path sampling setup. 
+Navigate to the `step3_infretis` directory.
+
+The file `infretis0.toml` defines all the path sampling setup. 
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
-Start the simulation with
+Start the path sampling simulation with
 
 ```bash
 inft infinit -toml infretis0.toml
 ```
-This will initialize the system and also perform the main path sampling simulation.
-
 As we wait for it to finish, open a new terminal and move to the next step.
 
 # Step 4: Analysis
@@ -166,26 +165,31 @@ The following analysis is performed within the `step3_infretis` folder.
 
 ## The transition mechanism
 
-We will now visualize some of the reactive trajectories:
+While infretis is running, we can visualize some of the reactive trajectories it has produced. Identify the folder names of some reactive trajectories by running:
 
 ```bash
 inft plot_order -traj load/ -toml infretis0.toml
 ```
 
+Then, create the .xyz file that contains the trajectory:
 
 ```bash
-inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
+inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
+```bash
+vmd vis.xyz -e ../graphics/vmd-script.tcl
+```
 
 ## The transition rate
 
-When you approach a reasonable number of paths in your simulation you can start analyzing the output. The following script calculates the rate, along with some other properties such as the crossing probability and error estimates.
+When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) to calculate the path sampling output. The following script calculates the rate, along with some other properties such as the crossing probability and error estimates.
 
 ```bash
-inft wham -toml infretis.toml -data infretis_data_6.txt
+inft wham -data infretis_data_6.txt -toml $(if [ -e infretis_5.toml ]; then echo infretis_5.toml ; else echo infretis.toml; fi) 
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
+
 You can plot it in `gnuplot`
 
 ```bash
@@ -200,13 +204,12 @@ $$c=\text{subcycles}\cdot \text{timestep}$$
 
 which is found in the `infretis.toml` file.
 
-Other files you may want to plot are the `Pcross.txt` for the crossing probability as a function of $\theta$, the `runav_flux` and `runav_Pcross.txt` for the running average of the flux and the crossing probability, and the `errRATE.txt`, `errFLUX.txt`, and `errPtot.txt` files for estimates of the relative error in the corresponding properties.
 
-## Questions
-* **11:** What is the rate in units of $\text{ns}^{-1}$?
-* **12:** What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
-* **13:** Inspect the last part of the `md.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
+#### 🤔 Question 6-8
+* What is the rate in units of $\text{ns}^{-1}$?
+* What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
+* Inspect the last part of the `md.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
 
 
 # How to pass this exercise
-Answer all of the 13 questions and show/discuss them with the teaching assistants.
+Answer all of the questions and show/discuss them with the teaching assistants.
