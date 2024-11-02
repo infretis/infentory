@@ -1,4 +1,4 @@
-<h1 align="center">
+  <h1 align="center">
 The Ring Flip Enigma:
 
 Unveiling Molecular Secrets with Path Sampling
@@ -169,17 +169,19 @@ While infretis is running, we can visualize some of the reactive trajectories it
 inft plot_order -traj load/ -toml infretis0.toml
 ```
 
-Then, create the .xyz file that contains the trajectory:
+Create the .xyz file that contains the trajectory:
 
 ```bash
 inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
+Then visualize the trajectory with:
+
 ```bash
 vmd vis.xyz -e ../graphics/vmd-script.tcl
 ```
 
-Can you describe what is happening?
+Can you explain _how_ oxane changes conformations from state A to state B?
 
 ## The transition rate
 
