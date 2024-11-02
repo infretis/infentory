@@ -63,6 +63,7 @@ mkdir software
 cd software
 git clone https://github.com/infretis/infretis.git
 cd infretis
+git checkout molmod24
 python -m pip install -e .
 cd -
 git clone https://github.com/infretis/inftools.git
