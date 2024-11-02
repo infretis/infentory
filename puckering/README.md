@@ -19,7 +19,6 @@ In this exercise, you'll journey into the heart of molecular mysteries. Your pri
 
 This transition occurs very rarely at the molecular time scale, making it extremely challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
 
-
 <details>
 <summary> ... even more about the system 🤓 </summary>
 
@@ -78,7 +77,7 @@ echo "All done! We will perform the exercise from this folder."
 You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod`.
 
 # Step 1: Equilibration
-Before we can start our path sampling simulation, we need to setup our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system. 
+As you know, path sampling is a hybrid of molecular dynamics (MD) and Monte Carlo simulations (MC). Therefore, before we can start the path sampling simulation, we need to set up our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system. 
 
 The force field has already been set up for you. We will be using the [OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/) force field for oxane (the puckering molecule) and the TIP3P model for water.
 
@@ -110,9 +109,8 @@ gmx mdrun -deffnm npt -ntomp 2 -ntmpi 1 -pin on -v
 * Has the temperature and density reached the expected values during the NPT equilibration? The properties are accessible using `gmx energy -f npt.edr`. (Hint: retaw yltsom si metsys ruoY. Hint2: The previous sentence is reversed to avoid spoilers.)
 
 # Step 2: MD run
-We are now going to perform a slightly longer MD run with the equilibrated system. Navigate to the `step2_md_run` folder and run an MD run with the NPT equilibrated structure.
+We are now going to perform a slightly longer MD run with the equilibrated system. Navigate to the `step2_md_run` folder and run
 
-Use this command for the mdrun:
 ```bash
 gmx grompp -f md.mdp -p ../gromacs_input/topol.top -c ../step1_equilibration/npt/npt.gro -t ../step1_equilibration/npt/npt.cpt -o md_run.tpr
 gmx mdrun -deffnm md_run -ntomp 2 -ntmpi 1 -pin on -v -c confout.g96
@@ -181,12 +179,14 @@ inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and e
 vmd vis.xyz -e ../graphics/vmd-script.tcl
 ```
 
+Can you describe what is happening?
+
 ## The transition rate
 
-When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) to calculate the path sampling output. The following script calculates the rate, along with some other properties such as the crossing probability and error estimates.
+When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) for this. The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_6.txt -toml $(if [ -e infretis_5.toml ]; then echo infretis_5.toml ; else echo infretis.toml; fi) 
+inft wham -data infretis_data_6.txt -toml $(if [ -e infretis_5.toml ]; then echo infretis_5.toml ; else echo infretis.toml; fi)
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
@@ -202,7 +202,7 @@ The last line/point in this file is the estimated transition rate using all path
 
 $$c=\text{subcycles}\cdot \text{timestep}$$
 
-which is found in the `infretis.toml` file.
+which is found in the `infretis0.toml` file.
 
 
 #### 🤔 Question 6-8
