@@ -183,12 +183,13 @@ The following analysis is performed within the `step3_infretis` folder.
 
 ## The transition mechanism
 
-While infretis is running, we can visualize some of the reactive trajectories it has produced. Identify the folder names of some reactive trajectories by running:
+While infretis is running, we can visualize some of the reactive trajectories it has produced. Identify the folder names of some reactive trajectories by running the below command.
+
+⌛ If you don't get any message from the below command, wait for infretis to produce some reactive trajectories ⏳
 
 ```bash
 inft plot_order -traj load/ -toml infretis0.toml
 ```
-
 Create the .xyz file that contains the trajectory:
 
 ```bash
