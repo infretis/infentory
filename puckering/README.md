@@ -231,7 +231,7 @@ The last line/point in this file is the estimated transition rate using all path
 
 $$c=\frac{\text{subcycles}\cdot \text{timestep}}{1000} $$
 
-where `timestep` and `subcycles` is found in the `infretis0.toml` file.
+`timestep` and `subcycles` are specified in `infretis0.toml`.
 
 
 #### 🤔 Question 7 - 9:
