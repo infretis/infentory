@@ -154,7 +154,7 @@ To animate the trajectory, press the tiny ▶️ button on the far right in the 
 # Step 3: ∞RETIS
 We will now perform the actually path sampling simulation.
 
-The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the ∞RETIS initial path generator `infinit`, which performs the whole path-sampling simulation workflow using infretis under the hood. The way it works is illustrated below.
+The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the initial path generator `infinit`, which performs the whole path-sampling simulation workflow using  ∞RETIS under the hood. The way it works is illustrated below.
 
 <img src="graphics/initial-paths.gif" width="40%" height="40%">
 
