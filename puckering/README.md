@@ -126,7 +126,7 @@ This run should take a couple of minutes. You can use the time to answer the fol
 #### 🤔 Question 3:
 * What is an order parameter in path sampling, and why do we need it?
 
-After the run completes, Calculate the order parameter for each frame in the trajectory by using:
+After the run completes, calculate the order parameter for each frame in the trajectory:
 ```bash
 inft recalculate_order -traj md_run.trr -toml infretis.toml -out md-order.txt
 
@@ -141,6 +141,10 @@ It is always a good idea to visualize trajectories to ensure everything is runni
 ```bash
 vmd md_run.trr ../step2_equilibration/npt.gro -e ../graphics/vmd-script.tcl
 ```
+
+To animate the trajectory, press the tiny "play" ⏯️ button on the far right in the VMD Player:
+
+<img src="https://www.compchems.com/vmd_trajectory/player_vmd.webp" width="45%" height="45%">
 
 # Step 3: ∞RETIS
 We will now perform the actually path sampling simulation.
