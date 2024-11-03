@@ -213,7 +213,7 @@ vmd vis.xyz -e ../graphics/vmd-script.tcl
 The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_4.txt -toml $(if [ -e infretis_4.toml ]; then echo infretis_4.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 40
+inft wham -data infretis_data_4.txt -toml $(if [ -e infretis_5.toml ]; then echo infretis_5.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 40
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
