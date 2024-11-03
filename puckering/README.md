@@ -5,12 +5,12 @@ Unveiling Molecular Secrets with Path Sampling
 </h1>
 
 # Motivation
-Through this exercise, we aim to demonstrate the capabilities of path sampling, where we can study transition processes that can be hard or impossible to investigate using conventional brute-force MD methods due to their rare event nature. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
+Through this exercise, we aim to demonstrate the capabilities of path sampling. Path sampling allows us to study rare events that can be hard or impossible to investigate using conventional molecular dynamics methods. The algorithms and software utilized in this assignment are the result of very recent active developments within the research group of Theoretical Chemistry.
 
 If path sampling and software development sound interesting to you, to the extent that you would like to study them in more detail, please don't hesitate to get in touch with Titus and Anders to explore potential master projects. You can contact them at titus.van.erp@ntnu.no and anders.lervik@ntnu.no.
 
 # Goals
-In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to study the conformational transition of the [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
+In this exercise, you'll journey into the heart of molecular mysteries. Your primary goal is to study the conformational transition of the oxane [ring flip](https://en.wikipedia.org/wiki/Ring_flip), an intriguing phenomenon often referred to as puckering. This transition, a rare occurrence at the molecular timescale, has puzzled scientists for ages. With your newfound knowledge in path sampling, you now hold the key to understanding its mechanisms. Your quest? To reveal the secrets hidden within the molecular world.
 
 # The system
 <p align="center">
@@ -24,11 +24,11 @@ This oxane puckering transition rarely occurs at the molecular time scale, makin
 
 ## Even more about the system
 
-6-rings play a vital role in the world of chemistry and biology, impacting systems as diverse as carbohydrates being broken down by enzymes within your very body. The physical and chemical properties of 6-rings are intimately linked to their shapes, and their conformational landscape is a puzzle to be unraveled, with **C**hair, **H**alf-chair, **B**oat, **S**kew-boat, and **E**nvelope conformations. The conformations of 6-rings can be projected onto the surface of a sphere, where each conformer is uniquely specified by the angles $\theta$ and $\phi$.
+6-rings play a vital role in the world of chemistry and biology, impacting systems as diverse as carbohydrates being broken down by enzymes within your very body. The physical and chemical properties of 6-rings are intimately linked to their conformations, and their conformational landscape is a puzzle to be unraveled, with **C**hair, **H**alf-chair, **B**oat, **S**kew-boat, and **E**nvelope conformations. The conformations of 6-rings can be projected onto the surface of a sphere, where each conformer is uniquely specified by the angles $\theta$ and $\phi$.
 
 <img src="http://enzyme13.bt.a.u-tokyo.ac.jp/CP/sugarconf.png" width="90%" height="90%">
 
-These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens, and the mechanism behind it.
+These angles should not be viewed as regular angles between atoms, but rather as a coordinate transformation of the atoms that can be mapped onto the surface of a sphere [[1](https://doi.org/10.1021/ja00839a011)]. But the "hows" aren't important right now. The essential thing you need to know for now is that there is a high energy barrier between the north pole and the equator, and again between the equator and the south pole. We will study the transition over the first barrier; _starting at the north pole and ending at any of the structures on the equator_. By the end of this exercise, you will be able to say exactly how often this transition happens and elucidate the mechanism behind it.
 
 ### Can you answer these?
 * Given that the 6-ring in the animation above starts as $^4\text{C}_1$, can you see that the ending structure is $^{3,O}B$? Hint: The super- and subscripts refer to which atoms are above and below the mean plane of the ring, respectively.
@@ -41,14 +41,13 @@ These angles should not be viewed as regular angles between atoms, but rather as
 
 
 # Step 0: Installing the required packages
-Download and install mamba with the following commands (if you don't already have conda installed).
+If you don't already have a Python package manager running, download and install mamba with the following commands
 
 Life hack: Pressing down the mouse-wheel-button works better for pasting than ctrl+V 😎 
 
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh
-
 ```
 Now close the terminal.
 
@@ -63,11 +62,11 @@ mkdir software
 cd software
 git clone https://github.com/infretis/infretis.git
 cd infretis
-git checkout molmod24
 python -m pip install -e .
 cd -
 git clone https://github.com/infretis/inftools.git
 cd inftools
+git checkout molmod24
 python -m pip install -e .
 cd ~
 git clone https://github.com/infretis/infentory.git
@@ -87,6 +86,9 @@ Run the following command:
 cd gromacs_input
 gmx solvate -cs spc216.gro -cp mol.gro -p topol.top -o conf.g96
 ```
+
+🏁 This exercise contains a couple of questions. Write down your answers and show/discuss them with the teaching assistants to pass this exercise.
+
 #### 🤔 Question 1:
 * What does the above command do?
 
@@ -95,6 +97,7 @@ Navigate to the `step1_equilibration` folder and get an overview of the director
 ```bash
 gmx grompp -f em.mdp -p ../../gromacs_input/topol.top -c ../../gromacs_input/conf.g96 -o em.tpr
 gmx mdrun -deffnm em -ntomp 2 -ntmpi 1 -pin on -v
+
 ```
 ```bash
 gmx grompp -f nvt.mdp -p ../../gromacs_input/topol.top -c ../em/em.gro -o nvt.tpr
@@ -216,7 +219,3 @@ which is found in the `infretis0.toml` file.
 * What is the rate in units of $\text{ns}^{-1}$?
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
 * Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
-
-
-# 🏁 How to pass this exercise
-Answer all of the questions and show/discuss them with the teaching assistants.
