@@ -156,7 +156,7 @@ We will now perform the actually path sampling simulation.
 
 The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the ∞RETIS initial path generator `infinit`, which performs the whole path-sampling simulation workflow using infretis under the hood. The way it works is illustrated below.
 
-<img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="40%" height="40%">
+<img src="graphics/initial-paths.gif" width="40%" height="40%">
 
 Navigate to the `step3_infretis` directory.
 
