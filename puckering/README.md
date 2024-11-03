@@ -43,7 +43,7 @@ These angles should not be viewed as regular angles between atoms, but rather as
 # Step 0: Installing the required packages
 If you don't already have a Python package manager running, download and install mamba with the following commands
 
-Life hack: Pressing down the mouse-wheel-button works better for pasting than ctrl+V 😎 
+Life hack: Pressing down the middle mouse button (wheel) works better for pasting than ctrl+V 😎 
 
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
