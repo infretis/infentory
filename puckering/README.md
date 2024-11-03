@@ -164,7 +164,7 @@ Open `infretis0.toml`, which defines all the path sampling setup.
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
-In the [infinit] section, specify  `intial_conf = "../step2_mdrun/confout.g96"`, which starts the path-sampling simulation from that configuration. 
+In the [infinit] section, specify  `initial_conf = "../step2_mdrun/confout.g96"`, which starts the path-sampling simulation from that configuration. 
 
 Start the path sampling simulation with
 
