@@ -143,7 +143,7 @@ It is always a good idea to visualize trajectories to ensure everything is runni
 printf 'Other\nSystem' | gmx trjconv -f md_run.trr -pbc mol -center -s md_run.tpr -o trajout.xtc
 printf 'Other\nSystem\n' | gmx trjconv -f trajout.xtc -fit rot+trans -s md_run.tpr
 rm \#trajout.xtc.1\#
-vmd trajout.xtc ../step1_equilibration/npt.gro -e ../graphics/vmd-script.tcl
+vmd trajout.xtc ../step1_equilibration/npt/npt.gro -e ../graphics/vmd-script.tcl
 ```
 
 To animate the trajectory, press the tiny "play" ⏯️ button on the far right in the VMD Player:
