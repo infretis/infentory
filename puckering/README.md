@@ -154,15 +154,17 @@ To animate the trajectory, press the tiny "play" ⏯️ button on the far right 
 # Step 3: ∞RETIS
 We will now perform the actually path sampling simulation.
 
-The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the ∞RETIS initial path generator `infinit`, which calls infretis repeatedly under the hood. The way it works is illustrated below.
+The process of going from an equilibrated MD system to a path sampling simulation can be a bit tedious. But for that, we can use the ∞RETIS initial path generator `infinit`, which performs the whole path-sampling simulation workflow using infretis under the hood. The way it works is illustrated below.
 
-<img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="45%" height="45%">
+<img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/initial-paths.gif" width="40%" height="40%">
 
 Navigate to the `step3_infretis` directory.
 
 Open `infretis0.toml`, which defines all the path sampling setup. 
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
+
+In the [infinit] section, specify  `intial_conf = "../step2_mdrun/confout.g96"`, which starts the path-sampling simulation from that configuration. 
 
 Start the path sampling simulation with
 
