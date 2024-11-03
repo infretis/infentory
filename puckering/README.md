@@ -193,8 +193,8 @@ inft plot_order -traj load/ -toml infretis.toml
 Create a .xyz file for visualization that contains the reactive trajectory:
 
 ```bash
-# repalce load/124/traj.txt with the path you want to visualize
-inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
+path_nr = load/123
+inft trjcat -traj ${path_nr}/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
 Then visualize the trajectory with:
