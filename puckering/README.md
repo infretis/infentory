@@ -164,7 +164,7 @@ Open `infretis0.toml`, which defines all the path sampling setup.
 
 In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
-In the [infinit] section, specify  `initial_conf = "../step2_mdrun/confout.g96"`, which starts the path-sampling simulation from that configuration. 
+In the [infinit] section, specify  `initial_conf = "../step2_md_run/confout.g96"`, which starts the path-sampling simulation from that configuration. 
 
 Start the path sampling simulation with
 
@@ -182,14 +182,15 @@ Then, open a new terminal and move to the next step.
 The following analysis is performed within the `step3_infretis` folder.
 
 ## The transition mechanism
+While infretis is running, we can visualize some of the reactive trajectories it has produced to gain some mechanistic insight of the puckering transition 🤓
 
-While infretis is running, we can visualize some of the reactive trajectories it has produced. Identify the folder names of some reactive trajectories by running:
+Identify the folder names of some reactive trajectories by running the below command ⌛ If you don't get any message from the below command, wait for infretis to produce some reactive trajectories ⏳
 
 ```bash
-inft plot_order -traj load/ -toml infretis0.toml
+inft plot_order -traj load/ -toml infretis.toml
 ```
 
-Create the .xyz file that contains the trajectory:
+Create a .xyz file for visualization that contains the reactive trajectory:
 
 ```bash
 inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
