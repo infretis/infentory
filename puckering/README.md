@@ -1,4 +1,4 @@
-<h1 align="center">
+  <h1 align="center">
 The Ring Flip Enigma:
 
 Unveiling Molecular Secrets with Path Sampling
@@ -17,7 +17,7 @@ In this exercise, you'll journey into the heart of molecular mysteries. Your pri
 <img src="https://github.com/infretis/infretis/blob/molmod_exercise5/examples/gromacs/puckering/graphics/puckering.gif" width="30%" height="30%">
 </p>
 
-This transition occurs very rarely at the molecular time scale, making it extremely challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
+This oxane puckering transition rarely occurs at the molecular time scale, making it challenging to study with standard molecular dynamics simulations. On the macroscale, these systems are awfully small and the transition happens exceedingly fast, making it almost impossible to study experimentally. Truly, this process remains hidden within the world of molecules! However, <ins>we would like to know exactly how often this transition occurs and the mechanism behind it </ins>. We can obtain this information by performing a path-sampling simulation.
 
 <details>
 <summary> ... even more about the system 🤓 </summary>
@@ -63,6 +63,7 @@ mkdir software
 cd software
 git clone https://github.com/infretis/infretis.git
 cd infretis
+git checkout molmod24
 python -m pip install -e .
 cd -
 git clone https://github.com/infretis/inftools.git
@@ -128,9 +129,8 @@ inft recalculate_order -traj md_run.trr -toml infretis.toml -out md-order.txt
 ```
 Plot the order parameter values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
 
-#### 🤔 Question 4-5:
-* Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation?
-* How can path sampling help with this this?
+#### 🤔 Question 4:
+* Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation? How can path sampling help with this this?
 
 It is always a good idea to visualize trajectories to ensure everything is running as expected, and that our molecules haven't blown up 💥 We will use the popular visual molecular dynamics ([VMD](https://www.ks.uiuc.edu/Research/vmd/)):
 
@@ -156,7 +156,12 @@ Start the path sampling simulation with
 ```bash
 inft infinit -toml infretis0.toml
 ```
-As we wait for it to finish, open a new terminal and move to the next step.
+As we wait for it to finish, answer the following question:
+
+#### 🤔 Question 5:
+* How does path sampling combine molecular dynamics and Monte Carlo?
+
+Then, open a new terminal and move to the next step.
 
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
@@ -169,24 +174,26 @@ While infretis is running, we can visualize some of the reactive trajectories it
 inft plot_order -traj load/ -toml infretis0.toml
 ```
 
-Then, create the .xyz file that contains the trajectory:
+Create the .xyz file that contains the trajectory:
 
 ```bash
 inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
+Then visualize the trajectory with:
+
 ```bash
 vmd vis.xyz -e ../graphics/vmd-script.tcl
 ```
-
-Can you describe what is happening?
+#### 🤔 Question 6:
+* Can you explain how oxane changes conformations from state A to state B?
 
 ## The transition rate
 
 When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) for this. The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_6.txt -toml $(if [ -e infretis_5.toml ]; then echo infretis_5.toml ; else echo infretis.toml; fi)
+inft wham -data infretis_data_7.txt -toml $(if [ -e infretis_7.toml ]; then echo infretis_7.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 0
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
@@ -198,18 +205,18 @@ set logscale y
 plot 'runav_rate.txt' using 1:4 with linespoints title 'rate'
 ```
 
-The last line/point in this file is the estimated transition rate using all paths. To get this into units of $\text{ps}^{-1}$, divide the rate by $c$ where
+The last line/point in this file is the estimated transition rate using all paths. To get this into units of $\text{ns}^{-1}$, divide the rate by $c$ where
 
-$$c=\text{subcycles}\cdot \text{timestep}$$
+$$c=\frac{\text{subcycles}\cdot \text{timestep}}{1000} $$
 
 which is found in the `infretis0.toml` file.
 
 
-#### 🤔 Question 6-8
+#### 🤔 Question 7 - 9:
 * What is the rate in units of $\text{ns}^{-1}$?
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
-* Inspect the last part of the `md.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
+* Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
 
 
-# How to pass this exercise
+# 🏁 How to pass this exercise
 Answer all of the questions and show/discuss them with the teaching assistants.
