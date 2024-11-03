@@ -210,7 +210,7 @@ vmd vis.xyz -e ../graphics/vmd-script.tcl
 When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) for this. The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_7.txt -toml $(if [ -e infretis_7.toml ]; then echo infretis_7.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 0
+inft wham -data infretis_data_4.txt -toml $(if [ -e infretis_4.toml ]; then echo infretis_4.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 40
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
