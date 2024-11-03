@@ -71,6 +71,7 @@ python -m pip install -e .
 cd ~
 git clone https://github.com/infretis/infentory.git
 cd infentory/puckering
+git checkout molmod24
 echo "All done! We will perform the exercise from this folder."
 ```
 
