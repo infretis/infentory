@@ -147,7 +147,7 @@ rm \#trajout.xtc.1\#
 vmd trajout.xtc ../step1_equilibration/npt/npt.gro -e ../graphics/vmd-script.tcl
 ```
 
-To animate the trajectory, press the tiny "play" ⏯️ button on the far right in the VMD Player:
+To animate the trajectory, press the tiny ▶️ button on the far right in the VMD Player:
 
 <img src="https://www.compchems.com/vmd_trajectory/player_vmd.webp" width="45%" height="45%">
 
@@ -190,10 +190,11 @@ Identify the folder names of some reactive trajectories by running the below com
 inft plot_order -traj load/ -toml infretis.toml
 ```
 
-Create a .xyz file for visualization that contains the reactive trajectory:
+Once you have a reactive trajectory, create a .xyz file to visualize the transition:
 
 ```bash
-inft trjcat -traj load/124/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
+reactive_path=load/123
+inft trjcat -traj ${reactive_path}/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
 Then visualize the trajectory with:
@@ -206,10 +207,13 @@ vmd vis.xyz -e ../graphics/vmd-script.tcl
 
 ## The transition rate
 
-When you approach a reasonable number of paths in your simulation you can start analyzing the output. We use the weighted histogram analysis method (WHAM) for this. The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
+📈 When you approach a reasonable number of paths in your simulation you can start analyzing the output, such as the transition rate. We use the weighted histogram analysis method (WHAM) for this.
+
+
+The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_7.txt -toml $(if [ -e infretis_7.toml ]; then echo infretis_7.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 0
+inft wham -data infretis_data_4.txt -toml $(if [ -e infretis_4.toml ]; then echo infretis_4.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 40
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
@@ -218,17 +222,19 @@ You can plot it in `gnuplot`
 ```bash
 # in gnuplot
 set logscale y
-plot 'runav_rate.txt' using 1:4 with linespoints title 'rate'
+set ylabel "transition rate estimate"
+set xlabel "number of accepted paths"
+plot 'wham/runav_rate.txt' using 1:4 with linespoints
 ```
 
 The last line/point in this file is the estimated transition rate using all paths. To get this into units of $\text{ns}^{-1}$, divide the rate by $c$ where
 
 $$c=\frac{\text{subcycles}\cdot \text{timestep}}{1000} $$
 
-which is found in the `infretis0.toml` file.
+`timestep` and `subcycles` are specified in `infretis0.toml`.
 
 
 #### 🤔 Question 7 - 9:
 * What is the rate in units of $\text{ns}^{-1}$?
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
-* Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single transition in a standard MD simulation?
+* Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single puckering event in a standard MD simulation?
