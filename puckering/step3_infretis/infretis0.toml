@@ -48,6 +48,6 @@ pL = 0.3
 initial_conf = "../step2_md_run/confout.g96"
 lamres = 0.001
 nskip = 0
-steps_per_iter = [20, 40, 60, 80, 100, 100, 200, 1000]
+steps_per_iter = [20, 40, 60, 80, 100, 200, 1000]
 cstep = -1
 num_ens = 14
