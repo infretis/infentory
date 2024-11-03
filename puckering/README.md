@@ -190,7 +190,7 @@ Identify the folder names of some reactive trajectories by running the below com
 inft plot_order -traj load/ -toml infretis.toml
 ```
 
-Create a .xyz file for visualization that contains the reactive trajectory:
+Once you have a reactive trajectory, create a .xyz file to visualize the transition:
 
 ```bash
 reactive_path=load/123
