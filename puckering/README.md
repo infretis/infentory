@@ -140,7 +140,7 @@ It is always a good idea to visualize trajectories to ensure everything is runni
 
 ```bash
 # fix molecule if broken by periodic bodunaries
-printf 'Other\nSystem' | gmx trjconv -f md_run.trr -pbc mol -center -s md_run.tpr -o trajout.xtc
+printf 'Other\nSystem\n' | gmx trjconv -f md_run.trr -pbc mol -center -s md_run.tpr -o trajout.xtc
 printf 'Other\nSystem\n' | gmx trjconv -f trajout.xtc -fit rot+trans -s md_run.tpr
 rm \#trajout.xtc.1\#
 # then visualize
