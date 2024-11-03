@@ -8,8 +8,8 @@ wmdrun = [
 ]
 
 [simulation]
-# Add interfaces here
-interfaces = [10,90]
+# Add interface positions here
+interfaces = []
 steps = 20
 seed = 0
 load_dir = "load"
@@ -45,9 +45,10 @@ delete_old = false
 
 [infinit]
 pL = 0.3
-initial_conf = "../step2_md_run/confout.g96"
+# add initial configuration here
+initial_conf = ""
 lamres = 0.01
 nskip = 40
-steps_per_iter = [100, 200, 200, 1000]
+steps_per_iter = [100, 200, 200, 200, 1000]
 cstep = -1
 num_ens = 14
