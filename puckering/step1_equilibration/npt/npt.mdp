@@ -3,6 +3,10 @@ integrator		= md-vv		; velocity-verlet integrator
 nsteps			= 20000
 dt			= 0.002		; 2 fs
 nstxout-compressed	= 5000
+nstenergy		= 100
+nstxout			= 0
+nstvout			= 0
+nstfout			= 0
 
 ; Bond parameters
 constraints		= h-bonds	; constrain h-bonds because of large timestep
