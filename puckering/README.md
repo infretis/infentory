@@ -195,7 +195,8 @@ Once you have a reactive trajectory, create a .xyz file to visualize the transit
 
 ```bash
 reactive_path=load/123
-inft trjcat -traj ${reactive_path}/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "all -topology ../gromacs_input/topol.tpr
+# we also remove the solvent here for visualization purposes
+inft trjcat -traj ${reactive_path}/traj.txt -out vis.xyz -centersel "index 0 to 15 and element C O" -selection "index 0 to 15" -topology ../gromacs_input/topol.tpr
 ```
 
 Then visualize the trajectory with:
