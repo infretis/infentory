@@ -49,6 +49,6 @@ pL = 0.3
 initial_conf = ""
 lamres = 0.01
 nskip = 40
-steps_per_iter = [100, 200, 200, 200, 1000]
+steps_per_iter = [100, 200, 200, 200, 200, 1000]
 cstep = -1
 num_ens = 14
