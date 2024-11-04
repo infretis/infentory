@@ -239,3 +239,4 @@ $$c=\frac{\text{subcycles}\cdot \text{timestep}}{1000} $$
 * What is the rate in units of $\text{ns}^{-1}$?
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
 * Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single puckering event in a standard MD simulation?
+* When you are done, remove the `runX/` and `load/` folders from `step3_infretis` because they take up a lot of space.
