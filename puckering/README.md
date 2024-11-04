@@ -177,7 +177,7 @@ As we wait for it to finish, answer the following question:
 #### 🤔 Question 5:
 * How does path sampling combine molecular dynamics and Monte Carlo?
 
-Then, open a new terminal and move to the next step.
+Then, open a new terminal, type `mamba activate molmod`, and move to the next step.
 
 # Step 4: Analysis
 The following analysis is performed within the `step3_infretis` folder.
