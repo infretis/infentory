@@ -1,0 +1,54 @@
+[runner]
+workers = 4
+wmdrun = [
+    "gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 0 -pin on",
+    "gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 1 -pin on",
+    "gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 2 -pin on",
+    "gmx mdrun -ntomp 1 -ntmpi 1 -pinoffset 3 -pin on",
+]
+
+[simulation]
+# Add interface positions here
+interfaces = []
+steps = 20
+seed = 0
+load_dir = "load"
+shooting_moves = ["sh", "sh"]
+
+[simulation.tis_set]
+maxlength = 2000
+allowmaxlength = false
+zero_momentum = true
+n_jumps = 2
+interface_cap = 70.0
+
+[engine]
+class = "gromacs"
+engine = "gmx"
+timestep = 0.002
+gmx_format = "g96"
+input_path = "../gromacs_input"
+gmx = "gmx"
+subcycles = 2
+temperature = 300
+
+[orderparameter]
+class = "puckering"
+index = [ 2, 5, 11, 8, 1, 0]
+periodic = true
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = false
+
+[infinit]
+pL = 0.3
+# add initial configuration here
+initial_conf = ""
+lamres = 0.01
+nskip = 40
+steps_per_iter = [100, 200, 200, 200, 200, 1000]
+cstep = -1
+num_ens = 14
