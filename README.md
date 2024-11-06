@@ -9,12 +9,5 @@ These examples are not directly runnable out of the box, as initial paths are no
 </p>
 
 ## Initial paths
-One strategy to generate initial paths is via the [inftools](https://github.com/infretis/inftools/tree/main) functionality: 
-
-```bash
-# running in the the chignolin folder
-inft generate_zero_paths -toml infretis.toml -conf initial.xyz -maxlen 100
-```
-
-This generates paths in the [0-] and [0+] ensembles. You can then follow the initial-path procedure in the [puckering tutorial](https://github.com/infretis/infretis/tree/main/examples/gromacs/puckering#step-3-retis) to push the system over the barrier using path-sampling.
-
+One strategy to generate initial paths is via the <img src="https://github.com/user-attachments/assets/02c38f6b-613b-409b-a779-7d3898664d3f" alt="drawing" width="100"/>
+functionality. This is illustrated in the [puckering tutorial](puckering#step-3-retis).
