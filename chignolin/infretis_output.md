@@ -50,6 +50,6 @@ Below is a plot of the running estimate of this rate, and the corresponding erro
 
 
 #### The crossing probability
-Another interesting property we can inspect is the crossing probability (right figure below), which is the probability of reaching a given value of the order parameter, given that you start in state A. The crossing probability is constructed from the local crossing probabilities using either point matching or WHAM. These are the probabilities that you cross interface $i+1$ given that you are part of the [i+] ensemble. The local crossing probabilities are a useful check that the interfaces are placed adequately. In an ideal case, all interfaces have the same crossing probability. 
+Another interesting property we can inspect is the crossing probability in `Pcross.txt` (right figure below), which is the probability of reaching a given value of the order parameter, given that you start in state A. The crossing probability is constructed from the local crossing probabilities in `ploc_unscaled.txt` using either point matching or WHAM. The local crossing probability is the probability that you cross interface $i+1$ given that you are part of the [i+] ensemble. The local crossing probabilities are a useful check that the interfaces are placed adequately. In an ideal case, all interfaces have the same crossing probability. 
 
 ![probabilites](https://github.com/user-attachments/assets/7cfff00e-960d-433d-8c15-0732ba721d32)
