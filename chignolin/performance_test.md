@@ -2,9 +2,9 @@
 
 In the below, we assume gromacs has been installed with the script `install-gromacs-slurm.sh`, as we need to load some specific modules.
 
-Before starting an infretis simulation, you have to do a performance test so you know that all the allocated hardware is used effiently.
+Before starting an infretis simulation, you have to do a performance test so you know that all the allocated hardware is used efficiently.
 
-In this case, we have decided beforehand that each worker will use 2 CPUs, and a single GPU that is shared between all workes. Here, we then only optimize the number of workers, since the hardware was specified beforehand.
+In this case, we have decided beforehand that each worker will use 2 CPUs and a single GPU that is shared between all workers. Here, we then only optimize the number of workers, since the hardware was specified beforehand.
 
 We run the script with 1, 2, 4, and 8 workers, and then check the performance.
 
@@ -46,7 +46,7 @@ wait
 echo quit | nvidia-cuda-mps-control # when using more than 1 worker with gromacs
 ```
 
-Note that is wise to test other settings as well, e.g. varying the number of cpus, the -ntmpi flags, etc.
+Note that it is wise to test other settings, e.g. varying the number of CPUs with the -ntomp flag, etc.
 
 ```bash
 grep 'Performance' w*/*
@@ -71,7 +71,7 @@ w8/md6.log:Performance:      224.986        0.107
 w8/md7.log:Performance:      227.983        0.105
 ```
 
-In our case we stick to 8 workers, since this gives around $8 \times 230 \text{ ns/day}$.
+We stick to 8 workers in our case, since this gives around $8 \times 230 \text{ ns/day}$.
 
 ### Installing Infretis (and inftools)
 
