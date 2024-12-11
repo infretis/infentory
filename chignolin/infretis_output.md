@@ -2,13 +2,13 @@
 
 All of the processed simulation results can be found in .txt files in the `wham/` folder. Each of the running estimated properties has corresponding errors that are calculated with a block-averaging procedure.
 
-* runav_rate.txt
+* [runav_rate.txt](#the-transition-rate)
   The running estimate of the transition rate, meaning an estimate of the rate after each accepted path. errRATE.txt contains the error estimates.
 
-* Pcross.txt
+* [Pcross.txt](#the-crossing-probability)
   The estimate of the total crossing probability as a function of the order parameter.
 
-* ploc_unscaled.txt
+* [ploc_unscaled.txt](#the-crossing-probability)
   The local crossing probabilities in each of the plus ensembles ([0+], [1+], ...,).
 
 * runav_flux.txt
@@ -19,17 +19,15 @@ All of the processed simulation results can be found in .txt files in the `wham/
 
 * runav_ploc.txt
   The running average of the local crossing probabilities in each ensemble. These are the values where the curves from ploc_unscaled.txt reach the neighboring interface. errploc.txt contains the errors.
-- pathdistr.txt
+* pathdistr.txt
   A distribution of the weighted path lengths in each ensemble.
-
-- pathlengths.txt
+* pathlengths.txt
   The average path length in each ensemble.
 * runav_L0.txt
   The running averages of paths in either [0-] or [0+], which are used for the flux calculation. errL0.txt contains the errors.
-- ploc_pointmatch.txt
+* ploc_pointmatch.txt
   The same as ploc_unscaled.txt, except that the values are scaled by point matching, which is used to construct the total crossing probabilities in Pcross.txt.
-
-- ploc_WHAM.txt
+* ploc_WHAM.txt
   Same as above, but scaled with the WHAM weights, which is more accurate than point-matching.
 
 The first line of these files tells you what the different columns are.
