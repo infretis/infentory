@@ -40,10 +40,10 @@ The running *estimate* of the transition rate can be found in the file `wham/run
 
 These are in infretis units, meaning the rate is the number of transitions per unit of infretis time 
 
-                    $\Delta t = \text{subcycles }\times \text{timestep}$
+$$\Delta t = \text{subcycles }\times \text{timestep}$$
 
 So the rate in correct time units is
 
-                    $r = r'/\Delta t$
+$$r = r' / \Delta t$$
 
 where $r'$ is the rate in `runav_rate.txt`.
