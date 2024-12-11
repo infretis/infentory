@@ -118,6 +118,7 @@ delete_old = false
 # add e.g. '.edr' to the list.
 keep_traj_fnames = [".xtc"]
 ```
+In case you get an error when starting infretis that is engine-related, as the one below:
 
 ```sh-session
 RuntimeError: Execution of external program (GROMACS engine zamn) failed with command:
@@ -125,17 +126,23 @@ RuntimeError: Execution of external program (GROMACS engine zamn) failed with co
 Return code: 1
 ```
 
-We can locate the `stderr.txt` and `stdout.txt` files to see what went wrong.
+We can locate the `stderr.txt` and `stdout.txt` files to see what went wrong. These files are located in either `temporary_load/`, `gromacs_input`, or `workerX/`.
 
-### Starting from a previous MD simulation (GROMACS only)
+### Starting infinit from a previous MD simulation (GROMACS only)
 
-In some cases we might want to use an MD simulation as a starting point for our simulation instead of a single configuration. This allows us to imediately use N workers, instead of generating zero-paths with 1 worker, which can be tedious, and doesn't immediately use all of the allocated hardware.
+In some cases, we might want to use an MD simulation as a starting point for our simulation instead of a single configuration. This allows us to immediately use N workers, instead of generating zero-paths with 1 worker, which can be tedious and doesn't immediately use all of the allocated hardware.
 
 ```bash
 inft initial_path_from_md -trr md_run.trr -order order_rec.txt -toml infretis0.toml
 ```
+Which generates a path `0/` and `1/`. To use N > 1 worker, we can copy the `1/` path N-1 times to the `load/` folder. For example, to use 6 workers I need to have paths `0/ 1/ 2/ 3/ 4/ 5/ 6/` in the `load/` folder, where now 6 of the paths are identical. Then, we must also add N-1 "temporary" interfaces to `infretis0.toml`
 
-The `order_rec` should correspond to an orderparameter file, which can be calculated with
+```toml
+...
+interfaces = [0.6, 0.601, 0.602, 0.603, 0.604, 0.605, 6.0] # lamres must then be a bit lower than 0.001, e.g. lamres = 0.0001
+```
+
+The `order_rec.txt` should correspond to an orderparameter file, which can be calculated with
 
 ```bash
 inft recalculate_order -traj md_run.trr -toml infretis0.toml -out order_rec.txt
