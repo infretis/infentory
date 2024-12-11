@@ -135,10 +135,11 @@ In some cases, we might want to use an MD simulation as a starting point for our
 ```bash
 inft initial_path_from_md -trr md_run.trr -order order_rec.txt -toml infretis0.toml
 ```
-Which generates a path `0/` and `1/`. To use N > 1 worker, we can copy the `1/` path N-1 times to the `load/` folder. For example, to use 6 workers I need to have paths `0/ 1/ 2/ 3/ 4/ 5/ 6/` in the `load/` folder, where now 6 of the paths are identical. Then, we must also add N-1 "temporary" interfaces to `infretis0.toml`
+Which generates a path `0/` and `1/`. To use $N > 1$ worker, we can copy the `1/` path $N-1$ times to the `load/` folder. For example, to use 6 workers I need to have paths `0/ 1/ 2/ 3/ 4/ 5/ 6/` in the `load/` folder, where now 6 of the paths are identical. Then, we must also add $N-1$ "temporary" interfaces to `infretis0.toml`
 
 ```toml
-interfaces = [0.6, 0.601, 0.602, 0.603, 0.604, 0.605, 6.0] # lamres must then be a bit lower than 0.001, e.g. lamres = 0.0001
+# lamres must then be a bit lower than 0.001, e.g. lamres = 0.0001
+interfaces = [0.6, 0.601, 0.602, 0.603, 0.604, 0.605, 6.0] 
 ```
 
 The `order_rec.txt` should correspond to an orderparameter file, which can be calculated with
