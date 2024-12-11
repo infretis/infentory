@@ -24,8 +24,8 @@ We run the script with 1, 2, 4, and 8 workers, and then check the performance.
 #SBATCH --job-name=gmx-test
 #SBATCH --time=00:05:00
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=2
 
 module purge
 module load CUDA/12.6.0
