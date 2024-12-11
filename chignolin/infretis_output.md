@@ -45,7 +45,8 @@ $$r = r' / \Delta t$$
 
 where $r'$ is the rate in `runav_rate.txt`.
 
-Below is a plot of the running estimate of this rate, and the corresponding error estimates.
+Below is a plot of the running estimate of this rate, and the corresponding error estimates that are calculated in `errRATE.txt`. If you inspect the first row of this .txt file, you can also see a value of the averaged relative error estimate. This is the horizontal line in the right plot below.
+
 ![transition-rate](https://github.com/user-attachments/assets/24a55fca-4e04-4ecb-a9dc-0d5c8ef97152)
 
 
