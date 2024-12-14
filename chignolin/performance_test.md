@@ -2,9 +2,17 @@
 
 In the below, we assume gromacs has been installed with the script `install-gromacs-slurm.sh`, as we need to load some specific modules.
 
-Before starting an infretis simulation, you have to do a performance test so you know that all the allocated hardware is used effiently.
+Before starting an infretis simulation, you have to do a performance test so you know that all the allocated hardware is used efficiently.
 
-In this case, we have decided beforehand that each worker will use 2 CPUs, and a single GPU that is shared between all workes. Here, we then only optimize the number of workers, since the hardware was specified beforehand.
+These settings can be rather difficult to set because we now have a situation where we have to optimize the performance of not a single simulation, but rather the total simulation time.
+
+In the usual situation, with a single MD simulation, we often just pump up the numbers of the CPUs used, even if we get a slight performance increase from e.g. 8 to 12 CPUs. With infretis however, it might be more beneficial to keep the number of CPUs low, and instead increase the number of workers. For example, using 2 workers with 6 CPUs each, or maybe even 6 workers with 2 CPUs each could be more beneficial than using just 1 worker with 12 CPUs, depending on the scaling with the number of CPUs.
+
+A way to determine the settings could be to start with 1 worker and 1 CPU and increase the number of workers to what is reasonable for that node. Then, again start with 1 worker and now 2 CPUs and increase it to what is possible on that node, and so on with 4 CPUs, etc. Then, one would compute the total simulation throughput and pick the settings that maximize this number.
+
+Depending on your situation and how fast you want your results, you could also then increase the number of nodes used, and as such reach a large number of total simulation throughput and minimize the time you have to wait to get your results. 
+
+In our case, we have decided beforehand that each worker will use 2 CPUs and a single GPU that is shared between all workers, and we don't want to run on more than 1 node. Here, we then only optimize the number of workers, since the hardware was specified beforehand.
 
 We run the script with 1, 2, 4, and 8 workers, and then check the performance.
 
@@ -16,8 +24,8 @@ We run the script with 1, 2, 4, and 8 workers, and then check the performance.
 #SBATCH --job-name=gmx-test
 #SBATCH --time=00:05:00
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=2
 
 module purge
 module load CUDA/12.6.0
@@ -46,7 +54,7 @@ wait
 echo quit | nvidia-cuda-mps-control # when using more than 1 worker with gromacs
 ```
 
-Note that is wise to test other settings as well, e.g. varying the number of cpus, the -ntmpi flags, etc.
+Note that it is wise to test other settings, e.g. varying the number of CPUs with the -ntomp flag, etc.
 
 ```bash
 grep 'Performance' w*/*
@@ -71,7 +79,7 @@ w8/md6.log:Performance:      224.986        0.107
 w8/md7.log:Performance:      227.983        0.105
 ```
 
-In our case we stick to 8 workers, since this gives around $8 \times 230 \text{ ns/day}$.
+We stick to 8 workers in our case, since this gives around $8 \times 230 \text{ ns/day}$.
 
 ### Installing Infretis (and inftools)
 
