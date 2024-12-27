@@ -33,6 +33,7 @@ All of the processed simulation results can be found in .txt files in the `wham/
 The first line of these files tells you what the different columns are.
 
 #### The transition rate
+
 The running *estimate* of the transition rate can be found in the file `wham/runav_rate.txt`. The last column in this file should be the most accurate. If you plot this, you get the estimate of the transition rate after each accepted path in your simulation. The last value of this running estimate is the best estimate, as that point uses all of the available data.
 
 This rate is in infretis units, meaning the rate is the number of transitions per unit of infretis time.
@@ -49,8 +50,60 @@ Below is a plot of the running estimate of this rate, and the corresponding erro
 
 ![transition-rate](https://github.com/user-attachments/assets/24a55fca-4e04-4ecb-a9dc-0d5c8ef97152)
 
-
 #### The crossing probability
 Another interesting property we can inspect is the crossing probability in `Pcross.txt` (right figure below), which is the probability of reaching a given value of the order parameter, given that you start in state A. The crossing probability is constructed from the local crossing probabilities in `ploc_unscaled.txt` using either point matching or WHAM. The local crossing probability is the probability that you cross interface $i+1$ given that you are part of the [i+] ensemble. The local crossing probabilities are a useful check that the interfaces are placed adequately. In an ideal case, all interfaces have the same crossing probability. 
 
 ![probabilites](https://github.com/user-attachments/assets/7cfff00e-960d-433d-8c15-0732ba721d32)
+
+### Error Estimates
+
+Each of the properties calculated with the WHAM has a corresponding error estimate, given by the relative standard deviation(?) For a property $A$ (for example the local crossing probability in ensemble [0+]), the relative standard deviation is given by
+
+$\epsilon_A = \frac{\sigma}{\langle A \rangle}$
+
+where $\sigma$ is the standard deviation, and $\langle A \rangle$ is the average of property $A$.
+
+For the properties that are true running *averages* (the local crossing proabilities and the path lengths), these error estimates are identical to those from a regular block averaging procedure [More on this can be found here.](https://doi.org/10.1002/jcc.27319)
+
+
+
+Suppose that you want to sample some property $A$ during an infretis sumulation. That could for example be the local crossing probability in ensemble [0+], which is calculated in infretis by sampling a set of paths using a Monte Carlo (MC) procedure. The property $A$ can fluctuate a bit, and since we have a finite number of samples, we only have an estimate of the true underlying average $\bar{A}$. If we now estimate the average $\langle A \rangle$ from our finite number of samples, we would likely be a bit off due to random fluctuations (not taking into account systematic errors, more on this later).
+
+
+
+We can say something about how far we are off from the true mean $\bar{A}$ by invoking the central-limit theorem which, under certain weak assumptions and a resonable number of samples, implies that an estimate of the average $\langle A \rangle$ is distributed normally around the true average $\bar{A}$ with variance $\sigma^2_{\langle A \rangle}$ (the variance of the mean). Taking the square root then results in the standard error of the mean, which says something about how far off we may be from the true mean due to the *random sampling process*.
+
+
+
+It should be stressed that the error estimates are based on random fluctuations in the variable $A$, and says something about the random sampling process. It does not say anything about systematic errors; when we have long-lasting correlations with lifetimes longer than what we have simulated. For example, if we do not sample a certain reaction channel during the simulation at all, our error estimate (and probably also the mean) would be off.
+
+New paths are genearted by modifying an existing path using, in most cases, molecular dynamics (MD). Because we use MD the new paths wil usually be rather similair (correlated) to the old path we started from, but as we continue modifying a path, they start to decorrelate. This is an important point. Suppose we want to calculate the standard error of the mean of property $A$ given paths 1, 2, ..., M:
+
+$\sigma^2_{\langle A \rangle} = \frac{1}{M}\sigma^2_A$
+
+Since the $M$ paths are correlated, we would underestimate the the variance of the mean since the effective number of independent measurements is actually less than $M$. We could take into account the autocorrelation function of property $A$ to correct for this. However, a simpler solution is to use a **block averging** procedure, which allows us to calculate a more "correct" value for the standard error of the mean taking into account these correlations. But again, it can't correct for correlations with lifetimes longer than what we have sampled.
+
+
+
+##### Example
+
+Below, we apply the error estimation on the running average of a random uniform variable with $N$ samples to see how far off our estimate of the mean is from the true mean of $0.5$.
+
+```python
+from inftools.analysis.rec_error import rec_block_errors
+import numpy as np
+import matplotlib.pyplot as plt
+
+N = 10000
+x = np.random.rand(N)
+runav_x = np.cumsum(x)/np.arange(1, N+1)
+
+half_average_error, statistical_ineficiency, relative_error = rec_block_errors(runav_x, N/50)
+plt.plot(relative_error)
+plt.axhline(half_average_error,c="C1", label="half_average_relative_error")
+plt.axhline(relative_error[0], c="C2", label="relative_error_[0]")
+plt.axhline(2*np.std(x)/N**0.5,c="C3", label = "2*std(x)/sqrt(N)")
+plt.ylim(half_average_error - half_average_error*0.1,half_average_error + half_average_error*0.1)
+plt.legend()
+plt.show()
+```
