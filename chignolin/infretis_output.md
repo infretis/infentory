@@ -85,7 +85,7 @@ Since the $M$ paths are correlated, we would underestimate the variance of the m
 
 
 
-##### Example
+##### Examples
 
 Below, we apply the error estimation on the running average of a random uniform variable with $N$ samples to see how far off our estimate of the mean is from the true mean of $0.5$.
 
@@ -107,3 +107,30 @@ plt.ylim(half_average_error - half_average_error*0.1,half_average_error + half_a
 plt.legend()
 plt.show()
 ```
+
+Next, we consider the case where the values are correlated, where we underestimate the standard error of the mean compared to the block average error.
+
+```python
+corr = 0.8
+N = 10000
+
+# from https://stackoverflow.com/a/33904277
+mu = 0.5
+sigma = 1.0
+c = mu * (1 - corr)
+sigma_e = np.sqrt((sigma ** 2) * (1 - corr ** 2))
+x = [c + np.random.normal(0, sigma_e)]
+for _ in range(1, N):
+	x.append(c + corr * x[-1] + np.random.normal(0, sigma_e))
+
+runav_x = np.cumsum(x)/np.arange(1, N+1)
+
+half_average_error, statistical_ineficiency, relative_error = rec_block_errors(runav_x, N/200)
+plt.plot(relative_error)
+plt.axhline(half_average_error,c="C1", label="half_average_relative_error")
+plt.axhline(2*np.std(x)/N**0.5,c="C3", label = "2*std(x)/sqrt(N)")
+plt.ylim(0, np.max(relative_error))
+plt.legend()
+plt.show()
+```
+
