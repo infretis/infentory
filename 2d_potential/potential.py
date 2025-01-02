@@ -52,7 +52,7 @@ def plotpotential():
     from ase.atoms import Atoms
     from potential import Potential2D
 
-    a = Atoms("H2")
+    a = Atoms("H")
     a.calc = Potential2D()
     N = 75
     x0 = np.linspace(-0.5,0.5,N);y0 = np.linspace(-1,1,N)
@@ -65,29 +65,4 @@ def plotpotential():
             V.append(a.get_potential_energy())
 
     plt.scatter(X[0].flatten(),X[1].flatten(), c = V)
-    plt.show()
-
-def plotforce():
-    import matplotlib.pyplot as plt
-    from ase.atoms import Atoms
-    from potential import Potential2D
-
-    a = Atoms("H2")
-    a.calc = Potential2D()
-    N = 75
-    x0 = np.linspace(-0.5,0.5,N);y0 = np.linspace(-1,1,N)
-    X = np.meshgrid(x0,y0)
-    fx = []
-    fy = []
-    for i,x in enumerate(X[0]):
-        for j,y in enumerate(X[1]):
-            a.positions[0,0] = x[i]
-            a.positions[0,1] = y[i]
-            fxi,fyi,_ = a.get_forces()[0]
-            fx.append(fxi)
-            fy.append(fyi)
-
-    f,(a0,a1) = plt.subplots(2,1)
-    a0.scatter(X[0].flatten(),X[1].flatten(), c = fx)
-    a1.scatter(X[0].flatten(),X[1].flatten(), c = fy)
     plt.show()
