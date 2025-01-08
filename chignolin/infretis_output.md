@@ -106,7 +106,7 @@ a1.plot(relative_error)
 a1.axhline(half_average_error,c="C1", label="half_average_relative_error")
 a1.axhline(relative_error[0], c="C2", label="relative_error_[0]")
 # relative error so divide by the average
-a1.axhline(np.std(x)/(0.5*N**runav_x[-1]),c="C3", label = "std(x)/(sqrt(N)*runav_x[-1])")
+a1.axhline(np.std(x)/(N**0.5*runav_x[-1]),c="C3", label = "std(x)/(sqrt(N)*runav_x[-1])")
 a1.set(ylim = (half_average_error - half_average_error*0.5,half_average_error + half_average_error*0.5))
 a1.legend()
 plt.tight_layout()
