@@ -124,7 +124,7 @@ mu = 0.5
 sigma = 1.0
 c = mu * (1 - corr)
 sigma_e = np.sqrt((sigma ** 2) * (1 - corr ** 2))
-x = [c + np.random.normal(0, sigma_e)]
+x = [np.random.normal(mu, sigma)]
 for _ in range(1, N):
 	x.append(c + corr * x[-1] + np.random.normal(0, sigma_e))
 
