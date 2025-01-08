@@ -98,18 +98,22 @@ N = 10000
 x = np.random.rand(N)
 runav_x = np.cumsum(x)/np.arange(1, N+1)
 
-half_average_error, statistical_ineficiency, relative_error = rec_block_errors(runav_x, N/50)
-plt.plot(relative_error)
-plt.axhline(half_average_error,c="C1", label="half_average_relative_error")
-plt.axhline(relative_error[0], c="C2", label="relative_error_[0]")
+half_average_error, statistical_ineficiency, relative_error = rec_block_errors(runav_x, N/200)
+f, (a0, a1) = plt.subplots(2,1)
+a0.plot(runav_x, label = "running average")
+a0.legend()
+a1.plot(relative_error)
+a1.axhline(half_average_error,c="C1", label="half_average_relative_error")
+a1.axhline(relative_error[0], c="C2", label="relative_error_[0]")
 # relative error so divide by the average
-plt.axhline(np.std(x)/(0.5*N**runav_x[-1]),c="C3", label = "std(x)/(sqrt(N)*runav_x[-1])")
-plt.ylim(half_average_error - half_average_error*0.1,half_average_error + half_average_error*0.1)
-plt.legend()
+a1.axhline(np.std(x)/(0.5*N**runav_x[-1]),c="C3", label = "std(x)/(sqrt(N)*runav_x[-1])")
+a1.set(ylim = (half_average_error - half_average_error*0.5,half_average_error + half_average_error*0.5))
+a1.legend()
+plt.tight_layout()
 plt.show()
 ```
 
-Next, we consider the case where the values are correlated, where we underestimate the standard error of the mean compared to the block average error.
+Next, we consider the case where the values are correlated, where we underestimate the relative standard error of the mean compared to the block average error.
 
 ```python
 corr = 0.8
