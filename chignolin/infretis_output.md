@@ -57,11 +57,11 @@ Another interesting property we can inspect is the crossing probability in `Pcro
 
 ### Error Estimates
 
-Each property calculated with the WHAM has a corresponding error estimate, given by the 2 $\times$ standard error of the mean. For a property $A$ (for example the local crossing probability in ensemble [0+]), the standard error of the mean is given by
+Each property calculated with the WHAM has a corresponding error estimate, given by **the relative standard error of the mean**. For a property $A$ (for example the local crossing probability in ensemble [0+]), the relative standard error of the mean is given by
 
-$\sigma_{\langle A \rangle} = \frac{\sigma_A}{\sqrt{N}}$
+$\sigma_{\langle A \rangle} = \frac{\sigma_A}{\sqrt{N}\langle A \rangle}$
 
-where $\sigma_A$ is the standard deviation of property A, and $N$ is the number of samples.
+where $\sigma_A$ is the standard deviation of property A, $\langle A \rangle$ is the average of property A, and $N$ is the number of samples.
 
 For the properties that are true running *averages* (the local crossing proabilities and the path lengths), these error estimates are identical to those from a regular block averaging procedure [More on this can be found here.](https://doi.org/10.1002/jcc.27319)
 
