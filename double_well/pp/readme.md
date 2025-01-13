@@ -44,3 +44,8 @@ for converting `infretis_data.txt` to `0**/pathensemble.txt` files. then
 
 use `init_paths_pp.py`
 which require a initial trajectory and its assoicated order parameter values in a text file.
+
+
+### NB
+
+Only works with `sh` moves or you'll get `KeyError: 'must_cross_M'`.
