@@ -42,7 +42,8 @@ A minimal plotting script is available in `inftools/tistools/fener_histo.py` and
 cd wham/
 inft plot_hist
 ```
-Below are the results after running 10'000 infretis steps with a temperature of 7'000:
+Below are the results after running 10'000 infretis steps with a temperature of 7'000. Note the "hole" within state B, which are phase points that are not counted.
+
 ![wham_fener](https://github.com/user-attachments/assets/1e94bccc-85ce-4580-98fa-72deeabf3a72)
 
 
