@@ -25,7 +25,6 @@ shooting_moves = ['sh', 'sh', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'w
 maxlength = 160000
 allowmaxlength = false
 zero_momentum = true # momentum true
-temperature = 340
 high_accept = true
 n_jumps = 3
 interface_cap = 0.0
@@ -38,7 +37,7 @@ gmx_format = 'g96'
 input_path = 'gromacs_input'
 gmx = 'gmx'
 subcycles = 250
-temperature=340
+temperature = 340
 
 [orderparameter]
 class = 'NeuralNetDiffmap'

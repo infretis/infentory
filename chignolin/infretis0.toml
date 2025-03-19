@@ -1,0 +1,50 @@
+[infinit]
+pL = 0.2
+lamres = 0.001
+nskip = 0
+initial_conf = "gromacs_input/conf.g96"
+cstep = -1
+steps_per_iter = [10]
+
+[runner]
+workers = 1
+files = ["orderp.py"]
+
+wmdrun = [
+        'gmx mdrun -pin on -pinoffset 0 -pinstride 1 -ntomp 8  -ntmpi 1 -notunepme',]
+
+
+[simulation]
+interfaces = [ -0.85, 1.5]
+steps = 100000
+seed = 0
+load_dir = 'load'
+shooting_moves = ['sh', 'sh', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf', 'wf']
+
+[simulation.tis_set]
+maxlength = 160000
+allowmaxlength = false
+zero_momentum = true # momentum true
+high_accept = true
+n_jumps = 3
+interface_cap = 0.0
+
+[engine]
+class = 'gromacs'
+engine = 'gmx'
+timestep = 0.002
+gmx_format = 'g96'
+input_path = 'gromacs_input'
+gmx = 'gmx'
+subcycles = 250
+temperature = 340
+
+[orderparameter]
+class = 'NeuralNetDiffmap'
+module = 'orderp.py'
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = false
