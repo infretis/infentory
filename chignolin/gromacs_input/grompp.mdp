@@ -31,7 +31,6 @@ fourierspacing  = 0.125     ; grid spacing for FFT
 tcoupl      = V-rescale                     ; modified Berendsen thermostat
 tc-grps     = Protein Water_and_Ions ; two coupling groups - more accurate
 tau_t       = 0.1   0.1                     ; time constant, in ps
-ref_t       = 340   340                     ; reference temperature, one for each group, in K
 ; Pressure coupling
 pcoupl      = no             ; pressure coupling is on for NPT
 refcoord_scaling    = no
@@ -41,4 +40,3 @@ pbc         = xyz       ; 3-D PBC
 DispCorr    = EnerPres  ; account for cut-off vdW scheme
 ; Velocity generation
 gen_vel     = yes        ; assign velocities from Maxwell distribution
-gen-temp    = 340 

@@ -1,4 +1,4 @@
-[dask]
+[runner]
 workers = 8
 files = ["orderp.py"]
 
@@ -38,6 +38,7 @@ gmx_format = 'g96'
 input_path = 'gromacs_input'
 gmx = 'gmx'
 subcycles = 250
+temperature=340
 
 [orderparameter]
 class = 'NeuralNetDiffmap'
@@ -47,4 +48,4 @@ module = 'orderp.py'
 data_dir = "./"
 screen = 1
 pattern = false
-delete_old = true 
+delete_old = true
