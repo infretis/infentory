@@ -3,16 +3,16 @@
 All of the processed simulation results can be found in .txt files in the `wham/` folder. Each of the running estimated properties has corresponding errors that are calculated with a block-averaging procedure.
 
 * [runav_rate.txt](#the-transition-rate)
-  The running estimate of the transition rate, meaning an estimate of the rate after each accepted path. errRATE.txt contains the error estimates.
+  The running estimate of the transition rate means an estimate of the rate after each accepted path. errRATE.txt contains the error estimates. The columns are the rate obtained with the flux * point-matched Pcross (rate-pm), the flux * pcross from WHAM (rate-wham), and the flux with contributions of path lengths from all the plus ensembles (obtained from WHAM) * Pcross from WHAM (rate-whamwham)
 
 * [Pcross.txt](#the-crossing-probability)
-  The estimate of the total crossing probability as a function of the order parameter.
+  The estimate of the total crossing probability as a function of the order parameter. The columns contain the crossing probability obtained with point-matching, with WHAM, and again with WHAM using a different formulation (but they are equivalent).
 
 * [ploc_unscaled.txt](#the-crossing-probability)
   The local crossing probabilities in each of the plus ensembles ([0+], [1+], ...,).
 
 * runav_flux.txt
-  The running estimate of the flux through the first interfaces $\lambda_0$. errFLUX.txt contains the errors.
+  The running estimate of the flux through the first interfaces $\lambda_0$. errFLUX.txt contains the errors. The flux can be calculated from the average path lengths in [0-] and [0+]. However, the average path lengths of paths starting below state A and ending either at state A or state B can have contributions from paths present in higher ensembles. So by re-weighing all paths in the plus ensembles one can get a better estimate of the flux, taking into account the rarity of the transition (see runav_L0.txt).
 
 * runav_Ptot.txt
   The running estimate of the total crossing probability. This is the last number of contained in Pcross.txt, estimated after each accepted path. errPtot.txt contains the errors.
@@ -24,7 +24,7 @@ All of the processed simulation results can be found in .txt files in the `wham/
 * pathlengths.txt
   The average path length in each ensemble.
 * runav_L0.txt
-  The running averages of paths in either [0-] or [0+], which are used for the flux calculation. errL0.txt contains the errors.
+  The running averages of path lengths in either [0-] or [0+], which are used for the flux calculation. errL0.txt contains the errors. The columns are the path lengths in [0-], in [0+], and then path lengths taking into account the weighted contributions from all higher ensembles using WHAM. E..g, paths in the last ensemble should also contribute to the path-lenghts in [0+], but because they are so rare, their contributions are much lower. The contributions are weighted according to the crossing probability obtained from the WHAM method.
 * ploc_pointmatch.txt
   The same as ploc_unscaled.txt, except that the values are scaled by point matching, which is used to construct the total crossing probabilities in Pcross.txt.
 * ploc_WHAM.txt
