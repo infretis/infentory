@@ -1,0 +1,41 @@
+integrator              = md-vv
+dt                      = 0.002
+nsteps                  = 10
+nstxout-compressed      = 10
+nstxout                 = 10
+nstvout                 = 10
+nstfout                 = 0
+nstcalcenergy           = 10
+nstenergy               = 10
+nstlog                  = 10
+;
+cutoff-scheme           = Verlet
+nstlist                 = 10
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+coulombtype             = PME
+rcoulomb                = 1.2
+;
+tcoupl                  = v-rescale
+tc_grps                 = system
+tau_t                   = 1.0
+; ref-t                   = 300.0
+;
+pcoupl                  = C-rescale
+pcoupltype              = isotropic
+tau_p                   = 5.0
+compressibility         = 4.5e-5
+ref_p                   = 1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = yes
+;
+; nstcomm                 = 100
+; comm_mode               = linear
+; comm_grps               = system
+gen_vel = no
+ref-t = 303.15

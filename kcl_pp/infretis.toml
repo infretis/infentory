@@ -1,0 +1,54 @@
+[runner]
+workers = 4
+wmdrun = [
+    "gmx_mpi mdrun -ntomp 5 -pinstride 1 -pinoffset 0  -pin on -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_mpi mdrun -ntomp 5 -pinstride 1 -pinoffset 5  -pin on -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_mpi mdrun -ntomp 5 -pinstride 1 -pinoffset 10 -pin on -notunepme -nb gpu -bonded cpu -pme gpu",
+    "gmx_mpi mdrun -ntomp 5 -pinstride 1 -pinoffset 15 -pin on -notunepme -nb gpu -bonded cpu -pme gpu",
+]
+
+[simulation]
+mode = "pp"
+interfaces = [4.0000, 5.5556, 7.1111, 8.6667, 10.2222, 11.7778, 13.3333, 14.8889, 16.4444, 18.0000 ]
+steps = 200000
+seed = 0
+load_dir = "load"
+shooting_moves = [
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+    "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh",
+]
+
+[simulation.tis_set]
+maxlength = 2000000
+allowmaxlength = false
+zero_momentum = true
+n_jumps = 3
+
+[engine]
+class = "gromacs"
+engine = "gmx"
+timestep = 0.002
+gmx_format = "g96"
+input_path = "gromacs_input"
+gmx = "gmx_mpi"
+subcycles = 10
+temperature = 303.15
+# maxwarn = 1
+
+[orderparameter]
+class = "PositionX"
+module = "orderp.py"
+config = "gromacs_input/conf.gro"
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = 0
+delete_old = true
+keep_traj_fnames = [
+    ".xtc",
+]
