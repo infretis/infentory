@@ -77,43 +77,26 @@ Infinit should be able to figure out on its own where to pick up simulations. In
 </summary>
 
   
-conf.traj  
-xtbcalc.py  
-infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
-zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
-infretis_data.txt  - _empty data file after generating zero paths_  
-**temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
-**run0** - _this was the first load/ folder, now renamed to run0_  
-infretis_data_1.txt  - _first data file from the paths resent in run0/_  
-combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
-combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
-infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
-**run1**  - _the directory containing paths of the second infretis simulation_  
-infretis_data_2.txt  - _first data file from the paths resent in run1/_  
-combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
-combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
-infretis_2.toml  - _.toml used to run the second infretis simulation_  
-**run2**  - _paths from third infretis simulation_  
-infretis_data_3.txt  - _data from third simulation_  
-combo_2.toml  - _combined interfaces from sim 1, 2 and 3_  
-combo_2.txt  - _combined data from sim 1, 2 and 3_  
-infretis_3.toml  - _toml used for sim 3_  
-worker1.log  
-**worker0**  
-worker0.log  
-**run3**  
-**worker1**  
-infretis_data_4.txt  
-sim.log  
-restart.toml  
-combo_3.toml  
-combo_3.txt  
-last_infretis_pcross.txt  - _estimate of crossing probability using all data that has been generated up til now, calculated after each infinit iteration_  
-last_infretis_path_weigths.txt  - _path weights, not used atm_  
-infretis_init.log  - _a basic logger containing some un-informative prints_  
-infretis_4.toml  
-infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
-**load** - _current load/ folder, ready to be run with infretis.toml_  
-
+* infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
+* zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
+* infretis_data.txt  - _empty data file after generating zero paths_  
+* **temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
+* **run0** - _this was the first load/ folder, now renamed to run0_  
+* infretis_data_1.txt  - _first data file from the paths resent in run0/_  
+* combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
+* combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
+* infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
+* **run1**  - _the directory containing paths of the second infretis simulation_  
+* infretis_data_2.txt  - _first data file from the paths resent in run1/_  
+* combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
+* combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
+* infretis_2.toml  - _.toml used to run the second infretis simulation_  
+* ...
+* last_infretis_pcross.txt  - _estimate of crossing probability using all data that has been generated up til now, calculated after each infinit iteration_  
+* last_infretis_path_weigths.txt  - _path weights, not used atm_  
+* infretis_init.log  - _a basic logger containing some un-informative prints_  
+* infretis_4.toml  
+* infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
+* **load** - _current load/ folder, ready to be run with infretis.toml_  
 
 </details>
