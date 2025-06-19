@@ -177,7 +177,6 @@ steps_per_iter = [
     150,
     150,
 ]
-...
 ```
 You see `cstep = 4`, but the 4th element `steps_per_iter` does not exist. Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
 
