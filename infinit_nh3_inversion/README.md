@@ -1,7 +1,7 @@
 # Introduction
-This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimally places the interfaces, starting from just a single configuration! The process we will study is the pyramidal inversion of the NH3 molecule
+This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces. All we need to start is an initial configuration and an orderparameter!
 
-This tutorial can easily be adapted to a large number of different systems with minimal modifications.
+The process we will study is the pyramidal inversion of the NH3 molecule, but this tutorial can easily be adapted to a large number of different systems with minimal modifications.
 
 # Required packages
 Be sure to be on the latest versions of the main branches of `infretis` and `inftools`.
