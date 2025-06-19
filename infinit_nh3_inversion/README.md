@@ -158,7 +158,7 @@ We see that the crossing probability looks smooth-ish, but there are some blocky
 
 It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
 
-We will have a look at both cases; running one long infretis simulation, and adding two more steps of infinit. We will then have a look at what was more efficient.
+Here, we decide on adding two more step of infinit, but we will also show the results of running one long simulation without additional tuning of the interfaces. We will then have a look at what was more efficient.
 
 </details>
 
