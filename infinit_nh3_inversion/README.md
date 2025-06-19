@@ -57,6 +57,7 @@ We should now have everything set up to run the simulation, and you can run infi
 export OMP_NUM_THREADS=1 # use only 1 OpenMP thread for this small system for XTB
 inft infinit -toml infretis0.toml
 ```
+The simulation should complete in approximately one minute.
 
 # Restarting infinit or continuing the simulation
 If the simulation crashes at any point, you can restart the simulation by runnining
@@ -67,10 +68,14 @@ Alternatively, you can change or add steps to the `steps_per_iter` list in `infr
 
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
+
 # Output files
-The simulation should complete in approximately one minute. We will now go through the output files, which may give you some hints of what infinit is doing under the hood:
+<details>
+<summary>
+:eyes: The output may give you some hints of what infinit is doing under the hood :eyes: </summary>
+</summary>
 
-
+  
 conf.traj  
 xtbcalc.py  
 infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
@@ -109,3 +114,5 @@ infretis_4.toml
 infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
 **load** - _current load/ folder, ready to be run with infretis.toml_  
 
+
+</details>
