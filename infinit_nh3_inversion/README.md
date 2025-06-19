@@ -68,9 +68,9 @@ Alternatively, you can change or add steps to the `steps_per_iter` list in `infr
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
 # Output files
-The simulation should complete in approximately one minute. We can then see all the following files:
+The simulation should complete in approximately one minute. We will now go through the output files, which may give you some hints of what infinit is doing under the hood:
 
-
+----
 conf.traj  
 xtbcalc.py  
 infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
@@ -108,4 +108,4 @@ infretis_init.log  - _a basic logger containing some un-informative prints_
 infretis_4.toml  
 infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
 **<span style="color:lightblue;">load</span>** - _current load/ folder, ready to be run with infretis.toml_  
-```
+----
