@@ -81,14 +81,14 @@ The simulation should complete in approximately one minute.
 
 </details>
 
-# Restarting infinit or continuing the simulation
+# Restarting an interupted infinit simulation
 <details>
 
 If the simulation crashes at any point, you can restart the simulation by running
 ```bash
 inft infinit -toml infretis.toml
 ```
-Alternatively, you can change or add steps to the `steps_per_iter` list in `infretis.toml` to add more steps.
+Alternatively, you can change or add steps to the `steps_per_iter` list in `infretis.toml` to add more steps. This is illustrated further down.
 
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
