@@ -82,21 +82,21 @@ infretis_data_1.txt  - _first data file from the paths resent in run0/_
 combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
 combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
 infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
-**<span style="color:lightblue;">run1</span>**  - _the directory containing paths of the second infretis simulation_  
+**run1**  - _the directory containing paths of the second infretis simulation_  
 infretis_data_2.txt  - _first data file from the paths resent in run1/_  
 combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
 combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
 infretis_2.toml  - _.toml used to run the second infretis simulation_  
-**<span style="color:lightblue;">run2</span>**  - _paths from third infretis simulation_  
+**run2**  - _paths from third infretis simulation_  
 infretis_data_3.txt  - _data from third simulation_  
 combo_2.toml  - _combined interfaces from sim 1, 2 and 3_  
 combo_2.txt  - _combined data from sim 1, 2 and 3_  
 infretis_3.toml  - _toml used for sim 3_  
 worker1.log  
-**<span style="color:lightblue;">worker0</span>**  
+**worker0**  
 worker0.log  
-**<span style="color:lightblue;">run3</span>**  
-**<span style="color:lightblue;">worker1</span>**  
+**run3**  
+**worker1**  
 infretis_data_4.txt  
 sim.log  
 restart.toml  
@@ -107,5 +107,5 @@ last_infretis_path_weigths.txt  - _path weights, not used atm_
 infretis_init.log  - _a basic logger containing some un-informative prints_  
 infretis_4.toml  
 infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
-**<span style="color:lightblue;">load</span>** - _current load/ folder, ready to be run with infretis.toml_  
+**load** - _current load/ folder, ready to be run with infretis.toml_  
 
