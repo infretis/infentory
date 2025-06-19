@@ -150,6 +150,15 @@ inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wh
 * `nskip = 0` because the lines are already trimmed in the combo.txt files wrt skip in the [infinit] section
 * `lamres` should be the same or less than specified in the [infinit] section.
 
+The crossing probability `wham_combo/Pcross.txt` from the WHAM analysis with the most recent interfaces (infretis.tom) is shown below:
+
+![tmp2](https://github.com/user-attachments/assets/a424b75e-2d53-4369-ae87-0eaf7a8398d0)
+
+We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the rate estimates. 
+
+If we now run a long infretis simulation, it could be that the estimated interfaces are not placed well enough. There might therefore be more to gain if we add one or more steps of infinit. This is done in the next section.
+
+
 </details>
 
 # The next steps
