@@ -134,6 +134,10 @@ or the current paths and interfaces estimated til now
 ```bash
 inft plot_order -traj load -toml infretis.toml
 ```
+![tmp](https://github.com/user-attachments/assets/e3a5b5bc-ad16-4530-ba90-ff65c67fd5c3)
+
+We see that in the current *load/* folded we have some reactive paths! We also see that the interfaces seem smoothly spaced and placed, which is a good sign! We will investigate this further now, wether they are placed well enough or we need more simulations.
+
 
 If you want to analyze all the data up til now, you can use the latest combo files, which contained the combined data
 
@@ -143,5 +147,13 @@ inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wh
 ```
 * `nskip = 0` because the lines are already trimmed in the combo.txt files wrt skip in the [infinit] section
 * `lamres` should be the same or less than specified in the [infinit] section.
-* 
+
+</details>
+
+# Next steps
+<details>
+
+Depending on whether you got reactive paths or not and the interface placement, you may want to continue with `infinit`, or just run a large number of steps with infretis.
+
+  
 </details>
