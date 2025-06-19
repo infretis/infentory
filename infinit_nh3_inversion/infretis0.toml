@@ -1,14 +1,21 @@
-[infinit]
-pL = 0.3
-steps_per_iter = [ 40, 80, 150, 150],
-initial_conf = "conf.traj"
-cstep = -1
-skip = 0.05
-lamres = 0.001
-
 [runner]
 workers = 2
 wmdrun = [0,0,0,0]
+
+[engine]
+class = "ase"
+engine = "ase"
+temperature = 300
+input_path = "."
+timestep = 0.5
+subcycles = 2
+integrator = "langevin"
+langevin_fixcm = true
+langevin_friction = 0.005
+
+[engine.calculator_settings]
+module = "xtbcalc.py"
+class = "XTBCalculator"
 
 [simulation]
 interfaces = [ -0.7, 0.7, ]
@@ -24,20 +31,6 @@ zero_momentum = true
 n_jumps = 3
 interface_cap = 0.4
 
-[engine]
-class = "ase"
-engine = "ase"
-temperature = 300
-input_path = "."
-timestep = 0.5
-subcycles = 2
-integrator = "langevin"
-langevin_fixcm = true
-langevin_friction = 0.005
-
-[engine.calculator_settings]
-module = "xtbcalc.py"
-class = "XTBInteractions"
 
 [orderparameter]
 class = "Dihedral"
@@ -50,3 +43,13 @@ screen = 1
 pattern = false
 delete_old = true
 keep_maxop_trajs = true
+
+[infinit]
+cstep = -1
+initial_conf = "conf.traj"
+steps_per_iter = [ 40, 80, 150, 150],
+pL = 0.3
+skip = 0.05
+lamres = 0.005
+
+
