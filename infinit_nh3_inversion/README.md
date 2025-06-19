@@ -12,7 +12,7 @@ We use the xtb hamiltonian to describe NH3, so we need the `xtb-python` package,
 conda install xtb-python
 ```
 
-# Step 0: Generating the intial configuration
+# Step 0: The intial configuration and order parameter
 Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented yet to do this in an automated fashion. We here start from a single configuration
 
 ```python
@@ -21,31 +21,7 @@ atoms = molecule("NH3")
 atoms.write("conf.traj")
 ```
 
-# Step 1: Setting up the .toml
-Usually when setting up a new system, we copy the infretis.toml from one of the example systems of the engines since few of the settings there change.
-
-The engine section:
-
-```toml
-[engine]
-class = "ase"
-engine = "ase"
-temperature = 300
-input_path = "."
-timestep = 0.5
-subcycles = 2
-integrator = "langevin"
-langevin_fixcm = true
-langevin_friction = 0.005
-
-[engine.calculator_settings]
-module = "xtbcalc.py"
-class = "XTBCalculator"
-```
-We use a timestep of 0.5 fs with the langevin integrator. With the ASE engine, we need to define a calculator in an external python file, which you can inspect in `xtbcalc.py`.
-
-
-We here the dihedral angle between the 4 atoms of NH3 to describe the progress of the reaction, this is already defined in the file `infretis0.toml`.
+The orderparameter we are using is just the dihedral angle between the 4 atoms.
 
 ```toml
 [orderparameter]
@@ -61,7 +37,7 @@ In `infretis0.toml` you should see the following in the [infinit] section.
 [infinit]
 cstep = -1
 initial_conf = "conf.traj"
-steps_per_iter = [ 40, 80, 150, 150],
+steps_per_iter = [ 40, 80, 150, 150]
 pL = 0.3
 skip = 0.05
 lamres = 0.005
@@ -75,10 +51,59 @@ lamres = 0.005
 * `lamres = 0.005` means that after the interface estimation, the interfaces are rounded to a precision of 0.005. This is handy for later WHAM analaysis of the data.
 
 # Running infinit
-We should now have everything set up to run the simulation
+We should now have everything set up to run the simulation, and you can run infinit with the following command.
 
 ```bash
+export OMP_NUM_THREADS=1 # use only 1 OpenMP threads for this small system for XTB
 inft infinit -toml infretis0.toml
 ```
 
 # Restarting infinit or continuing the simulation
+If the simulation crashes at any point, you can restart the simulation by runnining
+```bash
+inft infinit -toml infretis.toml
+```
+Alternatively, you can change or add steps to the `steps_per_iter` list in `infretis.toml` to add more steps.
+
+Infinit should be able to figure out on its own where to pick up simulations. Infinit should alos be able to figure out if the `restart.toml` is usable to restart the simulation.
+
+# Output files
+The simulation should finish after around a minute. We can then see all the following files:
+
+```bash
+11:08 infretis0.toml
+11:10 zero_paths.toml
+11:10 infretis_data.txt
+11:10 temporary_load
+11:10 run0
+11:10 infretis_data_1.txt
+11:10 combo_0.toml
+11:10 infretis_1.toml
+11:10 combo_0.txt
+11:10 run1
+11:10 infretis_data_2.txt
+11:10 combo_1.txt
+11:10 combo_1.toml
+11:10 infretis_2.toml
+11:11 run2
+11:11 infretis_data_3.txt
+11:11 combo_2.toml
+11:11 combo_2.txt
+11:11 infretis_3.toml
+11:11 worker1.log
+11:11 worker0
+11:11 worker0.log
+11:11 run3
+11:11 worker1
+11:11 infretis_data_4.txt
+11:11 sim.log
+11:11 restart.toml
+11:11 combo_3.toml
+11:11 combo_3.txt
+11:11 last_infretis_pcross.txt
+11:11 last_infretis_path_weigths.txt
+11:11 infretis_init.log
+11:11 infretis.toml
+11:11 infretis_4.toml
+11:11 load
+```
