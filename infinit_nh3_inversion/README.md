@@ -1,9 +1,14 @@
 # Introduction
-This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces. All we need to start is an initial configuration and an orderparameter!
+This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces. 
 
-The process we will study is the pyramidal inversion of the NH3 molecule, but this tutorial can easily be adapted to a large number of different systems with minimal modifications.
+All we need to start is an initial configuration and an orderparameter!
+
+The process we will study is the pyramidal inversion of the NH3 molecule, but t**his tutorial can easily be adapted to a large number of different systems with minimal modifications.**
 
 # Required packages
+<details>
+
+  
 Be sure to be on the latest versions of the main branches of `infretis` and `inftools`.
 
 We use the XTB Hamiltonian to describe NH3, so we need the `xtb-python` package, which can be installed with conda
@@ -12,7 +17,11 @@ We use the XTB Hamiltonian to describe NH3, so we need the `xtb-python` package,
 conda install xtb-python
 ```
 
-# Step 0: The initial configuration and order parameter
+</details>
+
+# The initial configuration and order parameter
+<details>
+
 Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented yet to do this in an automated fashion. We start here from a single configuration
 
 ```python
@@ -32,7 +41,11 @@ periodic = false
 
 We give here the name `infretis0.toml` so that we have a backup of the toml, as infinit will create a multitude of `infretis.toml` and `infretis_X.toml` files, where X is a number.
 
-# Step 2: The [infinit] section
+</details>
+
+# The [infinit] section
+<details>
+
 In `infretis0.toml`, you should see the following in the [infinit] section.
 ```toml
 [infinit]
@@ -51,8 +64,14 @@ lamres = 0.005
 * `skip = 0.05` means that 5% of the first `infretis_data.txt` entries are not used in the estimation of the crossing probability, so the data of the first 5% paths are assumed to be discarded for equilibration purposes.
 * `lamres = 0.005` means that after the interface estimation, the interfaces are rounded to a precision of 0.005. This is handy for later WHAM analysis of the data.
 
+</details>
+
+
 # Running infinit
-We should now have everything set up to run the simulation, and you can run infinit with the following command.
+<details>
+
+  
+  We should now have everything set up to run the simulation, and you can run infinit with the following command.
 
 ```bash
 export OMP_NUM_THREADS=1 # use only 1 OpenMP thread for this small system for XTB
@@ -60,7 +79,11 @@ inft infinit -toml infretis0.toml
 ```
 The simulation should complete in approximately one minute.
 
+</details>
+
 # Restarting infinit or continuing the simulation
+<details>
+
 If the simulation crashes at any point, you can restart the simulation by runnining
 ```bash
 inft infinit -toml infretis.toml
@@ -69,13 +92,12 @@ Alternatively, you can change or add steps to the `steps_per_iter` list in `infr
 
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
+</details>
 
 # Output files
 <details>
-<summary>
-:eyes: The output may give you some hints of what infinit is doing under the hood :eyes: </summary>
-</summary>
 
+The output may give you some hints of what infinit is doing under the hood
   
 * infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
 * zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
