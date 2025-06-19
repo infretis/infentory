@@ -26,7 +26,8 @@ The orderparameter we are using is just the dihedral angle between the 4 atoms.
 ```toml
 [orderparameter]
 class = "Dihedral"
-index = [0,1,2,3]
+index = [ 0, 3, 2, 1]
+periodic = false
 ```
 
 We give here the name `infretis0.toml` so that we have a backup of the toml, as infinit will create a multitude of `infretis.toml` and `infretis_X.toml` files, where X is a number.
