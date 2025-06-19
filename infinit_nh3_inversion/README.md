@@ -156,9 +156,9 @@ The crossing probability `wham_combo/Pcross.txt` from the WHAM analysis with the
 
 We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the rate estimates. 
 
-It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency mayb be suboptimal. There can therefore be more to gain if we add one or more steps of infinit. This is done in the next section.
+It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency mayb be suboptimal. There might be more to gain if we add one or more steps of infinit.
 
-We will have a look at both cases and see what works best.
+We will have a look at both cases - i.e., running one long infretis simulation, and adding two more steps of infinit. We will then have a look at what was more efficient.
 
 </details>
 
