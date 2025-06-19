@@ -84,7 +84,7 @@ The simulation should complete in approximately one minute.
 # Restarting infinit or continuing the simulation
 <details>
 
-If the simulation crashes at any point, you can restart the simulation by runnining
+If the simulation crashes at any point, you can restart the simulation by running
 ```bash
 inft infinit -toml infretis.toml
 ```
@@ -99,7 +99,7 @@ Infinit should be able to figure out on its own where to pick up simulations. In
 
 The output may give you some hints of what infinit is doing under the hood
   
-* infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
+* infretis0.toml  - _original .toml file, not changed or overwritten if not called infretis.toml_  
 * zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
 * infretis_data.txt  - _empty data file after generating zero paths_  
 * **temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
@@ -116,9 +116,32 @@ The output may give you some hints of what infinit is doing under the hood
 * ...
 * last_infretis_pcross.txt  - _estimate of crossing probability using all data that has been generated up til now, calculated after each infinit iteration_  
 * last_infretis_path_weigths.txt  - _path weights, not used atm_  
-* infretis_init.log  - _a basic logger containing some un-informative prints_  
+* infretis_init.log  - _a basic logger containing some uninformative prints_  
 * infretis_4.toml  
 * infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
 * **load** - _current load/ folder, ready to be run with infretis.toml_  
 
+</details>
+
+# Analysis
+<details>
+
+ You can plot the order parameter of the previous simulations with the previous interfaces:
+ ```bash
+inft plot_order -traj run3 -toml infretis_4.toml
+```
+or the current paths and interfaces estimated til now
+```bash
+inft plot_order -traj load -toml infretis.toml
+```
+
+If you want to analyze all the data up til now, you can use the latest combo files, which contained the combined data
+
+
+```bash
+inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wham_combo
+```
+* `nskip = 0` because the lines are already trimmed in the combo.txt files wrt skip in the [infinit] section
+* `lamres` should be the same or less than specified in the [infinit] section.
+* 
 </details>
