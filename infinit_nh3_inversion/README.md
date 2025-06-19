@@ -94,7 +94,7 @@ Infinit should be able to figure out on its own where to pick up simulations. In
 
 </details>
 
-# Output files
+# Output files created by infinit
 <details>
 
 The output may give you some hints of what infinit is doing under the hood
@@ -123,7 +123,7 @@ The output may give you some hints of what infinit is doing under the hood
 
 </details>
 
-# Analysis
+# Analysis: Are the interfaces reasonable?
 <details>
 
  You can plot the order parameter of the previous simulations with the previous interfaces:
@@ -152,7 +152,7 @@ inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wh
 
 </details>
 
-# Next steps
+# The next steps
 <details>
 
 Depending on whether you got reactive paths or not and the interface placement, you may want to continue with `infinit`, or just run a large number of steps with infretis.
