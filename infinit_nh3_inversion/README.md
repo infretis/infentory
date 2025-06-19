@@ -1,9 +1,14 @@
 # Introduction
-This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimally places the interfaces, starting from just a single configuration! The process we will study is the pyramidal inversion of the NH3 molecule
+This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces. 
 
-This tutorial can easily be adapted to a large number of different systems with minimal modifications.
+All we need to start is an initial configuration and an orderparameter!
+
+The process we will study is the pyramidal inversion of the NH3 molecule, but this tutorial can easily be adapted to a large number of different systems with minimal modifications.
 
 # Required packages
+<details>
+
+  
 Be sure to be on the latest versions of the main branches of `infretis` and `inftools`.
 
 We use the XTB Hamiltonian to describe NH3, so we need the `xtb-python` package, which can be installed with conda
@@ -12,7 +17,11 @@ We use the XTB Hamiltonian to describe NH3, so we need the `xtb-python` package,
 conda install xtb-python
 ```
 
-# Step 0: The initial configuration and order parameter
+</details>
+
+# The initial configuration and order parameter
+<details>
+
 Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented yet to do this in an automated fashion. We start here from a single configuration
 
 ```python
@@ -26,12 +35,17 @@ The orderparameter we are using is just the dihedral angle between the 4 atoms.
 ```toml
 [orderparameter]
 class = "Dihedral"
-index = [0,1,2,3]
+index = [ 0, 3, 2, 1]
+periodic = false
 ```
 
 We give here the name `infretis0.toml` so that we have a backup of the toml, as infinit will create a multitude of `infretis.toml` and `infretis_X.toml` files, where X is a number.
 
-# Step 2: The [infinit] section
+</details>
+
+# The [infinit] section
+<details>
+
 In `infretis0.toml`, you should see the following in the [infinit] section.
 ```toml
 [infinit]
@@ -50,8 +64,14 @@ lamres = 0.005
 * `skip = 0.05` means that 5% of the first `infretis_data.txt` entries are not used in the estimation of the crossing probability, so the data of the first 5% paths are assumed to be discarded for equilibration purposes.
 * `lamres = 0.005` means that after the interface estimation, the interfaces are rounded to a precision of 0.005. This is handy for later WHAM analysis of the data.
 
+</details>
+
+
 # Running infinit
-We should now have everything set up to run the simulation, and you can run infinit with the following command.
+<details>
+
+  
+  We should now have everything set up to run the simulation, and you can run infinit with the following command.
 
 ```bash
 export OMP_NUM_THREADS=1 # use only 1 OpenMP thread for this small system for XTB
@@ -59,8 +79,12 @@ inft infinit -toml infretis0.toml
 ```
 The simulation should complete in approximately one minute.
 
+</details>
+
 # Restarting infinit or continuing the simulation
-If the simulation crashes at any point, you can restart the simulation by runnining
+<details>
+
+If the simulation crashes at any point, you can restart the simulation by running
 ```bash
 inft infinit -toml infretis.toml
 ```
@@ -68,51 +92,70 @@ Alternatively, you can change or add steps to the `steps_per_iter` list in `infr
 
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
+</details>
 
-# Output files
+# Output files created by infinit
 <details>
-<summary>
-:eyes: The output may give you some hints of what infinit is doing under the hood :eyes: </summary>
-</summary>
+
+The output may give you some hints of what infinit is doing under the hood
+  
+* infretis0.toml  - _original .toml file, not changed or overwritten if not called infretis.toml_  
+* zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
+* infretis_data.txt  - _empty data file after generating zero paths_  
+* **temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
+* **run0** - _this was the first load/ folder, now renamed to run0_  
+* infretis_data_1.txt  - _first data file from the paths resent in run0/_  
+* combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
+* combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
+* infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
+* **run1**  - _the directory containing paths of the second infretis simulation_  
+* infretis_data_2.txt  - _first data file from the paths resent in run1/_  
+* combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
+* combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
+* infretis_2.toml  - _.toml used to run the second infretis simulation_  
+* ...
+* last_infretis_pcross.txt  - _estimate of crossing probability using all data that has been generated up til now, calculated after each infinit iteration_  
+* last_infretis_path_weigths.txt  - _path weights, not used atm_  
+* infretis_init.log  - _a basic logger containing some uninformative prints_  
+* infretis_4.toml  
+* infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
+* **load** - _current load/ folder, ready to be run with infretis.toml_  
+
+</details>
+
+# Analysis: Are the interfaces reasonable?
+<details>
+
+ You can plot the order parameter of the previous simulations with the previous interfaces:
+ ```bash
+inft plot_order -traj run3 -toml infretis_4.toml
+```
+or the current paths and interfaces estimated til now
+```bash
+inft plot_order -traj load -toml infretis.toml
+```
+![tmp](https://github.com/user-attachments/assets/e3a5b5bc-ad16-4530-ba90-ff65c67fd5c3)
+
+We see that there are reactive paths in the current **load/** folder!
+
+We also see that the interfaces seem smoothly spaced and placed, which is a good sign! We will investigate this further now, whether they are placed well enough or we need more simulations.
+
+
+To do this, we WHAM all of the combined data up til now, meaning using the latest `combo.txt` files (which contain the combined infretis data) and the `combo.toml`, containing the combined interfaces.
+
+
+```bash
+inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wham_combo
+```
+* `nskip = 0` because the lines are already trimmed in the combo.txt files wrt skip in the [infinit] section
+* `lamres` should be the same or less than specified in the [infinit] section.
+
+</details>
+
+# The next steps
+<details>
+
+Depending on whether you got reactive paths or not and the interface placement, you may want to continue with `infinit`, or just run a large number of steps with infretis.
 
   
-conf.traj  
-xtbcalc.py  
-infretis0.toml  - _orignal .toml file, not changed or overwritten if not called infretis.toml_  
-zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
-infretis_data.txt  - _empty data file after generating zero paths_  
-**temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
-**run0** - _this was the first load/ folder, now renamed to run0_  
-infretis_data_1.txt  - _first data file from the paths resent in run0/_  
-combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
-combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
-infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
-**run1**  - _the directory containing paths of the second infretis simulation_  
-infretis_data_2.txt  - _first data file from the paths resent in run1/_  
-combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
-combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
-infretis_2.toml  - _.toml used to run the second infretis simulation_  
-**run2**  - _paths from third infretis simulation_  
-infretis_data_3.txt  - _data from third simulation_  
-combo_2.toml  - _combined interfaces from sim 1, 2 and 3_  
-combo_2.txt  - _combined data from sim 1, 2 and 3_  
-infretis_3.toml  - _toml used for sim 3_  
-worker1.log  
-**worker0**  
-worker0.log  
-**run3**  
-**worker1**  
-infretis_data_4.txt  
-sim.log  
-restart.toml  
-combo_3.toml  
-combo_3.txt  
-last_infretis_pcross.txt  - _estimate of crossing probability using all data that has been generated up til now, calculated after each infinit iteration_  
-last_infretis_path_weigths.txt  - _path weights, not used atm_  
-infretis_init.log  - _a basic logger containing some un-informative prints_  
-infretis_4.toml  
-infretis.toml  - _new infretis.toml with updated interfaces, ready to be used for production with infreisrun by changing `steps`, or continuing with infinit by adding to `steps_per_iter`_  
-**load** - _current load/ folder, ready to be run with infretis.toml_  
-
-
 </details>
