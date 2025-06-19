@@ -136,10 +136,12 @@ inft plot_order -traj load -toml infretis.toml
 ```
 ![tmp](https://github.com/user-attachments/assets/e3a5b5bc-ad16-4530-ba90-ff65c67fd5c3)
 
-We see that in the current *load/* folded we have some reactive paths! We also see that the interfaces seem smoothly spaced and placed, which is a good sign! We will investigate this further now, wether they are placed well enough or we need more simulations.
+We see that there are reactive paths in the current **load/** folder!
+
+We also see that the interfaces seem smoothly spaced and placed, which is a good sign! We will investigate this further now, whether they are placed well enough or we need more simulations.
 
 
-If you want to analyze all the data up til now, you can use the latest combo files, which contained the combined data
+We will now analyze all the combined data up til now, meaning using the latest `combo.txt` files (which contain the combined infretis data) and the `combo.toml`, containing the combined interfaces:
 
 
 ```bash
