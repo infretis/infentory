@@ -22,7 +22,7 @@ conda install xtb-python
 # The initial configuration and order parameter
 <details>
 
-Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented yet to do this in an automated fashion. We start here from a single configuration
+Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented in an automated fashion yet. We start here from a single configuration
 
 ```python
 from ase.build import molecule
