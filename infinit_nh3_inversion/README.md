@@ -158,14 +158,33 @@ We see that the crossing probability looks smooth-ish, but there are some blocky
 
 It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
 
-Here, we decide on adding two more step of infinit, but we will also show the results of running one long simulation without additional tuning of the interfaces. We will then have a look at what was more efficient.
+Here, we decide on adding two more infinit steps, but we will also show the results of running one long simulation without additional tuning of the interfaces. We will then have a look at what was more efficient.
 
 </details>
 
 # The next steps
 <details>
 
-Depending on whether you got reactive paths or not and the interface placement, you may want to continue with `infinit`, or just run a large number of steps with infretis.
+Open the file `infretis.toml`. You should see something like
 
-  
+```toml
+[infinit]
+cstep = 4
+initial_conf = "conf.traj"
+steps_per_iter = [
+    40,
+    80,
+    150,
+    150,
+]
+...
+```
+You see `cstep = 4`, but the 4th element `steps_per_iter` does not exist. Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
+
+Now continue the infinit simulation by running
+```bash
+export OMP_NUM_THREADS=1
+inft infinit -toml infretis.toml
+```
+which continues the infinit loop from `cstep = 4`.
 </details>
