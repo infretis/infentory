@@ -205,7 +205,9 @@ If you want to increase the accuracy of the rate estimate, you might want to con
 
 We see only a slight change in the last 3 interfaces. The spacing between the lastest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth.
 
-At this point, one might want to run just a regular infretis simulation. To do that, open `infretis.toml` and change `steps` to the number of steps you want to run. 
+🏁🏁🏁
+
+After this point, one might want to run just a regular infretis simulation. To do that, open `infretis.toml` and change `steps` to the number of steps you want to run. 
 
 Then, to run infretis
 
