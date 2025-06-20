@@ -1,7 +1,7 @@
 # Introduction
 This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces.
 
-All we need to start is an initial configuration and an orderparameter!
+All we need to start is an initial configuration and an order parameter!
 
 The process we will study is the pyramidal inversion of the NH3 molecule, but this tutorial can easily be adapted to a large number of different systems with minimal modifications.
 
@@ -22,7 +22,7 @@ conda install xtb-python
 # The initial configuration and order parameter
 <details>
 
-Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented in an automated fashion yet. We start here from a single configuration
+Ideally, we would start `infinit` from a multitude of independent equilibrated initial configurations, but as of now, this option is not implemented in an automated fashion yet. We start here from a single configuration
 
 ```python
 from ase.build import molecule
@@ -57,7 +57,7 @@ skip = 0.05
 lamres = 0.005
 ```
 
-* `cstep` is the current infinit itreation we are on. `cstep = -1` lets infinit know that we do not have initial paths, and that a `load/` folder is absent. Infinit will therefore first generate a [0-] and a [0+] path from the initial configuration (under the hood it uses `inft generate_zero_paths` and then copies the [0+] path N worker times). If we had a `load/` folder containing some initial paths from e.g. a long MD simulation, we could pass that to infinit as well, but then having `cstep = 0`.
+* `cstep` is the current infinit itreation we are on. `cstep = -1` lets infinit know that we do not have initial paths, and that a `load/` folder is absent. Infinit will therefore first generate a [0-] and a [0+] path from the initial configuration (under the hood, it uses `inft generate_zero_paths` and then copies the [0+] path N worker times). If we had a `load/` folder containing some initial paths from e.g. a long MD simulation, we could pass that to infinit as well, but then having `cstep = 0`.
 * `initial_conf` is the initial configuration we will generate the [0-] and [0+] paths from by propagating forwards and backwards until we hit the interface and have 1 valid path. Then, the last point is extended and another path created, giving a valid [0-] and [0+] path.
 * `steps_per_iter` tells how many infretis steps we should run before updating the interfaces. In our case, `[40, 80, ...]` means __after__ generating the [0-] and [0+] path, we will run 40 infretis steps (cstep = 0), then update the interfaces, fill these with new initial paths from the previous simulation, and the do another infretis simulation with 80 steps (cstep = 1).
 * `pL` is the local crossing probability between the interfaces infinit will place. So during the interface updates, new interfaces are placed based on the crossing probability estimate using all data from the previous infretis simulations. Often we would like pL = 0.3, but it could also be higher if we have available a large number of workers.
@@ -81,7 +81,7 @@ The simulation should complete in approximately one minute.
 
 </details>
 
-# Restarting an interupted infinit simulation
+# Restarting an interrupted infinit simulation
 <details>
 
 If the simulation crashes at any point, you can restart the simulation by running
@@ -156,7 +156,7 @@ The crossing probability `wham_combo/Pcross.txt` from the WHAM analysis with the
 
 We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the final rate estimate.
 
-It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
+It is possible that the estimated interfaces are not placed optimally, and if we run a single long infertis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
 
 
 </details>
@@ -181,10 +181,19 @@ steps_per_iter = [
 ```
 We see that `cstep = 4`, but the 4th element `steps_per_iter` does not exist (counting from 0). Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
 
-Now continue the infinit simulation by running
+Now, continue the infinit simulation by running
 ```bash
 export OMP_NUM_THREADS=1 # XTB related
 inft infinit -toml infretis.toml
 ```
 which continues the infinit loop from `cstep = 4`.
+</details>
+
+# Analysis part 2
+<details>
+Depending on how much data you can generate in the final production run, you might also want to exclude the infinit simulations as equilibration. We can choose only to analyze the data from the final infretis run using
+
+```bash
+inft wham -data infretis_data_6.txt -toml infretis_6.toml -nskip 75 -lamres 0.005
+```
 </details>
