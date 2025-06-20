@@ -203,18 +203,19 @@ If you want to increase the accuracy of the rate estimate, you might want to con
 
 ![tmp3](https://github.com/user-attachments/assets/94f6d71d-2272-41eb-92d0-2dc9e1da4a65)
 
-We see only a slight change in the last 3 interfaces. The spacing between the lastest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth.
+We see only a slight change in the last 3 interfaces. The spacing between the lastest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth
 
 🏁🏁🏁
 
-After this point, one might want to run just a regular infretis simulation. To do that, open `infretis.toml` and change `steps` to the number of steps you want to run. 
+Since the previous interfaces (blue lines) didn't change much as compared to the updated interfaces (red lines), one could also just have continued from the last 750 steps with the `restart.toml` and regular infretis. We will showcase this here as well. 
 
-Then, to run infretis
+In the `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
+
+We already renamed the run5/ folder back to load/, so one now simply run
 
 ```bash
-# to continue
-mv load run5
-mv new_load load
-infretisrun -i infretis.toml
+infretisrun -i restart.toml
 ```
+and infretis continues the simulation from step 750 until 2500.
+
 </details>
