@@ -138,7 +138,7 @@ inft plot_order -traj load -toml infretis.toml
 
 We see that there are reactive paths in the current **load/** folder!
 
-We also see that the interfaces seem smoothly spaced and placed, but there are some irregularities (distance between interface 3 and 4). Most converged crossing probability curves change slowly (they are quite smooth), so we also expect a very regular interval between interface locations. We will now investigate further whether the interfaces are placed well enough or if we need more simulations.
+We also see that the interfaces seem smoothly spaced and placed, but there are some irregularities (the distance between interface 4 and 5). Most converged crossing probability curves change slowly (they are quite smooth), so we also expect a very regular interval between interface locations. We will now investigate further whether the interfaces are placed well enough or if we need more simulations.
 
 
 To do this, we WHAM all of the combined data up til now, meaning using the latest `combo.txt` files (which contain the combined infretis data) and the `combo.toml`, containing the combined interfaces.
