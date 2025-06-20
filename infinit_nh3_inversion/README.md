@@ -1,5 +1,5 @@
 # Introduction
-This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces. 
+This tutorial illustrates the use of the `infinit` functionality, which generates initial paths and optimizes the interfaces.
 
 All we need to start is an initial configuration and an orderparameter!
 
@@ -8,7 +8,7 @@ The process we will study is the pyramidal inversion of the NH3 molecule, but th
 # Required packages
 <details>
 
-  
+
 Be sure to be on the latest versions of the main branches of `infretis` and `inftools`.
 
 We use the XTB Hamiltonian to describe NH3, so we need the `xtb-python` package, which can be installed with conda
@@ -70,8 +70,8 @@ lamres = 0.005
 # Running infinit
 <details>
 
-  
-  We should now have everything set up to run the simulation, and you can run infinit with the following command.
+
+We should now have everything set up to run the simulation, and you can run infinit with the following command.
 
 ```bash
 export OMP_NUM_THREADS=1 # use only 1 OpenMP thread for this small system for XTB
@@ -154,7 +154,7 @@ The crossing probability `wham_combo/Pcross.txt` from the WHAM analysis with the
 
 ![tmp2](https://github.com/user-attachments/assets/a424b75e-2d53-4369-ae87-0eaf7a8398d0)
 
-We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the rate estimates. 
+We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the final rate estimate.
 
 It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
 
@@ -179,11 +179,11 @@ steps_per_iter = [
     150,
 ]
 ```
-You see `cstep = 4`, but the 4th element `steps_per_iter` does not exist. Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
+We see that `cstep = 4`, but the 4th element `steps_per_iter` does not exist (counting from 0). Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
 
 Now continue the infinit simulation by running
 ```bash
-export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=1 # XTB related
 inft infinit -toml infretis.toml
 ```
 which continues the infinit loop from `cstep = 4`.
