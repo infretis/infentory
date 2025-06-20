@@ -164,7 +164,7 @@ It is possible that the estimated interfaces are not placed optimally, and if we
 # Continuing the simulation with more steps
 <details>
 
-Here, we decide on adding one additional shorter infinit step, and then on longer step which we take as our production run.
+Here, we decide on adding one additional shorter infinit step, and then one longer step, which we take as our production run.
 
 Open the file `infretis.toml`. You should see something like
 
@@ -203,7 +203,7 @@ If you want to increase the accuracy of the rate estimate, you might want to con
 
 ![tmp3](https://github.com/user-attachments/assets/94f6d71d-2272-41eb-92d0-2dc9e1da4a65)
 
-We see only a slight change in the last 3 interfaces. The spacing between the lastest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth
+We see only a slight change in the last 3 interfaces. The spacing between the latest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth
 
 🏁🏁🏁
 
@@ -211,7 +211,7 @@ Since the previous interfaces (blue lines) didn't change much as compared to the
 
 In the `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
 
-We already renamed the run5/ folder back to load/, so one now simply run
+We already renamed the run5/ folder back to load/, so we can now simply run
 
 ```bash
 infretisrun -i restart.toml
