@@ -161,7 +161,7 @@ It is possible that the estimated interfaces are not placed optimally, and if we
 
 </details>
 
-# The next steps
+# Continuing the simulation with more steps
 <details>
 
 Here, we decide on adding one additional shorter infinit step, and then on longer step which we take as our production run.
@@ -194,6 +194,25 @@ which continues the infinit loop from `cstep = 4`.
 Depending on how much data you can generate in the final production run, you might also want to exclude the infinit simulations as equilibration. We can choose only to analyze the data from the final infretis run using
 
 ```bash
-inft wham -data infretis_data_6.txt -toml infretis_6.toml -nskip 75 -lamres 0.005
+mv load new_load # rename the newly created load folder temporarily
+mv run5 load # required so that 'inft wham' finds the order.txt files
+inft wham -data infretis_data_6.txt -toml infretis_6.toml -nskip 75 -lamres 0.005 -fener -xcol 1 -nbx 30 -minx -1 -maxx 1
+```
+
+If you want to increase the accuracy of the rate estimate, you might want to continue the simulation. Below we plot `Pcross.txt`  from the combined data, in addition to the previous and current interfaces (interfaces from `infretis_6.toml` and `infretis.toml`):
+
+![tmp3](https://github.com/user-attachments/assets/94f6d71d-2272-41eb-92d0-2dc9e1da4a65)
+
+We see only a slight change in the last 3 interfaces. The spacing between the lastest interfaces (red curve, but also in the blue curve) seems regular, and the black crossing proability curve looks smooth.
+
+At this point, one might want to run just a regular infretis simulation. To do that, open `infretis.toml` and change `steps` to the number of steps you want to run. 
+
+Then, to run infretis
+
+```bash
+# to continue
+mv load run5
+mv new_load load
+infretisrun -i infretis.toml
 ```
 </details>
