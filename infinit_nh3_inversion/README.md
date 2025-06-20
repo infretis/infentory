@@ -22,7 +22,7 @@ conda install xtb-python
 # The initial configuration and order parameter
 <details>
 
-Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented yet to do this in an automated fashion. We start here from a single configuration
+Ideally, we would start `infinit` from a multitude of independent equlibrated initial configurations, but as of now, this option is not implemented in an automated fashion yet. We start here from a single configuration
 
 ```python
 from ase.build import molecule
@@ -81,14 +81,14 @@ The simulation should complete in approximately one minute.
 
 </details>
 
-# Restarting infinit or continuing the simulation
+# Restarting an interupted infinit simulation
 <details>
 
 If the simulation crashes at any point, you can restart the simulation by running
 ```bash
 inft infinit -toml infretis.toml
 ```
-Alternatively, you can change or add steps to the `steps_per_iter` list in `infretis.toml` to add more steps.
+Alternatively, you can change or add steps to the `steps_per_iter` list in `infretis.toml` to add more steps. This is illustrated further down.
 
 Infinit should be able to figure out on its own where to pick up simulations. Infinit should also be able to figure out if the `restart.toml` is usable to restart the simulation.
 
@@ -138,7 +138,7 @@ inft plot_order -traj load -toml infretis.toml
 
 We see that there are reactive paths in the current **load/** folder!
 
-We also see that the interfaces seem smoothly spaced and placed, which is a good sign! We will investigate this further now, whether they are placed well enough or we need more simulations.
+We also see that the interfaces seem smoothly spaced and placed, but there are some irregularities (the distance between interface 4 and 5). Most converged crossing probability curves change slowly (they are quite smooth), so we also expect a very regular interval between interface locations. We will now investigate further whether the interfaces are placed well enough or if we need more simulations.
 
 
 To do this, we WHAM all of the combined data up til now, meaning using the latest `combo.txt` files (which contain the combined infretis data) and the `combo.toml`, containing the combined interfaces.
@@ -150,12 +150,41 @@ inft wham -data combo_3.txt -toml combo_3.toml -nskip 0 -lamres 0.005 -folder wh
 * `nskip = 0` because the lines are already trimmed in the combo.txt files wrt skip in the [infinit] section
 * `lamres` should be the same or less than specified in the [infinit] section.
 
+The crossing probability `wham_combo/Pcross.txt` from the WHAM analysis with the most recent interfaces (infretis.tom) is shown below:
+
+![tmp2](https://github.com/user-attachments/assets/a424b75e-2d53-4369-ae87-0eaf7a8398d0)
+
+We see that the crossing probability looks smooth-ish, but there are some blocky segments. So what do we do now - should we run a long infretis simulation with those interfaces, or should we run some more steps with infinit to get the probability? Of course, this also depends on how expensive the simulations are, but adding more steps with infinit might be the wiser choice, as the data either way can be used in the rate estimates. 
+
+It could be that the estimated interfaces are not placed well enough, and if we run a single long infretis simulation, the efficiency might be suboptimal. There might be more to gain if we add one or more steps of infinit.
+
+
 </details>
 
 # The next steps
 <details>
 
-Depending on whether you got reactive paths or not and the interface placement, you may want to continue with `infinit`, or just run a large number of steps with infretis.
+Here, we decide on adding one additional shorter infinit step, and then on longer step which we take as our production run.
 
-  
+Open the file `infretis.toml`. You should see something like
+
+```toml
+[infinit]
+cstep = 4
+initial_conf = "conf.traj"
+steps_per_iter = [
+    40,
+    80,
+    150,
+    150,
+]
+```
+You see `cstep = 4`, but the 4th element `steps_per_iter` does not exist. Add two more infinit steps by changing the keyword to `steps_per_iter = [40, 80, 150, 150, 250, 750]`.
+
+Now continue the infinit simulation by running
+```bash
+export OMP_NUM_THREADS=1
+inft infinit -toml infretis.toml
+```
+which continues the infinit loop from `cstep = 4`.
 </details>
