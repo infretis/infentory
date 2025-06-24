@@ -1,0 +1,52 @@
+[runner]
+workers = 2
+wmdrun = [ 0, 0, 0, 0]
+
+[engine]
+class = "ase"
+engine = "ase"
+temperature = 300
+input_path = "."
+timestep = 0.5
+subcycles = 2
+integrator = "langevin"
+langevin_fixcm = true
+langevin_friction = 0.005
+
+[engine.calculator_settings]
+module = "xtbcalc.py"
+class = "XTBCalculator"
+
+[simulation]
+interfaces = [ -0.7, 0.7]
+steps = 5000
+seed = 0
+load_dir = "load"
+shooting_moves = [ "sh", "sh"]
+
+[simulation.tis_set]
+maxlength = 400
+allowmaxlength = false
+zero_momentum = true
+n_jumps = 3
+interface_cap = 0.2
+
+[orderparameter]
+class = "Dihedral"
+index = [ 0, 3, 2, 1]
+periodic = false
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = true
+keep_maxop_trajs = true
+
+[infinit]
+cstep = -1
+initial_conf = "conf.traj"
+steps_per_iter = [ 40, 80, 150, 150]
+pL = 0.3
+skip = 0.05
+lamres = 0.005
