@@ -48,7 +48,7 @@ pL = 0.3
 # add initial configuration here
 initial_conf = ""
 lamres = 0.01
-nskip = 40
+skip = 40
 steps_per_iter = [100, 200, 200, 200, 200, 1000]
 cstep = -1
 num_ens = 14
