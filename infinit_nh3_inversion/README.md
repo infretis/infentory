@@ -3,6 +3,8 @@ This tutorial illustrates the use of the `infinit` functionality, which generate
 
 All we need to start is an initial configuration and an order parameter!
 
+Big changes are planned for infinit in the future, making the workflow simpler and significantly more efficient.
+
 The process we will study is the pyramidal inversion of the NH3 molecule, but this tutorial can easily be adapted to a large number of different systems with minimal modifications.
 
 # Required packages
