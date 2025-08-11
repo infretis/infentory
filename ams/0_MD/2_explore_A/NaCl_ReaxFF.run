@@ -1,0 +1,34 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task MolecularDynamics
+MolecularDynamics
+    NSteps 100000
+    TimeStep 0.25
+    Trajectory
+        SamplingFreq 400
+    End
+    Checkpoint
+        Frequency 100000
+    End
+    InitialVelocities
+        Temperature 300
+    End
+    Thermostat
+        Type Berendsen
+        Temperature 300
+        Tau 100
+    End
+End
+System
+    GeometryFile initial.rkf
+
+    Charge 0.0
+End
+
+
+Engine ReaxFF
+    ForceField CHOCsKNaClIFLi.ff
+EndEngine
+

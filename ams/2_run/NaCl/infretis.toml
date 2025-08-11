@@ -1,0 +1,99 @@
+# infretis run, with a setup through infinit
+[runner]
+workers = 8
+wmdrun = [
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+]
+
+[simulation]
+interfaces = [
+    0.31,
+    0.32,
+    0.329,
+    0.334,
+    0.338,
+    0.341,
+    0.34400000000000003,
+    0.34700000000000003,
+    0.35000000000000003,
+    0.353,
+    0.356,
+    0.359,
+    0.362,
+    0.365,
+    0.368,
+    0.371,
+    0.374,
+    0.48,
+]
+shooting_moves = [
+    "sh",
+    "sh",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+]
+steps = 3010
+seed = 0
+load_dir = "load/"
+
+[simulation.tis_set]
+interface_cap = 0.38
+maxlength = 20000
+aimless = true
+allowmaxlength = false
+zero_momentum = true
+rescale_energy = false
+temperature = 300
+
+[engine]
+class = "ams"
+engine = "ams"
+timestep = 0.00025
+input_path = "ams_inp"
+subcycles = 40
+
+[box.settings]
+periodic = [
+    true,
+    true,
+    true,
+]
+
+[orderparameter]
+class = "Distance"
+index = [
+    0,
+    1,
+]
+periodic = true
+
+[output]
+backup = "backup"
+data_dir = "./"
+order-file = 1
+energy-file = 1
+trajectory-file = -1
+screen = 1
+pattern = 1
+delete_old = true
