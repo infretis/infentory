@@ -1,7 +1,7 @@
 [infinit]
 pL = 0.2
 lamres = 0.001
-nskip = 0
+skip = 0.05
 initial_conf = "gromacs_input/conf.g96"
 cstep = -1
 steps_per_iter = [10]
