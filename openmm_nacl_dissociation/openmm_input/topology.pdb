@@ -1,0 +1,547 @@
+REMARK   1 CREATED WITH OPENMM 8.0, 2025-09-04
+CRYST1   16.000   16.000   16.000  90.00  90.00  90.00 P 1           1 
+HETATM    1      UNK A   1       0.000   0.000   0.000  1.00  0.00          Na  
+TER       2      UNK A   1
+HETATM    3      UNK B   1      -0.016   4.746  14.055  1.00  0.00          Cl  
+TER       4      UNK B   1
+HETATM    5  O1x HOH C   1       0.004   1.763   4.251  1.00  0.00           O  
+HETATM    6  H1x HOH C   1       0.489   1.943   5.082  1.00  0.00           H  
+HETATM    7  H2x HOH C   1       0.175   0.855   3.916  1.00  0.00           H  
+TER       8      HOH C   1
+HETATM    9  O1x HOH D   1       6.865  13.910   1.475  1.00  0.00           O  
+HETATM   10  H1x HOH D   1       7.522  14.004   2.195  1.00  0.00           H  
+HETATM   11  H2x HOH D   1       7.288  13.674   0.621  1.00  0.00           H  
+TER      12      HOH D   1
+HETATM   13  O1x HOH E   1       4.062   0.723  12.635  1.00  0.00           O  
+HETATM   14  H1x HOH E   1       4.499   1.598  12.683  1.00  0.00           H  
+HETATM   15  H2x HOH E   1       4.713  -0.006  12.544  1.00  0.00           H  
+TER      16      HOH E   1
+HETATM   17  O1x HOH F   1       7.491   0.043  11.639  1.00  0.00           O  
+HETATM   18  H1x HOH F   1       8.468  -0.007  11.698  1.00  0.00           H  
+HETATM   19  H2x HOH F   1       7.184   0.948  11.414  1.00  0.00           H  
+TER      20      HOH F   1
+HETATM   21  O1x HOH G   1       9.307   6.580  13.162  1.00  0.00           O  
+HETATM   22  H1x HOH G   1       9.064   7.016  14.004  1.00  0.00           H  
+HETATM   23  H2x HOH G   1       9.158   7.167  12.389  1.00  0.00           H  
+TER      24      HOH G   1
+HETATM   25  O1x HOH H   1       5.179   5.233   6.327  1.00  0.00           O  
+HETATM   26  H1x HOH H   1       5.698   6.049   6.484  1.00  0.00           H  
+HETATM   27  H2x HOH H   1       4.505   5.088   7.026  1.00  0.00           H  
+TER      28      HOH H   1
+HETATM   29  O1x HOH I   1       3.553   6.745   0.484  1.00  0.00           O  
+HETATM   30  H1x HOH I   1       4.406   6.754   0.003  1.00  0.00           H  
+HETATM   31  H2x HOH I   1       2.867   7.275   0.024  1.00  0.00           H  
+TER      32      HOH I   1
+HETATM   33  O1x HOH J   1       9.232  12.373   0.573  1.00  0.00           O  
+HETATM   34  H1x HOH J   1       9.792  12.936   0.001  1.00  0.00           H  
+HETATM   35  H2x HOH J   1       9.166  12.729   1.486  1.00  0.00           H  
+TER      36      HOH J   1
+HETATM   37  O1x HOH K   1      10.706   8.165   8.298  1.00  0.00           O  
+HETATM   38  H1x HOH K   1      11.374   8.881   8.294  1.00  0.00           H  
+HETATM   39  H2x HOH K   1      11.112   7.283   8.153  1.00  0.00           H  
+TER      40      HOH K   1
+HETATM   41  O1x HOH L   1       7.055  10.094   0.292  1.00  0.00           O  
+HETATM   42  H1x HOH L   1       6.226  10.569   0.507  1.00  0.00           H  
+HETATM   43  H2x HOH L   1       6.884   9.173  -0.002  1.00  0.00           H  
+TER      44      HOH L   1
+HETATM   45  O1x HOH M   1      13.036  13.614   0.964  1.00  0.00           O  
+HETATM   46  H1x HOH M   1      13.581  13.878   1.734  1.00  0.00           H  
+HETATM   47  H2x HOH M   1      12.136  14.003   1.001  1.00  0.00           H  
+TER      48      HOH M   1
+HETATM   49  O1x HOH N   1       2.814  10.085   2.205  1.00  0.00           O  
+HETATM   50  H1x HOH N   1       2.708  10.246   1.245  1.00  0.00           H  
+HETATM   51  H2x HOH N   1       2.267   9.330   2.512  1.00  0.00           H  
+TER      52      HOH N   1
+HETATM   53  O1x HOH O   1      13.472  12.832   4.136  1.00  0.00           O  
+HETATM   54  H1x HOH O   1      13.699  12.355   3.311  1.00  0.00           H  
+HETATM   55  H2x HOH O   1      12.508  12.804   4.322  1.00  0.00           H  
+TER      56      HOH O   1
+HETATM   57  O1x HOH P   1       4.670  10.284  12.085  1.00  0.00           O  
+HETATM   58  H1x HOH P   1       3.926   9.649  12.053  1.00  0.00           H  
+HETATM   59  H2x HOH P   1       5.065  10.341  12.982  1.00  0.00           H  
+TER      60      HOH P   1
+HETATM   61  O1x HOH Q   1       2.040  11.346   6.098  1.00  0.00           O  
+HETATM   62  H1x HOH Q   1       2.780  11.951   6.313  1.00  0.00           H  
+HETATM   63  H2x HOH Q   1       1.352  11.788   5.554  1.00  0.00           H  
+TER      64      HOH Q   1
+HETATM   65  O1x HOH R   1       3.614  12.947   3.980  1.00  0.00           O  
+HETATM   66  H1x HOH R   1       3.127  13.793   4.048  1.00  0.00           H  
+HETATM   67  H2x HOH R   1       3.033  12.174   4.150  1.00  0.00           H  
+TER      68      HOH R   1
+HETATM   69  O1x HOH S   1       7.132  -0.006   9.028  1.00  0.00           O  
+HETATM   70  H1x HOH S   1       7.952   0.245   9.501  1.00  0.00           H  
+HETATM   71  H2x HOH S   1       6.327   0.262   9.522  1.00  0.00           H  
+TER      72      HOH S   1
+HETATM   73  O1x HOH T   1       3.986   3.631  13.927  1.00  0.00           O  
+HETATM   74  H1x HOH T   1       3.745   4.401  13.373  1.00  0.00           H  
+HETATM   75  H2x HOH T   1       3.285   2.944  13.925  1.00  0.00           H  
+TER      76      HOH T   1
+HETATM   77  O1x HOH U   1       9.056   8.307   9.808  1.00  0.00           O  
+HETATM   78  H1x HOH U   1       9.198   9.275   9.838  1.00  0.00           H  
+HETATM   79  H2x HOH U   1       9.777   7.818  10.262  1.00  0.00           H  
+TER      80      HOH U   1
+HETATM   81  O1x HOH V   1       0.831   6.761  12.977  1.00  0.00           O  
+HETATM   82  H1x HOH V   1       1.708   7.044  12.646  1.00  0.00           H  
+HETATM   83  H2x HOH V   1       0.405   6.112  12.375  1.00  0.00           H  
+TER      84      HOH V   1
+HETATM   85  O1x HOH W   1      11.504   2.510   4.229  1.00  0.00           O  
+HETATM   86  H1x HOH W   1      11.735   3.461   4.266  1.00  0.00           H  
+HETATM   87  H2x HOH W   1      11.943   1.998   4.942  1.00  0.00           H  
+TER      88      HOH W   1
+HETATM   89  O1x HOH X   1       1.467   6.524  10.544  1.00  0.00           O  
+HETATM   90  H1x HOH X   1       2.088   5.781  10.689  1.00  0.00           H  
+HETATM   91  H2x HOH X   1       1.939   7.373  10.403  1.00  0.00           H  
+TER      92      HOH X   1
+HETATM   93  O1x HOH Y   1      11.014  11.239   3.058  1.00  0.00           O  
+HETATM   94  H1x HOH Y   1      10.187  11.751   3.170  1.00  0.00           H  
+HETATM   95  H2x HOH Y   1      11.697  11.749   2.571  1.00  0.00           H  
+TER      96      HOH Y   1
+HETATM   97  O1x HOH Z   1      10.439   2.209   9.570  1.00  0.00           O  
+HETATM   98  H1x HOH Z   1       9.726   1.540   9.499  1.00  0.00           H  
+HETATM   99  H2x HOH Z   1      10.082   3.124   9.583  1.00  0.00           H  
+TER     100      HOH Z   1
+HETATM  101  O1x HOH A   1       3.867   4.543  10.709  1.00  0.00           O  
+HETATM  102  H1x HOH A   1       4.257   5.440  10.748  1.00  0.00           H  
+HETATM  103  H2x HOH A   1       4.300   3.928  11.340  1.00  0.00           H  
+TER     104      HOH A   1
+HETATM  105  O1x HOH B   1       4.303  12.897   1.890  1.00  0.00           O  
+HETATM  106  H1x HOH B   1       4.669  13.768   1.631  1.00  0.00           H  
+HETATM  107  H2x HOH B   1       4.997  12.298   2.241  1.00  0.00           H  
+TER     108      HOH B   1
+HETATM  109  O1x HOH C   1      12.318   2.311  10.875  1.00  0.00           O  
+HETATM  110  H1x HOH C   1      11.923   3.207  10.847  1.00  0.00           H  
+HETATM  111  H2x HOH C   1      11.708   1.653  11.273  1.00  0.00           H  
+TER     112      HOH C   1
+HETATM  113  O1x HOH D   1       2.547  11.239   9.270  1.00  0.00           O  
+HETATM  114  H1x HOH D   1       3.245  10.901   9.868  1.00  0.00           H  
+HETATM  115  H2x HOH D   1       2.741  11.035   8.329  1.00  0.00           H  
+TER     116      HOH D   1
+HETATM  117  O1x HOH E   1      11.590   5.099   7.420  1.00  0.00           O  
+HETATM  118  H1x HOH E   1      12.091   4.313   7.722  1.00  0.00           H  
+HETATM  119  H2x HOH E   1      10.626   4.919   7.363  1.00  0.00           H  
+TER     120      HOH E   1
+HETATM  121  O1x HOH F   1       6.252   4.674   1.627  1.00  0.00           O  
+HETATM  122  H1x HOH F   1       6.707   4.038   1.036  1.00  0.00           H  
+HETATM  123  H2x HOH F   1       5.927   4.244   2.447  1.00  0.00           H  
+TER     124      HOH F   1
+HETATM  125  O1x HOH G   1       7.162  14.000  10.863  1.00  0.00           O  
+HETATM  126  H1x HOH G   1       6.868  13.195  10.389  1.00  0.00           H  
+HETATM  127  H2x HOH G   1       7.530  13.790  11.749  1.00  0.00           H  
+TER     128      HOH G   1
+HETATM  129  O1x HOH H   1       4.389  10.857   5.285  1.00  0.00           O  
+HETATM  130  H1x HOH H   1       5.295  10.995   4.942  1.00  0.00           H  
+HETATM  131  H2x HOH H   1       4.264   9.949   5.636  1.00  0.00           H  
+TER     132      HOH H   1
+HETATM  133  O1x HOH I   1      10.976   0.191   2.392  1.00  0.00           O  
+HETATM  134  H1x HOH I   1      10.025  -0.004   2.266  1.00  0.00           H  
+HETATM  135  H2x HOH I   1      11.137   1.148   2.546  1.00  0.00           H  
+TER     136      HOH I   1
+HETATM  137  O1x HOH J   1       8.593  10.143   5.879  1.00  0.00           O  
+HETATM  138  H1x HOH J   1       8.688   9.453   5.191  1.00  0.00           H  
+HETATM  139  H2x HOH J   1       8.742   9.784   6.781  1.00  0.00           H  
+TER     140      HOH J   1
+HETATM  141  O1x HOH K   1       5.232   3.275   5.317  1.00  0.00           O  
+HETATM  142  H1x HOH K   1       5.992   2.747   5.637  1.00  0.00           H  
+HETATM  143  H2x HOH K   1       4.455   3.196   5.913  1.00  0.00           H  
+TER     144      HOH K   1
+HETATM  145  O1x HOH L   1       3.280   5.807   2.455  1.00  0.00           O  
+HETATM  146  H1x HOH L   1       4.237   5.638   2.574  1.00  0.00           H  
+HETATM  147  H2x HOH L   1       2.746   4.992   2.575  1.00  0.00           H  
+TER     148      HOH L   1
+HETATM  149  O1x HOH M   1      13.814   1.060   2.688  1.00  0.00           O  
+HETATM  150  H1x HOH M   1      13.411   1.852   2.276  1.00  0.00           H  
+HETATM  151  H2x HOH M   1      13.148   0.514   3.159  1.00  0.00           H  
+TER     152      HOH M   1
+HETATM  153  O1x HOH N   1      11.458  11.108   6.903  1.00  0.00           O  
+HETATM  154  H1x HOH N   1      12.427  11.223   6.986  1.00  0.00           H  
+HETATM  155  H2x HOH N   1      11.215  10.627   6.082  1.00  0.00           H  
+TER     156      HOH N   1
+HETATM  157  O1x HOH O   1       1.319   9.268  13.084  1.00  0.00           O  
+HETATM  158  H1x HOH O   1       0.475   9.682  12.808  1.00  0.00           H  
+HETATM  159  H2x HOH O   1       2.027   9.934  13.219  1.00  0.00           H  
+TER     160      HOH O   1
+HETATM  161  O1x HOH P   1       6.567   1.303  13.476  1.00  0.00           O  
+HETATM  162  H1x HOH P   1       6.189   2.030  14.012  1.00  0.00           H  
+HETATM  163  H2x HOH P   1       6.526   0.442  13.947  1.00  0.00           H  
+TER     164      HOH P   1
+HETATM  165  O1x HOH Q   1      10.732  13.531   5.757  1.00  0.00           O  
+HETATM  166  H1x HOH Q   1      10.101  13.999   6.342  1.00  0.00           H  
+HETATM  167  H2x HOH Q   1      11.531  13.235   6.244  1.00  0.00           H  
+TER     168      HOH Q   1
+HETATM  169  O1x HOH R   1       1.439  10.745  11.114  1.00  0.00           O  
+HETATM  170  H1x HOH R   1       0.585  11.113  10.806  1.00  0.00           H  
+HETATM  171  H2x HOH R   1       1.973  11.412  11.597  1.00  0.00           H  
+TER     172      HOH R   1
+HETATM  173  O1x HOH S   1      12.901  13.683   9.550  1.00  0.00           O  
+HETATM  174  H1x HOH S   1      13.133  12.752   9.747  1.00  0.00           H  
+HETATM  175  H2x HOH S   1      12.180  14.011  10.130  1.00  0.00           H  
+TER     176      HOH S   1
+HETATM  177  O1x HOH T   1       1.893   4.138   0.712  1.00  0.00           O  
+HETATM  178  H1x HOH T   1       2.450   3.416   1.070  1.00  0.00           H  
+HETATM  179  H2x HOH T   1       1.075   4.266   1.240  1.00  0.00           H  
+TER     180      HOH T   1
+HETATM  181  O1x HOH U   1       3.580  13.877  12.130  1.00  0.00           O  
+HETATM  182  H1x HOH U   1       4.375  13.998  11.572  1.00  0.00           H  
+HETATM  183  H2x HOH U   1       2.751  13.969  11.613  1.00  0.00           H  
+TER     184      HOH U   1
+HETATM  185  O1x HOH V   1       7.027   6.716  11.307  1.00  0.00           O  
+HETATM  186  H1x HOH V   1       7.369   7.630  11.225  1.00  0.00           H  
+HETATM  187  H2x HOH V   1       6.074   6.659  11.079  1.00  0.00           H  
+TER     188      HOH V   1
+HETATM  189  O1x HOH W   1       7.144   5.445   4.112  1.00  0.00           O  
+HETATM  190  H1x HOH W   1       6.173   5.470   4.241  1.00  0.00           H  
+HETATM  191  H2x HOH W   1       7.398   5.684   3.194  1.00  0.00           H  
+TER     192      HOH W   1
+HETATM  193  O1x HOH X   1       0.537   5.502   5.783  1.00  0.00           O  
+HETATM  194  H1x HOH X   1      -0.005   4.691   5.872  1.00  0.00           H  
+HETATM  195  H2x HOH X   1      -0.002   6.274   5.505  1.00  0.00           H  
+TER     196      HOH X   1
+HETATM  197  O1x HOH Y   1      11.442   6.992  13.085  1.00  0.00           O  
+HETATM  198  H1x HOH Y   1      11.424   7.346  13.998  1.00  0.00           H  
+HETATM  199  H2x HOH Y   1      11.267   7.691  12.418  1.00  0.00           H  
+TER     200      HOH Y   1
+HETATM  201  O1x HOH Z   1       8.558   2.592  13.054  1.00  0.00           O  
+HETATM  202  H1x HOH Z   1       9.061   1.944  12.518  1.00  0.00           H  
+HETATM  203  H2x HOH Z   1       8.527   2.338  14.002  1.00  0.00           H  
+TER     204      HOH Z   1
+HETATM  205  O1x HOH A   1      11.750  11.960   0.306  1.00  0.00           O  
+HETATM  206  H1x HOH A   1      12.646  11.625   0.092  1.00  0.00           H  
+HETATM  207  H2x HOH A   1      11.122  11.230   0.497  1.00  0.00           H  
+TER     208      HOH A   1
+HETATM  209  O1x HOH B   1       1.966   2.533   8.464  1.00  0.00           O  
+HETATM  210  H1x HOH B   1       1.625   1.943   7.761  1.00  0.00           H  
+HETATM  211  H2x HOH B   1       2.550   3.235   8.102  1.00  0.00           H  
+TER     212      HOH B   1
+HETATM  213  O1x HOH C   1      12.449   8.202  10.636  1.00  0.00           O  
+HETATM  214  H1x HOH C   1      13.235   8.395  10.084  1.00  0.00           H  
+HETATM  215  H2x HOH C   1      11.717   8.833  10.466  1.00  0.00           H  
+TER     216      HOH C   1
+HETATM  217  O1x HOH D   1       4.725   4.178   0.126  1.00  0.00           O  
+HETATM  218  H1x HOH D   1       3.865   4.628  -0.010  1.00  0.00           H  
+HETATM  219  H2x HOH D   1       4.609   3.257   0.445  1.00  0.00           H  
+TER     220      HOH D   1
+HETATM  221  O1x HOH E   1       5.923   3.800  12.756  1.00  0.00           O  
+HETATM  222  H1x HOH E   1       6.473   4.367  13.335  1.00  0.00           H  
+HETATM  223  H2x HOH E   1       6.471   3.207  12.198  1.00  0.00           H  
+TER     224      HOH E   1
+HETATM  225  O1x HOH F   1       6.936  10.668  11.201  1.00  0.00           O  
+HETATM  226  H1x HOH F   1       7.251   9.885  10.704  1.00  0.00           H  
+HETATM  227  H2x HOH F   1       7.132  10.597  12.160  1.00  0.00           H  
+TER     228      HOH F   1
+HETATM  229  O1x HOH G   1       3.416   2.555   3.067  1.00  0.00           O  
+HETATM  230  H1x HOH G   1       4.049   3.109   2.566  1.00  0.00           H  
+HETATM  231  H2x HOH G   1       3.418   2.772   4.024  1.00  0.00           H  
+TER     232      HOH G   1
+HETATM  233  O1x HOH H   1       6.042   8.330  13.103  1.00  0.00           O  
+HETATM  234  H1x HOH H   1       5.556   8.417  13.949  1.00  0.00           H  
+HETATM  235  H2x HOH H   1       7.005   8.488  13.216  1.00  0.00           H  
+TER     236      HOH H   1
+HETATM  237  O1x HOH I   1      13.262   8.804   0.006  1.00  0.00           O  
+HETATM  238  H1x HOH I   1      13.587   7.880   0.006  1.00  0.00           H  
+HETATM  239  H2x HOH I   1      14.000   9.452   0.002  1.00  0.00           H  
+TER     240      HOH I   1
+HETATM  241  O1x HOH J   1       4.642   1.091   0.053  1.00  0.00           O  
+HETATM  242  H1x HOH J   1       4.475   0.148   0.255  1.00  0.00           H  
+HETATM  243  H2x HOH J   1       5.590   1.326   0.158  1.00  0.00           H  
+TER     244      HOH J   1
+HETATM  245  O1x HOH K   1      10.850  13.621   8.420  1.00  0.00           O  
+HETATM  246  H1x HOH K   1      11.294  12.750   8.376  1.00  0.00           H  
+HETATM  247  H2x HOH K   1       9.874  13.532   8.478  1.00  0.00           H  
+TER     248      HOH K   1
+HETATM  249  O1x HOH L   1       3.986   6.586   8.817  1.00  0.00           O  
+HETATM  250  H1x HOH L   1       3.345   5.846   8.792  1.00  0.00           H  
+HETATM  251  H2x HOH L   1       4.914   6.266   8.838  1.00  0.00           H  
+TER     252      HOH L   1
+HETATM  253  O1x HOH M   1       7.770   6.718   5.910  1.00  0.00           O  
+HETATM  254  H1x HOH M   1       7.842   5.774   6.158  1.00  0.00           H  
+HETATM  255  H2x HOH M   1       7.698   7.300   6.697  1.00  0.00           H  
+TER     256      HOH M   1
+HETATM  257  O1x HOH N   1       5.895  10.652   7.313  1.00  0.00           O  
+HETATM  258  H1x HOH N   1       6.849  10.622   7.529  1.00  0.00           H  
+HETATM  259  H2x HOH N   1       5.387  11.179   7.967  1.00  0.00           H  
+TER     260      HOH N   1
+HETATM  261  O1x HOH O   1      13.394   6.191   6.361  1.00  0.00           O  
+HETATM  262  H1x HOH O   1      12.976   6.759   7.040  1.00  0.00           H  
+HETATM  263  H2x HOH O   1      13.993   6.701   5.774  1.00  0.00           H  
+TER     264      HOH O   1
+HETATM  265  O1x HOH P   1       6.525   1.785   7.916  1.00  0.00           O  
+HETATM  266  H1x HOH P   1       6.036   2.629   7.828  1.00  0.00           H  
+HETATM  267  H2x HOH P   1       7.486   1.932   8.055  1.00  0.00           H  
+TER     268      HOH P   1
+HETATM  269  O1x HOH Q   1       8.527   4.360   7.689  1.00  0.00           O  
+HETATM  270  H1x HOH Q   1       7.556   4.260   7.766  1.00  0.00           H  
+HETATM  271  H2x HOH Q   1       8.988   3.494   7.712  1.00  0.00           H  
+TER     272      HOH Q   1
+HETATM  273  O1x HOH R   1       2.005   3.826   5.741  1.00  0.00           O  
+HETATM  274  H1x HOH R   1       2.549   4.463   6.248  1.00  0.00           H  
+HETATM  275  H2x HOH R   1       2.284   2.899   5.899  1.00  0.00           H  
+TER     276      HOH R   1
+HETATM  277  O1x HOH S   1       5.013   9.509   3.075  1.00  0.00           O  
+HETATM  278  H1x HOH S   1       4.628   8.899   3.737  1.00  0.00           H  
+HETATM  279  H2x HOH S   1       5.952   9.719   3.273  1.00  0.00           H  
+TER     280      HOH S   1
+HETATM  281  O1x HOH T   1      11.038   4.347  12.695  1.00  0.00           O  
+HETATM  282  H1x HOH T   1      10.538   3.555  12.979  1.00  0.00           H  
+HETATM  283  H2x HOH T   1      11.436   4.822  13.457  1.00  0.00           H  
+TER     284      HOH T   1
+HETATM  285  O1x HOH U   1       9.784   7.896   6.310  1.00  0.00           O  
+HETATM  286  H1x HOH U   1      10.486   8.559   6.148  1.00  0.00           H  
+HETATM  287  H2x HOH U   1      10.118   6.978   6.216  1.00  0.00           H  
+TER     288      HOH U   1
+HETATM  289  O1x HOH V   1       6.594   8.256   8.650  1.00  0.00           O  
+HETATM  290  H1x HOH V   1       6.749   7.420   9.137  1.00  0.00           H  
+HETATM  291  H2x HOH V   1       7.436   8.683   8.379  1.00  0.00           H  
+TER     292      HOH V   1
+HETATM  293  O1x HOH W   1       7.552  10.864   2.290  1.00  0.00           O  
+HETATM  294  H1x HOH W   1       8.506  10.646   2.278  1.00  0.00           H  
+HETATM  295  H2x HOH W   1       7.397  11.824   2.430  1.00  0.00           H  
+TER     296      HOH W   1
+HETATM  297  O1x HOH X   1       0.010   4.373   8.023  1.00  0.00           O  
+HETATM  298  H1x HOH X   1       0.927   4.719   8.024  1.00  0.00           H  
+HETATM  299  H2x HOH X   1      -0.012   3.392   8.024  1.00  0.00           H  
+TER     300      HOH X   1
+HETATM  301  O1x HOH Y   1      10.032   5.395   4.429  1.00  0.00           O  
+HETATM  302  H1x HOH Y   1       9.251   5.986   4.439  1.00  0.00           H  
+HETATM  303  H2x HOH Y   1       9.774   4.448   4.397  1.00  0.00           H  
+TER     304      HOH Y   1
+HETATM  305  O1x HOH Z   1       0.113  11.902   1.291  1.00  0.00           O  
+HETATM  306  H1x HOH Z   1       0.000  12.796   0.907  1.00  0.00           H  
+HETATM  307  H2x HOH Z   1       1.025  11.759   1.625  1.00  0.00           H  
+TER     308      HOH Z   1
+HETATM  309  O1x HOH A   1       8.722   0.543   6.879  1.00  0.00           O  
+HETATM  310  H1x HOH A   1       8.335  -0.003   6.164  1.00  0.00           H  
+HETATM  311  H2x HOH A   1       9.058  -0.008   7.619  1.00  0.00           H  
+TER     312      HOH A   1
+HETATM  313  O1x HOH B   1       8.807   6.113   8.988  1.00  0.00           O  
+HETATM  314  H1x HOH B   1       9.677   5.707   9.181  1.00  0.00           H  
+HETATM  315  H2x HOH B   1       8.094   5.740   9.551  1.00  0.00           H  
+TER     316      HOH B   1
+HETATM  317  O1x HOH C   1       0.448   2.010  12.505  1.00  0.00           O  
+HETATM  318  H1x HOH C   1       1.174   1.371  12.349  1.00  0.00           H  
+HETATM  319  H2x HOH C   1       0.789   2.910  12.700  1.00  0.00           H  
+TER     320      HOH C   1
+HETATM  321  O1x HOH D   1      10.760  12.595  13.651  1.00  0.00           O  
+HETATM  322  H1x HOH D   1       9.852  12.524  14.010  1.00  0.00           H  
+HETATM  323  H2x HOH D   1      11.344  11.880  13.985  1.00  0.00           H  
+TER     324      HOH D   1
+HETATM  325  O1x HOH E   1       3.917   1.680   9.006  1.00  0.00           O  
+HETATM  326  H1x HOH E   1       4.322   2.551   9.195  1.00  0.00           H  
+HETATM  327  H2x HOH E   1       4.538   1.081   8.536  1.00  0.00           H  
+TER     328      HOH E   1
+HETATM  329  O1x HOH F   1       0.896   4.254   3.497  1.00  0.00           O  
+HETATM  330  H1x HOH F   1      -0.009   4.128   3.144  1.00  0.00           H  
+HETATM  331  H2x HOH F   1       1.342   3.398   3.675  1.00  0.00           H  
+TER     332      HOH F   1
+HETATM  333  O1x HOH G   1       6.516  -0.039   3.909  1.00  0.00           O  
+HETATM  334  H1x HOH G   1       6.377   0.008   2.940  1.00  0.00           H  
+HETATM  335  H2x HOH G   1       7.466   0.033   4.146  1.00  0.00           H  
+TER     336      HOH G   1
+HETATM  337  O1x HOH H   1       4.877   0.000   6.198  1.00  0.00           O  
+HETATM  338  H1x HOH H   1       4.048   0.427   6.498  1.00  0.00           H  
+HETATM  339  H2x HOH H   1       5.592   0.078   6.867  1.00  0.00           H  
+TER     340      HOH H   1
+HETATM  341  O1x HOH I   1      13.527   1.908   8.729  1.00  0.00           O  
+HETATM  342  H1x HOH I   1      12.651   1.489   8.856  1.00  0.00           H  
+HETATM  343  H2x HOH I   1      13.474   2.887   8.775  1.00  0.00           H  
+TER     344      HOH I   1
+HETATM  345  O1x HOH J   1      13.749  10.749  10.407  1.00  0.00           O  
+HETATM  346  H1x HOH J   1      12.941  10.564   9.886  1.00  0.00           H  
+HETATM  347  H2x HOH J   1      13.673  10.421  11.329  1.00  0.00           H  
+TER     348      HOH J   1
+HETATM  349  O1x HOH K   1       5.878   8.597   6.276  1.00  0.00           O  
+HETATM  350  H1x HOH K   1       6.662   9.096   5.967  1.00  0.00           H  
+HETATM  351  H2x HOH K   1       5.497   8.037   5.564  1.00  0.00           H  
+TER     352      HOH K   1
+HETATM  353  O1x HOH L   1       7.928   2.746  10.048  1.00  0.00           O  
+HETATM  354  H1x HOH L   1       8.294   3.151  10.861  1.00  0.00           H  
+HETATM  355  H2x HOH L   1       6.969   2.930   9.947  1.00  0.00           H  
+TER     356      HOH L   1
+HETATM  357  O1x HOH M   1       2.789   1.194  10.851  1.00  0.00           O  
+HETATM  358  H1x HOH M   1       1.999   1.218  10.273  1.00  0.00           H  
+HETATM  359  H2x HOH M   1       3.144   2.093  11.023  1.00  0.00           H  
+TER     360      HOH M   1
+HETATM  361  O1x HOH N   1       9.249   1.714   3.626  1.00  0.00           O  
+HETATM  362  H1x HOH N   1       8.576   1.504   2.947  1.00  0.00           H  
+HETATM  363  H2x HOH N   1       9.471   0.932   4.176  1.00  0.00           H  
+TER     364      HOH N   1
+HETATM  365  O1x HOH O   1      12.028   9.667   1.885  1.00  0.00           O  
+HETATM  366  H1x HOH O   1      11.877   8.699   1.875  1.00  0.00           H  
+HETATM  367  H2x HOH O   1      12.984   9.888   1.913  1.00  0.00           H  
+TER     368      HOH O   1
+HETATM  369  O1x HOH P   1       6.155  13.309   5.390  1.00  0.00           O  
+HETATM  370  H1x HOH P   1       6.661  12.538   5.719  1.00  0.00           H  
+HETATM  371  H2x HOH P   1       6.049  13.289   4.414  1.00  0.00           H  
+TER     372      HOH P   1
+HETATM  373  O1x HOH Q   1      14.000   9.480   7.560  1.00  0.00           O  
+HETATM  374  H1x HOH Q   1      13.832   9.575   6.600  1.00  0.00           H  
+HETATM  375  H2x HOH Q   1      13.573   8.677   7.929  1.00  0.00           H  
+TER     376      HOH Q   1
+HETATM  377  O1x HOH R   1      14.000   6.641  12.235  1.00  0.00           O  
+HETATM  378  H1x HOH R   1      13.491   7.458  12.417  1.00  0.00           H  
+HETATM  379  H2x HOH R   1      13.448   5.835  12.336  1.00  0.00           H  
+TER     380      HOH R   1
+HETATM  381  O1x HOH S   1      11.395   5.181   1.136  1.00  0.00           O  
+HETATM  382  H1x HOH S   1      11.918   4.503   0.661  1.00  0.00           H  
+HETATM  383  H2x HOH S   1      11.093   4.862   2.014  1.00  0.00           H  
+TER     384      HOH S   1
+HETATM  385  O1x HOH T   1       6.293   2.182   3.118  1.00  0.00           O  
+HETATM  386  H1x HOH T   1       5.519   1.887   3.640  1.00  0.00           H  
+HETATM  387  H2x HOH T   1       6.163   2.037   2.155  1.00  0.00           H  
+TER     388      HOH T   1
+HETATM  389  O1x HOH U   1       2.781   7.021   4.218  1.00  0.00           O  
+HETATM  390  H1x HOH U   1       1.962   6.560   4.491  1.00  0.00           H  
+HETATM  391  H2x HOH U   1       2.669   7.997   4.217  1.00  0.00           H  
+TER     392      HOH U   1
+HETATM  393  O1x HOH V   1      14.003   3.514   5.246  1.00  0.00           O  
+HETATM  394  H1x HOH V   1      13.995   2.729   4.660  1.00  0.00           H  
+HETATM  395  H2x HOH V   1      13.240   3.517   5.864  1.00  0.00           H  
+TER     396      HOH V   1
+HETATM  397  O1x HOH W   1       7.081   7.843   2.960  1.00  0.00           O  
+HETATM  398  H1x HOH W   1       7.758   8.421   3.368  1.00  0.00           H  
+HETATM  399  H2x HOH W   1       6.381   7.590   3.601  1.00  0.00           H  
+TER     400      HOH W   1
+HETATM  401  O1x HOH X   1       8.187   5.658   0.970  1.00  0.00           O  
+HETATM  402  H1x HOH X   1       8.107   5.773   0.000  1.00  0.00           H  
+HETATM  403  H2x HOH X   1       9.118   5.508   1.245  1.00  0.00           H  
+TER     404      HOH X   1
+HETATM  405  O1x HOH Y   1       1.134   0.228   6.454  1.00  0.00           O  
+HETATM  406  H1x HOH Y   1       0.162   0.256   6.566  1.00  0.00           H  
+HETATM  407  H2x HOH Y   1       1.390   0.001   5.534  1.00  0.00           H  
+TER     408      HOH Y   1
+HETATM  409  O1x HOH Z   1      10.917   2.486   7.423  1.00  0.00           O  
+HETATM  410  H1x HOH Z   1      10.750   2.887   6.546  1.00  0.00           H  
+HETATM  411  H2x HOH Z   1      10.584   1.564   7.475  1.00  0.00           H  
+TER     412      HOH Z   1
+HETATM  413  O1x HOH A   1      10.702   1.654   0.451  1.00  0.00           O  
+HETATM  414  H1x HOH A   1      10.769   2.629   0.501  1.00  0.00           H  
+HETATM  415  H2x HOH A   1      11.585   1.229   0.396  1.00  0.00           H  
+TER     416      HOH A   1
+HETATM  417  O1x HOH B   1       5.152  12.539  13.013  1.00  0.00           O  
+HETATM  418  H1x HOH B   1       5.796  12.471  12.278  1.00  0.00           H  
+HETATM  419  H2x HOH B   1       5.593  12.508  13.890  1.00  0.00           H  
+TER     420      HOH B   1
+HETATM  421  O1x HOH C   1      11.341   9.732  13.509  1.00  0.00           O  
+HETATM  422  H1x HOH C   1      12.181   9.417  13.901  1.00  0.00           H  
+HETATM  423  H2x HOH C   1      10.559   9.398  13.999  1.00  0.00           H  
+TER     424      HOH C   1
+HETATM  425  O1x HOH D   1       0.971   6.386   2.529  1.00  0.00           O  
+HETATM  426  H1x HOH D   1       1.459   7.233   2.459  1.00  0.00           H  
+HETATM  427  H2x HOH D   1       0.120   6.412   2.039  1.00  0.00           H  
+TER     428      HOH D   1
+HETATM  429  O1x HOH E   1       5.421   8.204   1.320  1.00  0.00           O  
+HETATM  430  H1x HOH E   1       4.853   8.921   0.971  1.00  0.00           H  
+HETATM  431  H2x HOH E   1       4.938   7.628   1.952  1.00  0.00           H  
+TER     432      HOH E   1
+HETATM  433  O1x HOH F   1       8.630   5.186  11.609  1.00  0.00           O  
+HETATM  434  H1x HOH F   1       8.441   4.701  12.438  1.00  0.00           H  
+HETATM  435  H2x HOH F   1       9.509   4.950  11.238  1.00  0.00           H  
+TER     436      HOH F   1
+HETATM  437  O1x HOH G   1      11.396   7.123   4.410  1.00  0.00           O  
+HETATM  438  H1x HOH G   1      11.809   6.508   3.769  1.00  0.00           H  
+HETATM  439  H2x HOH G   1      12.014   7.368   5.133  1.00  0.00           H  
+TER     440      HOH G   1
+HETATM  441  O1x HOH H   1       8.223  -0.000   1.018  1.00  0.00           O  
+HETATM  442  H1x HOH H   1       8.880   0.312   0.363  1.00  0.00           H  
+HETATM  443  H2x HOH H   1       7.306   0.052   0.671  1.00  0.00           H  
+TER     444      HOH H   1
+HETATM  445  O1x HOH I   1       0.892   9.388   7.364  1.00  0.00           O  
+HETATM  446  H1x HOH I   1       0.163  10.011   7.167  1.00  0.00           H  
+HETATM  447  H2x HOH I   1       0.693   8.480   7.047  1.00  0.00           H  
+TER     448      HOH I   1
+HETATM  449  O1x HOH J   1       4.547   6.662  13.041  1.00  0.00           O  
+HETATM  450  H1x HOH J   1       4.763   6.381  13.954  1.00  0.00           H  
+HETATM  451  H2x HOH J   1       3.859   7.362  13.026  1.00  0.00           H  
+TER     452      HOH J   1
+HETATM  453  O1x HOH K   1       6.560  13.416   7.732  1.00  0.00           O  
+HETATM  454  H1x HOH K   1       6.027  13.997   8.313  1.00  0.00           H  
+HETATM  455  H2x HOH K   1       6.999  12.697   8.237  1.00  0.00           H  
+TER     456      HOH K   1
+HETATM  457  O1x HOH L   1      12.230   0.364   6.421  1.00  0.00           O  
+HETATM  458  H1x HOH L   1      11.563   0.002   5.801  1.00  0.00           H  
+HETATM  459  H2x HOH L   1      12.122   0.002   7.327  1.00  0.00           H  
+TER     460      HOH L   1
+HETATM  461  O1x HOH M   1       3.147   6.803   6.705  1.00  0.00           O  
+HETATM  462  H1x HOH M   1       2.234   6.876   7.051  1.00  0.00           H  
+HETATM  463  H2x HOH M   1       3.464   7.650   6.325  1.00  0.00           H  
+TER     464      HOH M   1
+HETATM  465  O1x HOH N   1       2.833   8.495   8.498  1.00  0.00           O  
+HETATM  466  H1x HOH N   1       3.534   9.010   8.049  1.00  0.00           H  
+HETATM  467  H2x HOH N   1       2.256   9.065   9.051  1.00  0.00           H  
+TER     468      HOH N   1
+HETATM  469  O1x HOH O   1      10.017  10.163  11.805  1.00  0.00           O  
+HETATM  470  H1x HOH O   1       9.270  10.776  11.647  1.00  0.00           H  
+HETATM  471  H2x HOH O   1       9.710   9.247  11.977  1.00  0.00           H  
+TER     472      HOH O   1
+HETATM  473  O1x HOH P   1       1.624  12.511  13.496  1.00  0.00           O  
+HETATM  474  H1x HOH P   1       0.697  12.256  13.682  1.00  0.00           H  
+HETATM  475  H2x HOH P   1       1.748  13.485  13.514  1.00  0.00           H  
+TER     476      HOH P   1
+HETATM  477  O1x HOH Q   1       8.354   3.779   2.470  1.00  0.00           O  
+HETATM  478  H1x HOH Q   1       8.002   3.582   3.362  1.00  0.00           H  
+HETATM  479  H2x HOH Q   1       9.322   3.620   2.414  1.00  0.00           H  
+TER     480      HOH Q   1
+HETATM  481  O1x HOH R   1       8.073   2.605   0.047  1.00  0.00           O  
+HETATM  482  H1x HOH R   1       8.741   3.320   0.001  1.00  0.00           H  
+HETATM  483  H2x HOH R   1       7.995   2.235   0.954  1.00  0.00           H  
+TER     484      HOH R   1
+HETATM  485  O1x HOH S   1      10.566   0.785  13.633  1.00  0.00           O  
+HETATM  486  H1x HOH S   1      11.196   1.500  13.407  1.00  0.00           H  
+HETATM  487  H2x HOH S   1      11.022  -0.003  14.001  1.00  0.00           H  
+TER     488      HOH S   1
+HETATM  489  O1x HOH T   1       3.467   0.560   4.070  1.00  0.00           O  
+HETATM  490  H1x HOH T   1       4.330   0.097   4.069  1.00  0.00           H  
+HETATM  491  H2x HOH T   1       2.783   0.061   3.573  1.00  0.00           H  
+TER     492      HOH T   1
+HETATM  493  O1x HOH U   1       4.589   9.167  10.005  1.00  0.00           O  
+HETATM  494  H1x HOH U   1       5.305   9.736   9.654  1.00  0.00           H  
+HETATM  495  H2x HOH U   1       4.879   8.235  10.108  1.00  0.00           H  
+TER     496      HOH U   1
+HETATM  497  O1x HOH V   1      12.488   5.617  10.341  1.00  0.00           O  
+HETATM  498  H1x HOH V   1      11.898   5.488   9.570  1.00  0.00           H  
+HETATM  499  H2x HOH V   1      13.432   5.493  10.105  1.00  0.00           H  
+TER     500      HOH V   1
+HETATM  501  O1x HOH W   1      13.993   3.871  13.292  1.00  0.00           O  
+HETATM  502  H1x HOH W   1      13.512   4.348  14.000  1.00  0.00           H  
+HETATM  503  H2x HOH W   1      13.382   3.510  12.614  1.00  0.00           H  
+TER     504      HOH W   1
+HETATM  505  O1x HOH X   1       2.985  13.786   7.508  1.00  0.00           O  
+HETATM  506  H1x HOH X   1       2.024  13.862   7.333  1.00  0.00           H  
+HETATM  507  H2x HOH X   1       3.520  13.999   6.714  1.00  0.00           H  
+TER     508      HOH X   1
+HETATM  509  O1x HOH Y   1       8.560   2.907   5.395  1.00  0.00           O  
+HETATM  510  H1x HOH Y   1       7.975   3.675   5.559  1.00  0.00           H  
+HETATM  511  H2x HOH Y   1       8.069   2.058   5.438  1.00  0.00           H  
+TER     512      HOH Y   1
+HETATM  513  O1x HOH Z   1       3.992  12.959   9.675  1.00  0.00           O  
+HETATM  514  H1x HOH Z   1       4.833  12.457   9.672  1.00  0.00           H  
+HETATM  515  H2x HOH Z   1       4.120  13.890   9.389  1.00  0.00           H  
+TER     516      HOH Z   1
+HETATM  517  O1x HOH A   1       8.723  11.561   8.995  1.00  0.00           O  
+HETATM  518  H1x HOH A   1       9.653  11.345   8.777  1.00  0.00           H  
+HETATM  519  H2x HOH A   1       8.637  11.946   9.895  1.00  0.00           H  
+TER     520      HOH A   1
+HETATM  521  O1x HOH B   1       0.963   3.734  10.152  1.00  0.00           O  
+HETATM  522  H1x HOH B   1       0.390   4.518  10.280  1.00  0.00           H  
+HETATM  523  H2x HOH B   1       1.657   3.671  10.844  1.00  0.00           H  
+TER     524      HOH B   1
+HETATM  525  O1x HOH C   1      11.020  12.710  11.472  1.00  0.00           O  
+HETATM  526  H1x HOH C   1      10.355  12.974  10.803  1.00  0.00           H  
+HETATM  527  H2x HOH C   1      11.466  11.869  11.232  1.00  0.00           H  
+TER     528      HOH C   1
+HETATM  529  O1x HOH D   1       0.001   8.654   3.314  1.00  0.00           O  
+HETATM  530  H1x HOH D   1       0.036   7.939   3.983  1.00  0.00           H  
+HETATM  531  H2x HOH D   1       0.322   9.509   3.674  1.00  0.00           H  
+TER     532      HOH D   1
+HETATM  533  O1x HOH E   1      13.776   5.256   2.640  1.00  0.00           O  
+HETATM  534  H1x HOH E   1      13.511   6.175   2.426  1.00  0.00           H  
+HETATM  535  H2x HOH E   1      13.037   4.745   3.037  1.00  0.00           H  
+TER     536      HOH E   1
+HETATM  537  O1x HOH F   1       1.757   0.918   1.054  1.00  0.00           O  
+HETATM  538  H1x HOH F   1       1.123   1.664   1.051  1.00  0.00           H  
+HETATM  539  H2x HOH F   1       2.689   1.229   1.054  1.00  0.00           H  
+TER     540      HOH F   1
+HETATM  541  O1x HOH G   1      13.800  13.429  12.243  1.00  0.00           O  
+HETATM  542  H1x HOH G   1      13.492  13.950  13.013  1.00  0.00           H  
+HETATM  543  H2x HOH G   1      13.983  14.000  11.465  1.00  0.00           H  
+TER     544      HOH G   1
+END

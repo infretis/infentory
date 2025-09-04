@@ -1,0 +1,45 @@
+[infinit]
+cstep = 0
+steps_per_iter = [20,]
+lamres = 0.01
+skip = 0.1
+
+[runner]
+workers = 1
+wmdrun = [0]
+
+[simulation]
+interfaces = [3.2, 7.0]
+steps = 10
+seed = 0
+load_dir = 'load'
+shooting_moves = ['sh','sh']
+n_jumps = 2
+
+[simulation.tis_set]
+maxlength = 50000
+allowmaxlength = false
+zero_momentum = true
+
+[engine]
+class = 'ase_external'
+input_path = 'openmm_input'
+integrator = "external"
+temperature = 300
+timestep = 0
+subcycles = 0
+[engine.calculator_settings]
+module = "openmmcalculator.py"
+class = "OpenMMCalculator"
+
+[orderparameter]
+class = 'Distance'
+index = [ 0, 1]
+periodic = true
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = true
+keep_maxop_trajs = true
