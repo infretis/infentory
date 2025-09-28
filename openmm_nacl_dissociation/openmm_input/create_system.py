@@ -27,7 +27,7 @@ topology = pack_box(
 positions = topology.get_positions()
 topology = topology.to_openmm()
 forcefield = openmm.app.ForceField("amber14-all.xml", "amber14/tip3p.xml")
-system = forcefield.createSystem(topology, nonbondedMethod = openmm.app.CutoffPeriodic, constraints=None, rigidWater=False, nonbondedCutoff=0.8*openmm.unit.nanometer)
+system = forcefield.createSystem(topology, nonbondedMethod = openmm.app.CutoffPeriodic, constraints=openmm.app.HBonds, rigidWater=True, nonbondedCutoff=0.8*openmm.unit.nanometer)
 
 with open ("topology.pdb", "w") as pdbfile:
     openmm.app.PDBFile.writeFile(topology, positions.magnitude*openmm.unit.nanometer, pdbfile)
