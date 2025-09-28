@@ -113,4 +113,4 @@ class OpenMMCalculator(Calculator):
             )
             / omm_units.kelvin
         )
-        self.results["forces"] = np.array([])
+        self.results["forces"] = np.array([[]])

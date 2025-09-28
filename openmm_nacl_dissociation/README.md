@@ -13,6 +13,8 @@ Constraints are treated by first generating velocites with ASE wihout constraint
 
 Note that OpenMM does not wrap coordinates back into the box. For a permeation simulation where the membrane stays in place, this can be advantegous as one can use the absolute z position as the orderparameter. One can wrap coordinates by adding `atoms.wrap()` somewhere in the `infretis/classes/engines/propagator.py` script, or somewhere in the openmm calculator.
 
+Forces are not written to the .traj files, but they can be written by retrieving them from openmm and adding them to the calculator.results section.
+
 # A note on integrators
 The default integrators in OpenMM seemingly all output velocities at half-steps. As such, one can not use these out of the box. To see if your integrator is viable, set up a simple simulation with an openmm reporter that reports e.g. the temperature every timestep.
 
@@ -60,6 +62,7 @@ The external ase engine can be used in two modes. We will use a custom mode wher
 The timestep and the subcycles is then set to the desired value in openmmcalculator.py.
 
 Note that the temperature has to still be set in the .toml, and also in the openmm calculator thermostat.
+
 
 # intial paths
 
