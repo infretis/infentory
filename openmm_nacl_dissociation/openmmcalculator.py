@@ -53,10 +53,10 @@ class OpenMMCalculator(Calculator):
         # get degrees of freedom for calculating the temperature
         self.dof = 0
         for i in range(system.getNumParticles()):
-            if system.getParticleMass(i) > 0*omm_unit.dalton:
-                dof += 3
+            if system.getParticleMass(i) > 0*omm_units.dalton:
+                self.dof += 3
         # Subtract constrained DOFs
-        self.dof -= system.getNumConstraints())
+        self.dof -= system.getNumConstraints()
 
         # output printing for testing
         self.context = self.simulation.context
