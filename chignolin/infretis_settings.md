@@ -36,7 +36,7 @@ pL = 0.3
 steps_per_iter = [80, 160, 320, 640]
 # Between infretis simulations, skip this many initial paths when calculating the crossing probabilities
 # using WHAM
-nskip = 10
+skip = 10
 # The resolution along the orderparameter when using the WHAM procedure. Should be lower than the spacing
 # between interfaces by a factor of around 10
 lamres = 0.001
