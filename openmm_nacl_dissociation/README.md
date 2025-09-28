@@ -3,6 +3,8 @@ Here we illustrate the flexibility of the ASE engine, where we essentially only 
 
 Currently, this is only possible on the `external_ase` branch of infretis.
 
+Note that this does not equilibrate the system, this tutorial merely illustrates how to use OpenMM in combination with infretis.
+
 Instead of using an ASE calculator and send positions and forces back and forth between ASE and OpenMM runs `subcycles` steps, and then simply passes positions, velocities and box information to ASE, which is used to calculate the orderparameter and write trajectories in .traj format.
 
 To use openmm, one needs a `system.xml` and `topology.pdb` file, which is used to set up the openmm simulation. See `openmmcalculator.py` for how this is done. Here, one can change `subcycles`, `timestep` and all other system settings. The files `openmm_input/` were generated with the `openmm_input/create_system.py` script.
@@ -60,6 +62,7 @@ The timestep and the subcycles is then set to the desired value in openmmcalcula
 Note that the temperature has to still be set in the .toml, and also in the openmm calculator thermostat.
 
 # intial paths
+
 `cstep=-1` does not work with infinit as of now due to some folder issues. This can be sidestepped with:
 ```bash
 export OPENMM_CPU_THREADS=1
