@@ -1,0 +1,75 @@
+#!/bin/bash
+rm -r ams.results
+rm bck.*
+script=$0
+script=${script%.*}
+script=${script#*/}
+
+# molecular dynamics parameters
+n_steps=100000
+t_run=300 # [K]
+
+# file parameters
+ffield=CHOCsKNaClIFLi.ff # ffield location
+structure=initial.rkf # structure location
+moving1=1
+moving2=2
+
+# sampling parameters
+samp_freq=200
+cp_freq=100000
+
+jobname=${script}
+
+export NSCM=1 # cores used
+export OMP_NUM_THREADS=8 # parallelization
+
+# equilibration run
+AMS_JOBNAME=${jobname} "$ADFBIN/ams" << EOF
+
+Task MolecularDynamics
+System
+    GeometryFile ${structure}
+    Charge 0.0
+End
+MolecularDynamics
+    NSteps ${n_steps}
+    TimeStep 0.25 
+    Trajectory
+        SamplingFreq ${samp_freq}
+    End
+    Checkpoint
+        Frequency ${cp_freq}
+    End
+    InitialVelocities
+        Temperature ${t_run}
+    End
+    Thermostat
+        Type NHC
+        Temperature ${t_run}
+        Tau 100
+    End
+    Plumed
+        Input
+            # Plumed input 
+            # UNITS ENERGY=kj/mol LENGTH=nm TIME=ps
+            # Collective variable
+            d1: DISTANCE ATOMS=${moving2},$moving1
+            cv: COMBINE ARG=d1 COEFFICIENTS=10.0 PERIODIC=NO
+
+            
+            upper_wall: UPPER_WALLS ARG=cv AT=4.9 KAPPA=5000.0 EXP=2
+            # Define lower wall
+            lower_wall: LOWER_WALLS ARG=cv AT=2.0 KAPPA=5000.0 EXP=2
+          restraint: METAD ARG=cv SIGMA=0.1 HEIGHT=0.2 PACE=50 BIASFACTOR=5 GRID_MIN=1.0 GRID_MAX=5.0 TEMP=${t_run}
+		PRINT ARG=cv STRIDE=${samp_freq} FILE=COLVAR 
+	        End
+    End
+End
+
+Engine ReaxFF
+    ForceField ${ffield}
+    Torsions 2013
+EndEngine
+
+EOF

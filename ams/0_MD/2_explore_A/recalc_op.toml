@@ -1,0 +1,10 @@
+# you can use that with inftools to recalculate parameters for any MD trajectory
+# command: inft recalculate_order -traj {rkf_file} -format rkf -toml recalc_op.toml
+
+[orderparameter]
+class = "Distance"
+index = [
+    0,
+    1,
+]
+periodic = true
