@@ -43,7 +43,7 @@ These angles should not be viewed as regular angles between atoms, but rather as
 # Step 0: Installing the required packages
 If you don't already have a Python package manager running, download and install mamba with the following commands
 
-Life hack: Pressing down the middle mouse button (wheel) works better for pasting than ctrl+V 😎 
+Life hack: Pressing down the middle mouse button (wheel) works better for pasting than ctrl+V 😎
 
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
@@ -77,7 +77,7 @@ echo "All done! We will perform the exercise from this folder."
 You should now see `(molmod)` in the left of your terminal. Whenever you open a new terminal, write `mamba activate molmod`.
 
 # Step 1: Equilibration
-As you know, path sampling is a hybrid of molecular dynamics (MD) and Monte Carlo simulations (MC). Therefore, before we can start the path sampling simulation, we need to set up our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system. 
+As you know, path sampling is a hybrid of molecular dynamics (MD) and Monte Carlo simulations (MC). Therefore, before we can start the path sampling simulation, we need to set up our system just like we would for a regular MD run. That includes setting up the force field and equilibrating the system.
 
 The force field has already been set up for you. We will be using the [OpenFF 2.1](https://openforcefield.org/force-fields/force-fields/) force field for oxane (the puckering molecule) and the TIP3P model for water.
 
@@ -131,6 +131,10 @@ inft recalculate_order -traj md_run.trr -toml infretis.toml -out md-order.txt
 
 ```
 Plot the order parameter values (column 1) vs time (column 0) from the MD run using e.g. gnuplot.
+```bash
+gnuplot
+plot "md-order.txt" with linespoints
+```
 
 #### 🤔 Question 4:
 * Given that the product state of your molecule is defined by $\lambda=90$, are you optimistic that you could observe a spontaneous transition during a plain MD simulation? How can path sampling help with this this?
@@ -159,11 +163,11 @@ The process of going from an equilibrated MD system to a path sampling simulatio
 
 Navigate to the `step3_infretis` directory.
 
-Open `infretis0.toml`, which defines all the path sampling setup. 
+Open `infretis0.toml`, which defines all the path sampling setup.
 
 * In the [simulation] section, define the initial state and final state by specifying two interfaces at $\lambda=10$ and $\lambda=90$ in `infretis0.toml`.
 
-* In the [infinit] section, specify  `initial_conf = "../step2_md_run/confout.g96"`, which starts the path-sampling simulation from that configuration. 
+* In the [infinit] section, specify  `initial_conf = "../step2_md_run/confout.g96"`, which starts the path-sampling simulation from that configuration.
 
 Start the path sampling simulation with
 
@@ -213,7 +217,7 @@ vmd vis.xyz -e ../graphics/vmd-script.tcl
 The following script calculates the rate, along with some other properties such as the crossing probability and some error estimates.
 
 ```bash
-inft wham -data infretis_data_6.txt -toml $(if [ -e infretis_6.toml ]; then echo infretis_6.toml ; else echo infretis.toml; fi) -lamres 0.005 -nskip 40
+inft wham -data $(ls combo_[0-9].txt | tail -n 1) -toml $(ls combo_[0-9].toml | tail -n 1) -nskip 0 -lamres 0.01
 ```
 The running average of the rate is written to the `runav_rate.txt` file, with the value in the fourth column giving the best estimate for the rate.
 
@@ -239,4 +243,4 @@ $$c=\frac{\text{subcycles}\cdot \text{timestep}}{1000} $$
 * What is the interpretation of the inverse of the rate (1/rate)? (Hint: noitisnart rep emit ni era stinu ehT).
 * Inspect the last part of the `md_run.log` file from `step2_md_run` and write down the Performance in ns/day. This number says how many nanoseconds of simulation you generate in one day on your machine. From the value of the inverse rate, how many days would you have to wait to observe a single puckering event in a standard MD simulation?
 
-🏁 When you are done, remove the `runX/` and `load/` folders from `step3_infretis` because they take up a lot of space 🐘
+🏁 When you are done, remove the `load/` folder from `step3_infretis` because it takes up a lot of space 🐘
