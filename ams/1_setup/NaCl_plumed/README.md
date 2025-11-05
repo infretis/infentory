@@ -1,0 +1,2 @@
+You can run with the ams.run file and use get_energy_profile.py to extract the energy profile and the interfaces. The quality of those depends on the convergence of your simulation, but it works as a good first guess. 
+The resulting ams.rkf file can be used as an initial trajectory for all ensembles. NOTE: There is too much energy in the system now, and it takes longer for good RETIS statistics - you have to skip a certain amount (>10000) of initial steps. 

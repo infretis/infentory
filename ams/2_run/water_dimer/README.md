@@ -1,0 +1,1 @@
+This here is meant to test your setup with a cheap MD simulation.
