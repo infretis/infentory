@@ -127,12 +127,8 @@ The output may give you some hints of what infinit is doing under the hood
 # Analysis: Are the interfaces reasonable?
 <details>
 
- You can plot the order parameter of the previous simulations with the previous interfaces:
+ You can plot the order parameter of all paths from the simulation using:
  ```bash
-inft plot_order -traj run3 -toml infretis_4.toml
-```
-or the current paths and interfaces estimated til now
-```bash
 inft plot_order -traj load -toml infretis.toml
 ```
 ![tmp](https://github.com/user-attachments/assets/e3a5b5bc-ad16-4530-ba90-ff65c67fd5c3)
@@ -195,8 +191,6 @@ which continues the infinit loop from `cstep = 4`.
 Depending on how much data you can generate in the final production run, you might also want to exclude the infinit simulations as equilibration. We can choose only to analyze the data from the final infretis run using
 
 ```bash
-mv load new_load # rename the newly created load folder temporarily
-mv run5 load # required so that 'inft wham' finds the order.txt files
 inft wham -data infretis_data_6.txt -toml infretis_6.toml -nskip 75 -lamres 0.005 -fener -xcol 1 -nbx 30 -minx -1 -maxx 1
 ```
 
@@ -210,13 +204,13 @@ We see only a slight change in the last 3 interfaces. The spacing between the la
 
 Since the previous interfaces (blue lines) didn't change much as compared to the updated interfaces (red lines), one could also just have continued from the last 750 steps with the `restart.toml` and regular infretis. We will showcase this here as well. 
 
-In the `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
+In the previous `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
 
-We already renamed the run5/ folder back to load/, so we can now simply run
+Then we can simply run
 
 ```bash
 infretisrun -i restart.toml
 ```
-and infretis continues the simulation from step 750 until 2500.
+And infretis continues the simulation from step 750 until 2500.
 
 </details>
