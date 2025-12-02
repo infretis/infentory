@@ -1,0 +1,44 @@
+# infretis config
+
+[runner]
+workers = 2
+wmdrun = [1,1]
+
+[simulation]
+interfaces = [ 0.30, 0.35 , 0.40, 0.45, 0.50 ]
+steps = 1000000
+seed = 0
+load_dir = 'load'
+shooting_moves = ['sh', 'sh', 'wf', 'wf', 'wf']
+
+
+[simulation.tis_set]
+maxlength = 20000
+aimless = true
+allowmaxlength = false
+zero_momentum = true # momentum true
+temperature = 300
+
+
+[engine]
+class = 'ams'
+engine = 'ams' 
+timestep = 0.001
+input_path = 'ams_inp'
+subcycles = 5
+
+[orderparameter]
+class = 'Distance'
+index = [ 0, 3]
+periodic = false
+
+[output]
+backup = 'backup'
+data_dir = "./"
+order-file = 1
+energy-file = 1
+trajectory-file = -1
+screen = 1
+pattern = false
+delete_old = true
+

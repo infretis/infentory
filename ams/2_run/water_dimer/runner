@@ -1,0 +1,9 @@
+#!/bin/bash
+clear
+rm -rf load amsworker_* worker* infretis_data*.txt sim.log* EXIT ams_inp/initial pattern.txt restart.toml infretis.restart
+cp -r load_copy load
+export NSCM=1 # cores used
+export OMP_NUM_THREADS=2 # parallelization on one node 
+#When running on multiple nodes we recommend using pure MPI. To this end, set the OMP_NUM_THREADS environment variable to 1 and set other MPI-related option
+export AMS_COPYSTATE_MOVES_RESULTS=1
+infretisrun -i infretis.toml

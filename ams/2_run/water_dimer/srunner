@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --partition={}           # Partition name
+#SBATCH --nodelist={optional}    # Node list (optional)
+#SBATCH --job-name=AMS.WATER_DIMER              # Job name
+#SBATCH --nodes=1                        # Number of nodes
+#SBATCH --ntasks-per-node=2             # Number of workers per node
+#SBATCH --cpus-per-task=2               # Number of cores per worker
+#SBATCH --time=2400:00:00                # Time limit hrs:min:sec
+#SBATCH --error=slurm-%j.err             # SLURM error
+#SBATCH --output=slurm-%j.out            # SLURM output
+
+source ~/.scm/python/AMS202X.X.venv/bin/activate
+# Run an infRETIS calculations
+chmod +x runner 
+./runner
+
