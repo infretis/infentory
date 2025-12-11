@@ -29,7 +29,7 @@ thermo ${subcycles}
 thermo_style custom step ke pe etotal temp
 thermo_modify flush yes
 
-dump 1 all custom ${subcycles} ${name}.lammpstrj id type x y z vx vy vz
+dump 1 all custom ${subcycles} ${name}.lammpstrj id type x y z vx vy vz id
 dump_modify 1 pbc yes flush yes
 # we may also want .xtc files dumped. Use 'keep_traj_fnames = [".xtc"]
 # in the output section of infretis.toml to save them

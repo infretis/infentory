@@ -105,13 +105,12 @@ The output may give you some hints of what infinit is doing under the hood
 * zero_paths.toml  - _.toml file that was used to generate the [0-] and [0+] paths_  
 * infretis_data.txt  - _empty data file after generating zero paths_  
 * **temporary_load** - _the [0-] and [0+] trajectories were generated in here_  
-* **run0** - _this was the first load/ folder, now renamed to run0_  
-* infretis_data_1.txt  - _first data file from the paths resent in run0/_  
+* infretis_data_1.txt  - _data file for first infretis simulation_  
 * combo_0.txt  - _a combined infretis_data.txt file with all data generated up til now, with 5% skipped (skip=0.05 in [infinit])_  
-* combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations til now_  
-* infretis_1.toml  - _.toml file that was used for the first infretis simulation (for paths in run0/)_  
-* **run1**  - _the directory containing paths of the second infretis simulation_  
-* infretis_data_2.txt  - _first data file from the paths resent in run1/_  
+* combo_0.toml  - _a combined .toml file, having all combined interfaces from all simulations till now_  
+* infretis_1.toml  - _.toml file that was used for the first infretis simulation_
+* restart_1.toml  - _.toml restart file that was used for the first infretis simulation_  
+* infretis_data_2.txt  - _data files for second infretis run_  
 * combo_1.txt  - _combined data from infretis_data_1.txt and infretis_data_2.txt, with 5% skipped from each file_  
 * combo_1.toml  - _combined interfaces from infretis_1.toml and infretis_2.toml_  
 * infretis_2.toml  - _.toml used to run the second infretis simulation_  
@@ -128,12 +127,8 @@ The output may give you some hints of what infinit is doing under the hood
 # Analysis: Are the interfaces reasonable?
 <details>
 
- You can plot the order parameter of the previous simulations with the previous interfaces:
+ You can plot the order parameter of all paths from the simulation using:
  ```bash
-inft plot_order -traj run3 -toml infretis_4.toml
-```
-or the current paths and interfaces estimated til now
-```bash
 inft plot_order -traj load -toml infretis.toml
 ```
 ![tmp](https://github.com/user-attachments/assets/e3a5b5bc-ad16-4530-ba90-ff65c67fd5c3)
@@ -196,8 +191,6 @@ which continues the infinit loop from `cstep = 4`.
 Depending on how much data you can generate in the final production run, you might also want to exclude the infinit simulations as equilibration. We can choose only to analyze the data from the final infretis run using
 
 ```bash
-mv load new_load # rename the newly created load folder temporarily
-mv run5 load # required so that 'inft wham' finds the order.txt files
 inft wham -data infretis_data_6.txt -toml infretis_6.toml -nskip 75 -lamres 0.005 -fener -xcol 1 -nbx 30 -minx -1 -maxx 1
 ```
 
@@ -211,13 +204,13 @@ We see only a slight change in the last 3 interfaces. The spacing between the la
 
 Since the previous interfaces (blue lines) didn't change much as compared to the updated interfaces (red lines), one could also just have continued from the last 750 steps with the `restart.toml` and regular infretis. We will showcase this here as well. 
 
-In the `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
+In the previous `restart.toml`, change the `steps` keyword from 750 to e.g. 2500.
 
-We already renamed the run5/ folder back to load/, so we can now simply run
+Then we can simply run
 
 ```bash
 infretisrun -i restart.toml
 ```
-and infretis continues the simulation from step 750 until 2500.
+And infretis continues the simulation from step 750 until 2500.
 
 </details>
