@@ -6,19 +6,7 @@ from MDAnalysis.analysis.distances import distance_array
 
 
 class PositionX(OrderParameter):
-    """Position order parameter.
-
-
-    Attributes
-    ----------
-    index : tuple of integers
-        These are the indices used for the two particles.
-        `system.particles.pos[index[0]]` and
-        `system.particles.pos[index[1]]` will be used.
-    periodic : boolean
-        This determines if periodic boundaries should be applied to
-        the distance or not.
-
+    """order parameter.
     """
 
     def __init__(self, config):
@@ -47,21 +35,6 @@ class PositionX(OrderParameter):
 
     def calculate(self, system) -> list[float]:
         """Calculate the order parameter.
-
-        Here, the order parameter is just the position
-        of a particle.
-
-        Parameters
-        ----------
-        system : object like :py:class:`.System`
-            The object containing the positions and box used for the
-            calculation.
-
-        Returns
-        -------
-        out : list of floats
-            The distance order parameter.
-
         """
         self.u.atoms.positions = system.pos * 10
         self.u.dimensions = list(system.box[:3]*10) + [90.]*3
