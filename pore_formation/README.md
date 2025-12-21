@@ -5,12 +5,10 @@ The input files used provided here are representative of those used in Ref [1].
 
 The order parameter function `orderp.py` included here utilizes a linear combination of the pore expansion CV [2] and local leaflet proximity [1].
 
-Generating 1 reactive trajectory may require around 50 GB of space and 24-48h of compute using a node containing a GPU.
-
-We refer to more simple and indepth tutorials [].
+Generating 1 reactive trajectory may require around 50 GB of space and 12-48h of compute using a node containing a GPU.
 
 
-# Required packages
+## Required packages
 
 Be sure to be on the latest versions of the main branches of `infretis` and `inftools`. For example in an environment,
 
@@ -30,15 +28,16 @@ cd infretis
 pip install -e .
 ```
 
-To utilize the pore expansion CV [2], install also
+To utilize the pore expansion CV imported from `dztools` in `orderp.py`, install also
 
 ```bash
 pip install git+https://github.com/dz24/dztools.git@v1.0.1
+pip install MDAnalysis
 ```
 
-# Main thing to consider in the infretis0.toml file:
+## Main thing to consider in the infretis0.toml file:
 
-The default setting is to run 4 workers in parallel on 1 GPU node, modify accordingly to your hardware specs:
+In `infretis0.toml`, the default setting is to run 4 workers in parallel on 1 GPU node, modify accordingly to your hardware specs:
 
 ```toml
 [runner]
@@ -58,9 +57,9 @@ Not only there, but also in the following section, specify if `gmx` or `gmx_mpi`
 gmx = "gmx_mpi"
 ```
 
-# Running infinit
+## Running infinit
 
-In the root folder (`infentory/pore_formation`), It is suggested to run infinit in a separate folder,
+In the root folder (`infentory/pore_formation`), we suggest to run infinit in a separate folder,
 
 ```bash
 mkdir init_1
@@ -76,13 +75,19 @@ infinit -toml infretis0.toml
 
 to run infinit.
 
-# Analysis
+## Analysis
 
-the progress of `infinit` can be monitored by running `xip_llp.py` inside the scripts folder,
+The progress of `infinit` can be monitored by running `xip_llp.py` inside the scripts folder,
 
 ```bash
 cd scripts
 python3 xip_llp.py
 ```
 
-We attach an `infinit` simulation where we have stopped once a reactive trajectory has been generated,
+We attach here the result of an `infinit` simulation that has generated 1 reactive trajectory,
+
+image
+
+
+[1] To be added
+[2] J. Chem. Theory Comput. 2021, 17, 1229−1239
