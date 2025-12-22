@@ -75,7 +75,7 @@ class PositionX(OrderParameter):
         d_llp = np.average(ups_pos[:, 2]) - np.average(dws_pos[:, 2])
 
         # linear regression line across xi_p, llp
-        a = 0.25
+        a = 0.7577519583264714
 
         # op
         op = -d_llp/10 + (1/a) * eps_e

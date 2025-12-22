@@ -19,7 +19,7 @@ wmdrun = [
 ]
 
 [simulation]
-interfaces = [-2.3, 0.0]
+interfaces = [-2.3, 0.8]
 
 steps = 100000
 seed = 0

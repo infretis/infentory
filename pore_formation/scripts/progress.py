@@ -86,5 +86,5 @@ if os.path.exists(toml):
     axes[0].plot(x0, -y0, ls="--", zorder=3000)
     axes[1].plot(x0, -y0, ls="--", zorder=3000)
 
-plt.savefig("progress.png", dpi=150)
+# plt.savefig("progress.png", dpi=150)
 plt.show()
