@@ -85,7 +85,7 @@ python3 progress.py
 
 We attach here the result of an `infinit` simulation that has generated 1 reactive trajectory, with a= 0.75 (see orderp.py, scripts/progress.py). This took 25 hours to generate.
 
-![image](https://github.com/infretis/infentory/blob/pf/pore_formation/scripts/progress.png)
+![image](https://github.com/infretis/infentory/blob/main/pore_formation/scripts/progress.png)
 
 
 [1] To be added
