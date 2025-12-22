@@ -33,12 +33,11 @@ for c0 in c:
     axes[1].plot(x0, -y0, ls="--", zorder=3000, color="k")
 
 axes[0].contour(x, y, ufree, colors='black', alpha=0.25, zorder=2000, levels=20)
-axes[1].contour(x, y, commi, colors='black', alpha=0.25, zorder=2000, levels=20)
 fifty_mask = (0.40 < commi) & (commi < 0.60)
 fifty_mask &= np.isfinite(commi)
 avg_hist_fifty = commi.copy()
 avg_hist_fifty[~fifty_mask] = np.inf
-axes[1].contourf(y, x, avg_hist_fifty, colors='r', alpha=0.25, zorder=100, levels=20)
+axes[0].contourf(x, y, avg_hist_fifty, colors='r', alpha=0.25, zorder=100, levels=20)
 
 
 x, y, xs, ys = [], [], [], []
