@@ -75,12 +75,12 @@ to run infinit.
 
 ## Analysis
 
-The progress of `infinit` can be monitored by running `inft plot_msg` or `xip_llp.py` inside the scripts folder,
+The progress of `infinit` can be monitored by running `inft plot_msg` or `progress.py` inside the scripts folder,
 
 ```bash
 inft plot_msg
 cd scripts
-python3 xip_llp.py
+python3 progress.py
 ```
 
 We attach here the result of an `infinit` simulation that has generated 1 reactive trajectory,
