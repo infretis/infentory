@@ -24,9 +24,9 @@ ufree = np.loadtxt("ufree.txt")
 ufree = ufree - np.min(ufree)
 commi = np.loadtxt("committor.txt")
 
-a = 0.7577519583264714
+a = 0.5
 x0 = np.linspace(0, 3, 100)
-c = [-2.3, 0.8]
+c = [-1.8, 2.0]
 for c0 in c:
     y0 = c0 - (1/a)*x0
     axes[0].plot(x0, -y0, ls="--", zorder=3000, color="k")
