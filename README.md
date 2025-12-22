@@ -10,5 +10,6 @@ Infentory is an inventory of tutorials and example files for the infretis softwa
 * 🟡 [2d_potential](2d_potential) is a simple 2D toy sytem with the ASE engine, reproducing a [pyretis example](https://www.pyretis.org/current/examples/examples-2d-hysteresis.html)
 * 🟠 [chignolin](chignolin) contains some information on infretis input and output files, and how to interpret the output of the **WHAM** analysis
 * 🔴 [openmm_nacl_dissociation](openmm_nacl_dissociation) WIP tutorial on how to use OpenMM with infretis
+* 🟤 [pore_formation](pore_formation) Open a pore in a lipid bilayer with infinit.
 
 Some of the example systems are not directly runnable out of the box, as initial paths are not provided, but they can be generated with `infinit`.
