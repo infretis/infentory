@@ -85,7 +85,7 @@ python3 xip_llp.py
 
 We attach here the result of an `infinit` simulation that has generated 1 reactive trajectory,
 
-image
+![image](https://github.com/infretis/infentory/blob/pf/pore_formation/scripts/progress.png)
 
 
 [1] To be added
