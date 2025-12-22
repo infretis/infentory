@@ -5,7 +5,7 @@ The input files used provided here are representative of those used in Ref [1].
 
 The order parameter function `orderp.py` included here utilizes a linear combination of the pore expansion CV [2] and local leaflet proximity [1].
 
-Generating 1 reactive trajectory may require around 50 GB of space and 12-48h of compute using a node containing a GPU.
+Generating 1 reactive trajectory may require around 50-200 GB of space and 12-48h of compute using a node containing a GPU.
 
 
 ## Required packages
