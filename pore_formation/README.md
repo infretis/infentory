@@ -89,4 +89,5 @@ We attach here the result of an `infinit` simulation that has generated 1 reacti
 
 
 [1] To be added
+
 [2] J. Chem. Theory Comput. 2021, 17, 1229−1239
