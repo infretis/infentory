@@ -10,9 +10,7 @@ Generating 1 reactive trajectory may require around 50 GB of space and 12-48h of
 
 ## Required packages
 
-Be sure to be on the latest versions of the main branches of `infretis` and `inftools`. For example in an environment,
-
-download and install,
+Be sure to be on the latest versions of the main branches of `infretis` and `inftools`. For example in an environment, download and install,
 
 ```bash
 git clone https://github.com/infretis/infretis.git
@@ -35,7 +33,7 @@ pip install git+https://github.com/dz24/dztools.git@v1.0.1
 pip install MDAnalysis
 ```
 
-## Main thing to consider in the infretis0.toml file:
+## Tuning GROMACS in infretis0.toml
 
 In `infretis0.toml`, the default setting is to run 4 workers in parallel on 1 GPU node, modify accordingly to your hardware specs:
 
@@ -77,9 +75,10 @@ to run infinit.
 
 ## Analysis
 
-The progress of `infinit` can be monitored by running `xip_llp.py` inside the scripts folder,
+The progress of `infinit` can be monitored by running `inft plot_msg` or `xip_llp.py` inside the scripts folder,
 
 ```bash
+inft plot_msg
 cd scripts
 python3 xip_llp.py
 ```
