@@ -85,8 +85,6 @@ python3 progress.py
 
 We attach here the result of an `infinit` simulation that has generated 1 reactive trajectory, with a= 0.75 (see orderp.py, scripts/progress.py). This took 25 hours to generate.
 
-Technically I think setting `self.lmt_n = 2` would be faster than the current value `self.lmt_n = 12` (to push two opposing lipids together instead of 6) as done in [1].
-
 ![image](https://github.com/infretis/infentory/blob/pf/pore_formation/scripts/progress.png)
 
 
