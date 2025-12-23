@@ -1,0 +1,6 @@
+#!/bin/bash
+clear
+export NSCM=1 # cores used
+export OMP_NUM_THREADS=2 # parallelization
+export AMS_COPYSTATE_MOVES_RESULTS=1
+infretisrun -i restart.toml 

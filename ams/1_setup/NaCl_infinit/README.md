@@ -1,0 +1,1 @@
+This example can be used for both, infinit and also regular RETIS run.

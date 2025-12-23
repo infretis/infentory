@@ -1,0 +1,100 @@
+# InfInit input file to obtain interface placements and initial trajectory from just one geometry
+# Geometry needs to end in .rkf, because of internal usage
+# in case .xyz or .extxyz files are used, the ending needs to be replaced here
+[infinit]
+pL = 0.3
+initial_conf = "ams_inp/initial.rkf" # Always .rkf
+lamres = 0.001
+skip = 0.10
+steps_per_iter = [
+    110,
+    310,
+    510,
+    1010,
+    2010,
+    3010,
+]
+cstep = -1
+
+[runner]
+workers = 8
+wmdrun = [
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+]
+
+[simulation]
+interfaces = [
+    0.31,
+    0.48,
+]
+shooting_moves = [
+    "sh",
+    "sh",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+    "wf",
+]
+steps = 3010
+seed = 0
+load_dir = "load/"
+
+[simulation.tis_set]
+interface_cap = 0.38
+maxlength = 20000
+aimless = true
+allowmaxlength = false
+zero_momentum = true
+rescale_energy = false
+temperature = 300
+
+[engine]
+class = "ams"
+engine = "ams"
+timestep = 0.00025
+input_path = "ams_inp"
+subcycles = 40
+
+[box.settings]
+periodic = [
+    true,
+    true,
+    true,
+]
+
+[orderparameter]
+class = "Distance"
+index = [
+    0,
+    1,
+]
+periodic = true
+
+[output]
+backup = "backup"
+data_dir = "./"
+order-file = 1
+energy-file = 1
+trajectory-file = -1
+screen = 1
+pattern = 1
+delete_old = false 
