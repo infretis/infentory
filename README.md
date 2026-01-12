@@ -11,5 +11,6 @@ Infentory is an inventory of tutorials and example files for the infretis softwa
 * 🟠 [chignolin](chignolin) contains some information on infretis input and output files, and how to interpret the output of the **WHAM** analysis
 * 🔴 [openmm_nacl_dissociation](openmm_nacl_dissociation) WIP tutorial on how to use OpenMM with infretis
 * 🟤 [pore_formation](pore_formation) Open a pore in a lipid bilayer with infinit.
+* ⚫ [sodium chloride dissociation](https://github.com/wilkek/infentory/blob/ams_examples/ams/TUTORIAL.md) Tutorial on how to use AMS with ReaxFF with NaCl dissociation in water as an example
 
 Some of the example systems are not directly runnable out of the box, as initial paths are not provided, but they can be generated with `infinit`.
