@@ -1,0 +1,95 @@
+[runner]
+workers = 2
+files = [
+    "orderp.py",
+]
+wmdrun = [
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+    "not used",
+]
+
+[simulation]
+interfaces = [
+    -0.1,
+    0.0,
+    0.1
+]
+steps = 200000
+seed = 0
+load_dir = "load"
+shooting_moves = [
+    "sh",
+    "sh",
+    "sh",
+    "sh",
+    "sh",
+]
+
+[simulation.tis_set]
+maxlength = 100000
+allowmaxlength = false
+zero_momentum = false
+n_jumps = 3
+lambda_minus_one = -0.2
+
+[engine]
+class = "ase"
+engine = "ase"
+temperature = 11604.518121550082
+input_path = "."
+timestep = 0.020361011421549486
+subcycles = 1
+integrator = "langevin"
+langevin_fixcm = false
+langevin_friction = 1.96453895004769751864159843535162508487701416015625  # = 20 in red. units
+
+[engine.calculator_settings]
+module = "./cos_bump_series_ase.py"
+class = "CosBumpSeriesWalls1D"
+k = 0.0
+deltaf = 1.0
+bleft = -0.1
+bright = 0.1
+nbump = 1
+xleft = -100
+xright = 100
+
+[engine.particles]
+mass = [
+    1.0,
+]
+name = [
+    "Z",
+]
+pos = [
+    [
+        -0.101,
+    ],
+]
+
+[engine.box]
+periodic = [
+    false,
+]
+
+[orderparameter]
+class = "PositionX"
+index = [
+    0,
+    0,
+]
+periodic = false
+module = "orderp.py"
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = true
+delete_old = true
+delete_old_all = false
