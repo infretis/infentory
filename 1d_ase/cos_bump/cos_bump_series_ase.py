@@ -2,7 +2,7 @@
 
 This module defines a 1D potential with series of cosine bump barriers
 and optional harmonic walls at the boundaries.
-Converted from PyRETIS version, AG/EW 2025
+Converted from PyRETIS version, EW 2025
 """
 import numpy as np
 from ase.calculators.calculator import Calculator, all_changes

@@ -50,7 +50,7 @@ langevin_fixcm = false
 langevin_friction = 1.96453895004769751864159843535162508487701416015625
 
 [engine.calculator_settings]
-module = "./flat_walls_ase.py"
+module = "./flat_nowalls_ase.py"
 class = "FlatWalls1D"
 k = 0.0
 left = -0.2
