@@ -8,10 +8,12 @@ This folder contains the input files for two 1D single particle systems simulate
 ### 1. Flat potential (`flat/`)
 A simple 1D system with flat potential:
 $V(x)=0$
+
 <img src="./flat/flat_pot.png" width="350">
 
 ### 2. Cosine bump (`cos_bump/`)
 A 1D system featuring a cosine bump potential barrier centered at $x=0$.
+
 <img src="./cos_bump/cos_bump_pot.png" width="350">
 
 ## Simulation Details
