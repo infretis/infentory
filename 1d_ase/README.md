@@ -25,15 +25,15 @@ The Langevin dynamics parameters in reduced units (cf. PyRETIS definition) are:
 
 ### NOTE: unit conversion
 For these systems, the parameters in reduced units (PyRETIS convention) were converted to ASE internal units, while preserving the distance and energy scale:
-- $\sigma = 1.0 \text{ \r{A}}$ (so distance units match)
+- $\sigma = 1.0 \text{ Å}$ (so distance units match)
 - $\epsilon = 1.0 \text{ eV}$ (energy scale)
 
 Resulting in the following conversion factors:
 
 | Parameter | Red. unit value | Formula | ASE value |
 | :--- | :--- | :--- | :--- |
-| **Friction** ($\gamma$) | 20.0 | $\gamma_{red} \sqrt{\text{eV} / \text{amu}} / \text{\r{A}}$ | 1.965 |
-| **Timestep** ($\Delta t$) | 0.002 | $\Delta t_{red} \cdot \text{\r{A}} \sqrt{\text{amu} / \text{eV}}$ | 0.0203 |
+| **Friction** ($\gamma$) | 20.0 | $\gamma_{red} \sqrt{\text{eV} / \text{amu}} / \text{Å}$ | 1.965 |
+| **Timestep** ($\Delta t$) | 0.002 | $\Delta t_{red} \cdot \text{Å} \sqrt{\text{amu} / \text{eV}}$ | 0.0203 |
 | **Temperature** ($T$) | 1.0 | $T_{red} \cdot \text{eV} / k_B$ | 11604.5 K |
 
 
