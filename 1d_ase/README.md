@@ -1,8 +1,9 @@
 # 1D Single-Particle Systems — ASE engine
 
-> Input files for two 1D single-particle toy systems simulated with
-> [**infretis**](https://github.com/infretis/infretis) using the ASE engine.
-> Both systems have a potential $V(x)$ symmetric around $x=0$.
+ Input files for two 1D single-particle toy systems simulated with
+[**infretis**](https://github.com/infretis/infretis) using the ASE engine.
+
+Both systems have a potential $V(x)$ symmetric around $x=0$.
 
 ---
 
@@ -10,7 +11,7 @@
 
 ### 1 · Flat potential &nbsp;(`flat/`)
 
-$V(x) = 0$
+$$V(x) = 0$$
 
 <img src="./flat/flat_pot.png" width="350">
 
@@ -18,7 +19,7 @@ $V(x) = 0$
 
 ### 2 · Cosine bump &nbsp;(`cos_bump/`)
 
-$V(x) = \frac{\Delta f}{2}\left(1 - \cos\!\left(\frac{2\pi(x - b_L)}{L}\right)\right), \quad x \in [b_L,\, b_R]$
+$V(x) = \frac{\Delta f}{2}\left(1 - \cos\!\left(\frac{2\pi(x - b_L)}{L}\right)\right), \quad x \in [b_L, b_R]$
 
 with $\Delta f = 1.0$, $b_L = -0.1$, $b_R = 0.1$.
 
@@ -30,7 +31,7 @@ with $\Delta f = 1.0$, $b_L = -0.1$, $b_R = 0.1$.
 
 The order parameter is $\lambda = x$, with interfaces
 
-$\lambda_{-1} = -0.2, \quad \lambda_0 = -0.1, \quad \lambda_1 = 0.0, \quad \lambda_2 = 0.1$
+$$\lambda_{-1} = -0.2, \quad \lambda_0 = -0.1, \quad \lambda_1 = 0.0, \quad \lambda_2 = 0.1$$
 
 Langevin dynamics parameters (reduced units, [PyRETIS](https://www.pyretis.org/) convention):
 
@@ -45,7 +46,7 @@ Langevin dynamics parameters (reduced units, [PyRETIS](https://www.pyretis.org/)
 
 Parameters were converted from [PyRETIS](https://www.pyretis.org/) reduced units to ASE internal units with
 
-$\sigma = 1.0~\text{Å}, \qquad \epsilon = 1.0~\text{eV}$
+$$\sigma = 1.0~\text{Å}, \qquad \epsilon = 1.0~\text{eV}$$
 
 giving a natural time unit $\tau = \sigma\sqrt{m/\epsilon} \approx 10.18~\text{fs}$.
 
