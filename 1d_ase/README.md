@@ -52,7 +52,7 @@ giving a natural time unit $\tau = \sigma\sqrt{m/\epsilon} \approx 10.18~\text{f
 
 | Parameter | Reduced value | Conversion | ASE value |
 | :--- | :---: | :--- | :---: |
-| **Friction** $\gamma$ | 20.0 | $\gamma_\text{red}\,\sqrt{\text{eV}/\text{amu}}\,/\,\text{Å}$ | 1.965 fs⁻¹ |
+| **Friction** $\gamma$ | 20.0 | $\gamma_\text{red}\sqrt{\text{eV}/\text{amu}}/\text{Å}$ | 1.965 fs⁻¹ |
 | **Timestep** $\Delta t$ | 0.002 | $\Delta t_\text{red}\cdot\text{Å}\sqrt{\text{amu}/\text{eV}}$ | 0.0203 fs |
 | **Temperature** $T$ | 1.0 | $T_\text{red}\cdot\text{eV}/k_B$ | 11604.5 K |
 
