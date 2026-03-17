@@ -8,14 +8,11 @@ This folder contains the input files for two 1D single particle systems simulate
 ### 1. Flat potential (`flat/`)
 A simple 1D system with flat potential:
 $V(x)=0$
-![Flat potential](./flat/flat_pot.png)
+<img src="./flat/flat_pot.png" width="350">
 
 ### 2. Cosine bump (`cos_bump/`)
 A 1D system featuring a cosine bump potential barrier centered at $x=0$.
-![Cosine bump potential](./cos_bump/cos_bump_pot.png)
-
-### 2. Cosine bump (`cos_bump/`)
-A 1D system featuring a cosine bump potential barrier centered at $x=0$.
+<img src="./cos_bump/cos_bump_pot.png" width="350">
 
 ## Simulation Details
 
@@ -27,16 +24,16 @@ The Langevin dynamics parameters in reduced units (cf. PyRETIS definition) are:
 - Temperature $T=1.0$
 
 ### NOTE: unit conversion
-For these systems, the parameters in reduced units were converted to ASE internal units:
-- $\sigma = 1.0 \text{ \AA}$ (so distance units match)
+For these systems, the parameters in reduced units (PyRETIS convention) were converted to ASE internal units, while preserving the distance and energy scale:
+- $\sigma = 1.0 \text{ \r{A}}$ (so distance units match)
 - $\epsilon = 1.0 \text{ eV}$ (energy scale)
 
 Resulting in the following conversion factors:
 
 | Parameter | Red. unit value | Formula | ASE value |
 | :--- | :--- | :--- | :--- |
-| **Friction** ($\gamma$) | 20.0 | $\gamma_{red} \sqrt{\text{eV} / \text{amu}} / \text{\AA}$ | 1.965 |
-| **Timestep** ($\Delta t$) | 0.002 | $\Delta t_{red} \cdot \text{\AA} \sqrt{\text{amu} / \text{eV}}$ | 0.0203 |
+| **Friction** ($\gamma$) | 20.0 | $\gamma_{red} \sqrt{\text{eV} / \text{amu}} / \text{\r{A}}$ | 1.965 |
+| **Timestep** ($\Delta t$) | 0.002 | $\Delta t_{red} \cdot \text{\r{A}} \sqrt{\text{amu} / \text{eV}}$ | 0.0203 |
 | **Temperature** ($T$) | 1.0 | $T_{red} \cdot \text{eV} / k_B$ | 11604.5 K |
 
 
@@ -63,4 +60,8 @@ Simply run the `runner.sh` script. You'll need the infretis package installed.
 ```
 chmod -x runner.sh
 ./runner.sh
+```
+After runnning, the kinetic properties and conditional free energy can be computed with the following command:
+```
+inft wham -lamres 0.005 -fener
 ```
