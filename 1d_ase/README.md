@@ -51,7 +51,7 @@ The directory structure is as follows:
 └── results_plot/
 ```
 In every system's folder there is an `infretis.toml` file with the settings, a `runner.sh` script from which you can launch an infretis simulation, and a `load_copy/` folder containing initial paths.
-`wham_example/` contains the output of the `inft wham` command for a simulation with 100 000 MC moves.
+`wham_example/` contains the output of the `inft wham` command for a simulation with $100\;000$ MC moves.
 
 In `results_plot`, the analysis plot for varying $\gamma$ and $m$ is included for both systems.
 
