@@ -88,7 +88,7 @@ After the run, compute kinetic properties and the conditional free energy with, 
 inft wham -lamres 0.005 -fener
 ```
 
-Additionally, a histogram/cFE generation script is included::
+Additionally, a histogram/cFE generation script is included:
 
 **`standalone_histograms.py`**: Self-contained script for computing and plotting WHAM-weighted histograms and per-ensemble (without WHAM) conditional free energies from infretis simulation data. Creates new directories with histogram CSV data and PNGs of the plots.
 
@@ -97,7 +97,6 @@ Additionally, a histogram/cFE generation script is included::
 - Computes WHAM [i+] and [0-] ensemble histograms with free energies
 - Generates per-ensemble histograms (without WHAM)
 - Supports multiple normalization modes: `none`, `time`, `density`, `probability`
-- No inftools installation required (all dependencies extracted)
 
 ### Example commands
 
@@ -111,7 +110,7 @@ python standalone_histograms.py \
     --interfaces=-0.2,-0.1,0.0,0.1 \
     --lmin -0.2 \
     --lmax 0.1 \
-    --dlambda 0.005 
+    --dlambda 0.005
 
 # Compute only (save to histograms/)
 python standalone_histograms.py --toml infretis.toml --data infretis_data.txt
