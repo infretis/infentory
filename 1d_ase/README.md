@@ -65,10 +65,10 @@ giving a natural time unit $\tau = \sigma\sqrt{m/\epsilon} \approx 10.18~\text{f
 ├── flat/
 │   ├── load_copy/          # initial paths
 │   └── wham_example/       # inft wham output (100 000 MC moves)
-├── cos_bump/
-│   ├── load_copy/
-│   └── wham_example/
-└── results_plot/           # analysis plots (varying γ and m)
+└── cos_bump/
+    ├── load_copy/
+    └── wham_example/
+
 ```
 
 Each system folder contains an `infretis.toml` configuration file and a `runner.sh` launch script.
@@ -82,8 +82,50 @@ chmod +x runner.sh
 ./runner.sh
 ```
 
-After the run, compute kinetic properties and the conditional free energy with:
+After the run, compute kinetic properties and the conditional free energy with, e.g.:
 
 ```bash
 inft wham -lamres 0.005 -fener
 ```
+
+Additionally, a histogram/cFE generation script is included::
+
+**`standalone_histograms.py`**: Self-contained script for computing and plotting WHAM-weighted histograms and per-ensemble (without WHAM) conditional free energies from infretis simulation data. Creates new directories with histogram CSV data and PNGs of the plots.
+
+### Features
+
+- Computes WHAM [i+] and [0-] ensemble histograms with free energies
+- Generates per-ensemble histograms (without WHAM)
+- Supports multiple normalization modes: `none`, `time`, `density`, `probability`
+- No inftools installation required (all dependencies extracted)
+
+### Example commands
+
+```bash
+# Compute histograms + plot (interactive)
+python standalone_histograms.py \
+    --toml infretis.toml \
+    --data infretis_data.txt \
+    --trajdir load \
+    --plot \
+    --interfaces=-0.2,-0.1,0.0,0.1 \
+    --lmin -0.2 \
+    --lmax 0.1 \
+    --dlambda 0.005 
+
+# Compute only (save to histograms/)
+python standalone_histograms.py --toml infretis.toml --data infretis_data.txt
+
+# Plot existing data (skip computation)
+python standalone_histograms.py \
+    --plot-only \
+    --outdir histograms \
+    --interfaces=-0.2,-0.1,0.0,0.1 \
+    --save-plots figures/
+```
+### Example plot
+For the flat potential, $200\;000$ MC moves, $\gamma=20$ and $m=1.0$:
+
+<img src="./flat/example_figs/wham_histogram.png" width="800">
+
+<img src="./flat/example_figs/per_ensemble_histogram.png" width="800">

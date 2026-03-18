@@ -1,4 +1,0 @@
-#ensemble-index  path-length (index -1 refers to [0-], index i to [i+] for i=0,1,..  
--1   	64.54677767992955
-0   	127.55786518247753
-1   	191.62077237690735
