@@ -16,7 +16,9 @@ Note that OpenMM does not wrap coordinates back into the box. For a permeation s
 Forces are not written to the .traj files, but they can be written by retrieving them from openmm and adding them to the calculator.results section.
 
 # A note on integrators
-The default integrators in OpenMM seemingly all output velocities at half-steps. As such, one can not use these out of the box. To see if your integrator is viable, set up a simple simulation with an openmm reporter that reports e.g. the temperature every timestep.
+The default integrators in OpenMM seemingly all output velocities at half-steps. As such, one can not use these out of the box. More integrators are available [here](https://github.com/choderalab/openmmtools/blob/main/openmmtools/integrators.py).
+
+To see if your integrator is viable, set up a simple simulation with an openmm reporter that reports e.g. the temperature every timestep.
 
 Then run some single MD steps and inspect the temperture output. Then reverse the velocites and continue the propagation, which should now run in reverse. The temperature should now be the same as the previous steps. Running the `check_integrator.py` script, the output using the CustomIntegrator is:
 
