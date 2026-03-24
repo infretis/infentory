@@ -1,35 +1,13 @@
 [runner]
 workers = 2
-files = [
-    "orderp.py",
-]
-wmdrun = [
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-]
+wmdrun = [ "not used", "not used"]
 
 [simulation]
-interfaces = [
-    -0.1,
-    0.0,
-    0.1
-]
+interfaces = [ -0.1, 0.0, 0.1]
 steps = 200000
 seed = 0
 load_dir = "load"
-shooting_moves = [
-    "sh",
-    "sh",
-    "sh",
-    "sh",
-    "sh",
-]
+shooting_moves = [ "sh", "sh", "sh"]
 
 [simulation.tis_set]
 maxlength = 100000
@@ -43,11 +21,11 @@ class = "ase"
 engine = "ase"
 temperature = 11604.518121550082
 input_path = "."
-timestep = 0.020361011421549486
+timestep = 0.020361011421549486 # check this, ase_engine uses fs units here
 subcycles = 1
 integrator = "langevin"
 langevin_fixcm = false
-langevin_friction = 1.96453895004769751864159843535162508487701416015625
+langevin_friction = 1.96453895004769751864159843535162508487701416015625 # also here, units are 1/fs
 
 [engine.calculator_settings]
 module = "./flat_nowalls_ase.py"
@@ -56,32 +34,10 @@ k = 0.0
 left = -0.2
 right = 0.4
 
-[engine.particles]
-mass = [
-    1.0,
-]
-name = [
-    "Z",
-]
-pos = [
-    [
-        -0.101,
-    ],
-]
-
-[engine.box]
-periodic = [
-    false,
-]
-
 [orderparameter]
-class = "PositionX"
-index = [
-    0,
-    0,
-]
+class = "Position"
+index = [ 0, 0, ]
 periodic = false
-module = "orderp.py"
 
 [output]
 data_dir = "./"

@@ -1,35 +1,13 @@
 [runner]
 workers = 2
-files = [
-    "orderp.py",
-]
-wmdrun = [
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-    "not used",
-]
+wmdrun = [ "not used", "not used"]
 
 [simulation]
-interfaces = [
-    -0.1,
-    0.0,
-    0.1
-]
+interfaces = [ -0.1, 0.0, 0.1]
 steps = 200000
 seed = 0
 load_dir = "load"
-shooting_moves = [
-    "sh",
-    "sh",
-    "sh",
-    "sh",
-    "sh",
-]
+shooting_moves = [ "sh", "sh", "sh"]
 
 [simulation.tis_set]
 maxlength = 100000
@@ -60,32 +38,10 @@ nbump = 1
 xleft = -100
 xright = 100
 
-[engine.particles]
-mass = [
-    1.0,
-]
-name = [
-    "Z",
-]
-pos = [
-    [
-        -0.101,
-    ],
-]
-
-[engine.box]
-periodic = [
-    false,
-]
-
 [orderparameter]
-class = "PositionX"
-index = [
-    0,
-    0,
-]
+class = "Position"
+index = [ 0, 0]
 periodic = false
-module = "orderp.py"
 
 [output]
 data_dir = "./"
