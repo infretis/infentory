@@ -1,9 +1,12 @@
 # 1D Single-Particle Systems — ASE engine
 
  Input files for two 1D single-particle toy systems simulated with
-[**infretis**](https://github.com/infretis/infretis) using the ASE engine.
+[**infretis**](https://github.com/infretis/infretis) using the ASE engine. 
 
 Both systems have a potential $V(x)$ symmetric around $x=0$.
+
+These systems were Studied in detail in:  
+**van Erp, T. S. *et al.* (2026).** *Generalized Path Reweighting and History-Dependent Free Energies.*  arXiv:2602.05793
 
 ---
 
