@@ -1,0 +1,3 @@
+0	traj.traj	0	1
+1	traj.traj	1	1
+2	traj.traj	1	1
