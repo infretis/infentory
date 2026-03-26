@@ -1,0 +1,20 @@
+mkdir frees
+inft calc_reaction_free_energy -wham1 run_f1/wham_00/ -wham2 run_b1/wham_00/ -out frees/ufree_00.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_05/ -wham2 run_b1/wham_05/ -out frees/ufree_05.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_10/ -wham2 run_b1/wham_10/ -out frees/ufree_10.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_15/ -wham2 run_b1/wham_15/ -out frees/ufree_15.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_20/ -wham2 run_b1/wham_20/ -out frees/ufree_20.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_25/ -wham2 run_b1/wham_25/ -out frees/ufree_25.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_30/ -wham2 run_b1/wham_30/ -out frees/ufree_30.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_35/ -wham2 run_b1/wham_35/ -out frees/ufree_35.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_40/ -wham2 run_b1/wham_40/ -out frees/ufree_40.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_45/ -wham2 run_b1/wham_45/ -out frees/ufree_45.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_50/ -wham2 run_b1/wham_50/ -out frees/ufree_50.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_55/ -wham2 run_b1/wham_55/ -out frees/ufree_55.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_60/ -wham2 run_b1/wham_60/ -out frees/ufree_60.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_65/ -wham2 run_b1/wham_65/ -out frees/ufree_65.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_70/ -wham2 run_b1/wham_70/ -out frees/ufree_70.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_75/ -wham2 run_b1/wham_75/ -out frees/ufree_75.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_80/ -wham2 run_b1/wham_80/ -out frees/ufree_80.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_85/ -wham2 run_b1/wham_85/ -out frees/ufree_85.txt
+inft calc_reaction_free_energy -wham1 run_f1/wham_90/ -wham2 run_b1/wham_90/ -out frees/ufree_90.txt
