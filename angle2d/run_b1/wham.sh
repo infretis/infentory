@@ -1,0 +1,20 @@
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 2 -ycol 3 -nbx 500 -nby 500 -minx -2.0 -maxx 2.0 -miny -2.0 -maxy 2.0 -folder wham2d
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  4 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_00
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  5 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_05
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  6 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_10
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  7 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_15
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  8 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_20
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol  9 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_25
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 10 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_30
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 11 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_35
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 12 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_40
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 13 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_45
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 14 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_50
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 15 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_55
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 16 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_60
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 17 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_65
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 18 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_70
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 19 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_75
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 20 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_80
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 21 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_85
+inft wham -lamres 0.001 -nskip 1000 -fener -xcol 22 -nbx 500 -minx -2.0 -maxx 2.0 -folder wham_90

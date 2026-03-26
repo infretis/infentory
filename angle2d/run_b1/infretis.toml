@@ -1,0 +1,62 @@
+[runner]
+workers = 4
+wmdrun = [ 1,1,1,1]
+
+[simulation]
+interfaces = [-0.9900, -0.9000, -0.8394, -0.7898, -0.7454,
+	      -0.7040, -0.6649, -0.6272, -0.5906,
+              -0.5536, -0.5150, -0.4772, -0.4385,
+              -0.3975, -0.3534, -0.3065, -0.2538,
+              -0.1918, -0.1149,  1.0000]
+steps = 2000
+seed = 0
+load_dir = "load"
+shooting_moves = [
+    "sh", "sh", "wf","wf", "wf","wf",
+    "wf","wf", "wf","wf", "wf","wf",
+    "wf","wf", "wf","wf", "wf","wf",
+    "wf","wf", "wf","wf", "wf","wf",
+]
+
+[simulation.tis_set]
+maxlength = 50000
+allowmaxlength = false
+zero_momentum = false
+n_jumps = 3
+
+[engine]
+class = "ase"
+engine = "ase"
+temperature = 812.3165442280706 # 0.07/ase.units.kB
+input_path = "."
+timestep = 0.10180505671156725 # 0.01/ase.units.fs
+subcycles = 1
+integrator = "langevin"
+langevin_fixcm = false
+# NB!
+# note a small bug in the ase_engine.py, so change
+#	"friction": langevin_friction * units.fs,
+# to
+#	"friction": langevin_friction / units.fs,
+# langevin_friction = 3.0541517013470174 # = 0.3*ase.units.fs
+langevin_friction = 0.029468084365392187 # = 0.3*ase.units.fs
+
+[engine.calculator_settings]
+module = "../potential.py"
+class = "Potential2D"
+a = 1.3128
+b = 2.0
+c = 0.25
+
+[orderparameter]
+class = "OrderX"
+module = "../orderx_r.py"
+a = 1.3128
+b = 2.0
+c = 0.25
+
+[output]
+data_dir = "./"
+screen = 1
+pattern = false
+delete_old = true
