@@ -26,22 +26,27 @@ class OpenMMCalculator(Calculator):
         self.subcycles = 5
         self.timestep = 2 * omm_units.femtoseconds
         # the temperature has to be the same as in the .toml
-        self.temperature = 300
+        self.temperature = 300*omm_units*kelvin
+        slef.friction_coef = 1.0/omm_units.picoseconds
         print("Temperature in openmmcalculator.py: T = ", self.temperature, "K")
 
-        # set up the velocity-verlet integrator from:
-        #   https://docs.openmm.org/7.1.0/api-python/generated/simtk.openmm.openmm.CustomIntegrator.html
-        # which is reversible wrt. the momenta. The default VelocityVerlet would not work out of the box
-        # when reversing velocities to propagate backwards in time
-        integrator = openmm.CustomIntegrator(self.timestep)
-        integrator.addPerDofVariable("x1", 0)
-        integrator.addUpdateContextState()
-        integrator.addComputePerDof("v", "v+0.5*dt*f/m")
-        integrator.addComputePerDof("x", "x+dt*v")
-        integrator.addComputePerDof("x1", "x")
-        integrator.addConstrainPositions()
-        integrator.addComputePerDof("v", "v+0.5*dt*f/m+(x-x1)/dt")
-        integrator.addConstrainVelocities()
+        #   set up the velocity-verlet integrator from:
+        #     https://docs.openmm.org/7.1.0/api-python/generated/simtk.openmm.openmm.CustomIntegrator.html
+        #   which is reversible wrt. the momenta. The default VelocityVerlet would not work out of the box
+        #   when reversing velocities to propagate backwards in time
+        #   integrator = openmm.CustomIntegrator(self.timestep)
+        #   integrator.addPerDofVariable("x1", 0)
+        #   integrator.addUpdateContextState()
+        #   integrator.addComputePerDof("v", "v+0.5*dt*f/m")
+        #   integrator.addComputePerDof("x", "x+dt*v")
+        #   integrator.addComputePerDof("x1", "x")
+        #   integrator.addConstrainPositions()
+        #   integrator.addComputePerDof("v", "v+0.5*dt*f/m+(x-x1)/dt")
+        #   integrator.addConstrainVelocities()
+
+        # the LangevinIntegrator stores velocites on half-steps
+        self.half_step_velocities = True
+        integrator = openmm.LangevinIntegrator(self.temperature, self.friction_coef, self.emperature, self.friction_coef, self.timestep)
 
         # setup system, topology and create the openmm simulation object
         with open(system_xml) as rfile:
@@ -66,15 +71,7 @@ class OpenMMCalculator(Calculator):
     def calculate(self, atoms=None, properties=None, system_changes=all_changes):
         # only set context positions once when propagating from a new phasepoint
         if atoms.info.get("not_setup", False):
-            self.context.setPositions(atoms.positions / ase_units.nm)
-            self.context.setVelocities(
-                atoms.get_velocities() / ase_units.nm * (1000 * ase_units.fs)
-            )
-            self.context.setPeriodicBoxVectors(*atoms.cell.array / ase_units.nm)
-            # ensure velocity constraints are applied before propagation, such that the
-            # velocites generated with ASE have their constraint components removed
-            self.context.applyVelocityConstraints(1e-12)
-            atoms.info["not_setup"] = False
+            self.update_omm_context(atoms)
         else:
             self.simulation.step(self.subcycles)
 
@@ -114,3 +111,40 @@ class OpenMMCalculator(Calculator):
             / omm_units.kelvin
         )
         self.results["forces"] = np.array([[]])
+
+    def _reverse_velocities(self, filename: str, outfile: str) -> None:
+        """Reverse velcoities using the ASE method if we store on-step velocities,
+        else reverse the half-step velocities of the next step by performing a single
+        integration step.
+        """
+        if not self.half_step_velocities:
+            self._reverse_velocities(filename, outfile)
+        else:
+            atoms = read(filename)
+            if isinstance(atoms, list):
+                atoms = atoms[0]
+            self.update_omm_context(atoms)
+            # perform 1 MD step
+            self.simulation.step(1)
+            state = self.context.getState(getVelocities=True)
+            # update atoms with half-step velocities and reverse
+            vel = state.getVelocities(asNumpy=True)
+                / omm_units.angstrom
+                * omm_units.femtosecond
+                * ase_units.fs
+            atoms.set_velocities(-vel)
+            write(outfile, atoms)
+
+    def update_omm_context(self, atoms):
+        """Update positions and velocities of the openmm context with the ASE
+        positions, velocities and box vectors.
+        """
+        self.context.setPositions(atoms.positions / ase_units.nm)
+        self.context.setVelocities(
+            atoms.get_velocities() / ase_units.nm * (1000 * ase_units.fs)
+        )
+        self.context.setPeriodicBoxVectors(*atoms.cell.array / ase_units.nm)
+        # ensure velocity constraints are applied before propagation, such that the
+        # velocites generated with ASE have their constraint components removed
+        self.context.applyVelocityConstraints(1e-12)
+        atoms.info["not_setup"] = False
