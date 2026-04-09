@@ -23,17 +23,17 @@ class OpenMMCalculator(Calculator):
         self.temperature = 300*omm_units.kelvin
         self.friction_coef = 1.0/omm_units.picoseconds
 
-        integrator = openmm.CustomIntegrator(self.timestep)
-        integrator.addPerDofVariable("x1", 0)
-        integrator.addUpdateContextState()
-        integrator.addComputePerDof("v", "v+0.5*dt*f/m")
-        integrator.addComputePerDof("x", "x+dt*v")
-        integrator.addComputePerDof("x1", "x")
-        integrator.addConstrainPositions()
-        integrator.addComputePerDof("v", "v+0.5*dt*f/m+(x-x1)/dt")
-        integrator.addConstrainVelocities()
+        #integrator = openmm.CustomIntegrator(self.timestep)
+        #integrator.addPerDofVariable("x1", 0)
+        #integrator.addUpdateContextState()
+        #integrator.addComputePerDof("v", "v+0.5*dt*f/m")
+        #integrator.addComputePerDof("x", "x+dt*v")
+        #integrator.addComputePerDof("x1", "x")
+        #integrator.addConstrainPositions()
+        #integrator.addComputePerDof("v", "v+0.5*dt*f/m+(x-x1)/dt")
+        #integrator.addConstrainVelocities()
 
-        #integrator = openmm.LangevinIntegrator(self.temperature, self.friction_coef, self.timestep)
+        integrator = openmm.LangevinIntegrator(self.temperature, self.friction_coef, self.timestep)
 
         # setup system, topology and create the openmm simulation object
         with open(system_xml) as rfile:
@@ -60,6 +60,13 @@ class OpenMMCalculator(Calculator):
         # only set context positions once when propagating from a new phasepoint
         if atoms.info.get("not_setup", False):
             self.update_omm_context(atoms)
+            if atoms.info.get("reverse_vel", False):
+                self.simulation.step(1)
+                state = self.context.getState(getVelocities=True)
+                vel = state.getVelocities(asNumpy=True)/omm_units.angstrom*omm_units.femtosecond/ase_units.fs
+                atoms.set_velocities(-vel)
+                self.update_omm_context(atoms)
+                atoms.info["reverse_vel"] = False
             atoms.info["not_setup"] = False
         else:
             self.simulation.step(self.subcycles)
