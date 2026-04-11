@@ -28,9 +28,14 @@ integrator = "external"
 temperature = 300
 timestep = 0
 subcycles = 0
+
 [engine.calculator_settings]
-module = "openmmcalculator.py"
+module = "../openmmcalculator.py"
 class = "OpenMMCalculator"
+subcycles = 5
+temperature = 300
+timestep_ps = 0.002
+friction_per_ps = 1.0
 
 [orderparameter]
 class = 'Distance'
