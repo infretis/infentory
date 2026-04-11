@@ -1,9 +1,8 @@
 [infinit]
 cstep = 0
-steps_per_iter = [20]
+steps_per_iter = [20,]
 lamres = 0.01
 skip = 0.1
-num_ens=10
 
 [runner]
 workers = 1
@@ -29,15 +28,17 @@ integrator = "external"
 temperature = 8.419027001022311
 timestep = 0
 subcycles = 0
+halfstep_vel = true
 
 [engine.calculator_settings]
 module = "../openmmcalculator.py"
 class = "OpenMMCalculator"
+# there are some duplicate keywords atm
 subcycles = 1
-temperature = 8.419065478920945
 timestep_ps = 0.025
 friction_per_ps = 0.3
-
+temperature = 8.419065478920945
+halfstep_vel = true
 
 [orderparameter]
 class = 'Position'
