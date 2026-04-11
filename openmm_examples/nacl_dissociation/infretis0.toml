@@ -14,12 +14,12 @@ steps = 10
 seed = 0
 load_dir = 'load'
 shooting_moves = ['sh','sh']
-n_jumps = 2
 
 [simulation.tis_set]
 maxlength = 50000
 allowmaxlength = false
 zero_momentum = true
+n_jumps = 1
 
 [engine]
 class = 'ase_external'
@@ -28,9 +28,17 @@ integrator = "external"
 temperature = 300
 timestep = 0
 subcycles = 0
+halfstep_vel = true
+
 [engine.calculator_settings]
-module = "openmmcalculator.py"
+module = "../openmmcalculator.py"
 class = "OpenMMCalculator"
+# there are some duplicate keywords atm
+subcycles = 5
+timestep_ps = 0.002
+friction_per_ps = 1.0
+temperature = 300
+halfstep_vel = true
 
 [orderparameter]
 class = 'Distance'
