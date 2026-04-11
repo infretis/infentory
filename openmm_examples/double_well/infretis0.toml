@@ -25,15 +25,20 @@ n_jumps = 2
 class = 'ase_external'
 input_path = 'openmm_input'
 integrator = "external"
+# results in kB*T = 0.07 kJ/mol
 temperature = 8.419027001022311
+# these are set in [engine.calculator_settings]
 timestep = 0
 subcycles = 0
+# required since OpenMM stores half-step velocities for most built-in integrators
 halfstep_vel = true
+# We excplicitly set a small sleep time here because double-well runs fast
+sleep = 0.05
 
 [engine.calculator_settings]
 module = "../openmmcalculator.py"
 class = "OpenMMCalculator"
-# there are some duplicate keywords atm
+# there are some duplicate keywords at the moment
 subcycles = 1
 timestep_ps = 0.025
 friction_per_ps = 0.3

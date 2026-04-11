@@ -13,7 +13,7 @@ class OpenMMCalculator(Calculator):
     """
     """
 
-    def __init__(self, subcycles, temperature, timestep_ps, friction_per_ps):
+    def __init__(self, subcycles, temperature, timestep_ps, friction_per_ps, halfstep_vel):
         super().__init__()
         system_xml = "openmm_input/system.xml"
         topology_pdb = "openmm_input/topology.pdb"
@@ -22,6 +22,7 @@ class OpenMMCalculator(Calculator):
         self.timestep = timestep_ps * omm_units.picoseconds
         self.temperature = temperature*omm_units.kelvin
         self.friction_coef = friction_per_ps/omm_units.picoseconds
+        self.halfstep_vel = halfstep_vel
 
         integrator = openmm.LangevinIntegrator(self.temperature, self.friction_coef, self.timestep)
 
@@ -50,7 +51,7 @@ class OpenMMCalculator(Calculator):
         # only set context positions once when propagating from a new phasepoint
         if atoms.info.get("not_setup", False):
             self.update_omm_context(atoms)
-            if atoms.info.get("reverse_vel", False):
+            if self.halfstep_vel and atoms.info.get("reverse_vel", False):
                 self.simulation.step(1)
                 state = self.context.getState(getVelocities=True)
                 vel = state.getVelocities(asNumpy=True)/omm_units.angstrom*omm_units.femtosecond/ase_units.fs
