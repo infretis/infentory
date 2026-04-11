@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<System openmmVersion="8.0" type="System" version="1">
+	<PeriodicBoxVectors>
+		<A x="10" y="0" z="0"/>
+		<B x="0" y="10" z="0"/>
+		<C x="0" y="0" z="10"/>
+	</PeriodicBoxVectors>
+	<Particles>
+		<Particle mass="1"/>
+	</Particles>
+	<Constraints/>
+	<Forces>
+		<Force energy="x^4 - 2*x^2" forceGroup="0" name="CustomExternalForce" type="CustomExternalForce" version="1">
+			<PerParticleParameters/>
+			<GlobalParameters/>
+			<Particles>
+				<Particle index="0"/>
+			</Particles>
+		</Force>
+	</Forces>
+</System>

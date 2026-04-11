@@ -1,0 +1,4 @@
+HEADER    SINGLE PARTICLE
+ATOM      1  X   MOL     1       0.500   0.000   0.000  1.00  0.00           X
+TER
+END
