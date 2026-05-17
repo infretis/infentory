@@ -29,6 +29,7 @@ temperature = 300
 timestep = 0
 subcycles = 0
 halfstep_vel = true
+ase_genvel = false
 
 [engine.calculator_settings]
 module = "../openmmcalculator.py"

@@ -7,6 +7,7 @@ from openmm.app import StateDataReporter
 
 from ase.calculators.calculator import Calculator, all_changes
 from ase import units as ase_units
+from ase.io import read
 
 
 class OpenMMCalculator(Calculator):
@@ -15,6 +16,7 @@ class OpenMMCalculator(Calculator):
 
     def __init__(self, subcycles, temperature, timestep_ps, friction_per_ps, halfstep_vel):
         super().__init__()
+        print("="*10,"init OpenMMCalculator")
         system_xml = "openmm_input/system.xml"
         topology_pdb = "openmm_input/topology.pdb"
 
@@ -25,6 +27,16 @@ class OpenMMCalculator(Calculator):
         self.halfstep_vel = halfstep_vel
 
         integrator = openmm.LangevinIntegrator(self.temperature, self.friction_coef, self.timestep)
+        #integrator = openmm.VerletIntegrator(self.timestep)
+        #integrator = openmm.CustomIntegrator(self.timestep)
+        #integrator.addPerDofVariable("x1", 0)
+        #integrator.addUpdateContextState()
+        #integrator.addComputePerDof("v", "v+0.5*dt*f/m")
+        #integrator.addComputePerDof("x", "x+dt*v")
+        #integrator.addComputePerDof("x1", "x")
+        #integrator.addConstrainPositions()
+        #integrator.addComputePerDof("v", "v+0.5*dt*f/m+(x-x1)/dt")
+        #integrator.addConstrainVelocities()
 
         # setup system, topology and create the openmm simulation object
         with open(system_xml) as rfile:
@@ -46,19 +58,29 @@ class OpenMMCalculator(Calculator):
         self.context = self.simulation.context
         # for outputting the potential energy at each subcycles step
         self.implemented_properties = ["energy"]
+        with open("calculator_output","a") as wfile:
+            wfile.write(f"Active Platform: {self.simulation.context.getPlatform().getName()}\n")
 
     def calculate(self, atoms=None, properties=None, system_changes=all_changes):
         # only set context positions once when propagating from a new phasepoint
         if atoms.info.get("not_setup", False):
+            #print("Setting up atoms")
+            atoms.info["not_setup"] = False
             self.update_omm_context(atoms)
             if self.halfstep_vel and atoms.info.get("reverse_vel", False):
+                #print("Reversing velocities with single step MD propagation")
                 self.simulation.step(1)
                 state = self.context.getState(getVelocities=True)
                 vel = state.getVelocities(asNumpy=True)/omm_units.angstrom*omm_units.femtosecond/ase_units.fs
                 atoms.set_velocities(-vel)
                 self.update_omm_context(atoms)
                 atoms.info["reverse_vel"] = False
-            atoms.info["not_setup"] = False
+            elif atoms.info.get("reverse_vel", False):
+                #print("Reversing velocities")
+                vel = atoms.get_velocities()
+                atoms.set_velocities(-vel)
+                self.update_omm_context(atoms)
+                atoms.info["reverse_vel"] = False
         else:
             self.simulation.step(self.subcycles)
 
@@ -108,3 +130,15 @@ class OpenMMCalculator(Calculator):
         # ensure velocity constraints are applied before propagation, such that the
         # velocites generated with ASE have their constraint components removed
         self.context.applyVelocityConstraints(1e-12)
+
+    def generate_velocities(self, conf_in, conf_out):
+            #print("Generating velocities")
+            atoms = read(conf_in)
+            self.update_omm_context(atoms)
+            if atoms.info.get("reverse_vel", False):
+                print("Generating velocities and reversing at the same time should not happen.")
+            self.context.setVelocitiesToTemperature(self.temperature)
+            state = self.context.getState(getVelocities=True)
+            vel = state.getVelocities(asNumpy=True)/omm_units.angstrom*omm_units.femtosecond/ase_units.fs
+            atoms.set_velocities(vel)
+            atoms.write(conf_out)
